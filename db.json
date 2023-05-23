@@ -1,0 +1,23 @@
+{
+  "signup": [
+    {
+      "fname": "pal.dakshendra80@gmail.com",
+      "password": "Daksh@123",
+      "fnumber": "8826721481",
+      "CCnumber": "9988776655443322",
+      "CCType": "American Express",
+      "ConformPassword": "Daksh@123",
+      "id": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

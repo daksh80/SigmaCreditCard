@@ -1,0 +1,32 @@
+<div class="container">
+    <form [formGroup]="signup" (ngSubmit)="signupdata(signup)" class="form-box">
+        <div class="form-group">
+            <label>Signup</label>
+            <input type="text" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter User Email id"/>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control mb-3 mt-3" placeholder="Enter User Password"/>
+        </div>
+        <div class="form-group">
+            <label>Conform Password</label>
+            <input type="password" formControlName="ConformPassword" class="form-control mb-3 mt-3" placeholder="please Conform Password"/>
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" formControlName="fnumber" class="form-control mb-3 mt-3" placeholder="Please Enter Mobile Number "/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Number</label>
+            <input type="text" formControlName="CCnumber" class="form-control mb-3 mt-3" placeholder="Enter User CC Number"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Type</label>
+            <input type="text" formControlName="CCType" class="form-control mb-3 mt-3" placeholder="Enter User CC Type"/>
+        </div>
+            <span>Already have  Account <a routerLink="">Login</a></span>
+        <br>
+            <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
