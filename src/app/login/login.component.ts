@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { Observable } from 'rxjs';
+import { details } from 'details.interface';
+
 
 @Component({
   selector: 'app-login',
@@ -10,33 +12,59 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login: FormGroup | any;
-  constructor(private _route: Router, private _http: HttpClient ) {}
+  loginForm!: FormGroup;
+  private jsonServerEndpoint = 'http://localhost:3000/signup'; // Update with your JSON server endpoint
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private _route: Router) { }
+
   ngOnInit(): void {
-    this.login = new FormGroup({
-      'fname': new FormControl(),
-      'password': new FormControl()
-      })
+    this.loginForm = this.fb.group({
+      fname1: ['', Validators.required],
+      password1: ['', Validators.required]
+    });
   }
-  logindata(login: FormGroup) {
-    // console.log(this.login.value)
-    this._http.get<any>("http://localhost:3000/signup")
-      .subscribe(
-        res => {
-          const user = res.find((a: any) => {
-            return a.fname === this.login.value.fname && a.password === this.login.value.password;
-          });
-          if (user) {
-            alert("user is successfully login")
-            this.login.reset();
-            this._route.navigate(['dashboard'])
+
+  private getUsers(): Observable<details[]> {
+    return this.http.get<details[]>('assets/localdb.json');
+  }
+
+  private checkLoginCredentials(user: details, fname1: string, password1: string): boolean {
+    return user.fname1 === fname1 && user.password1 === password1;
+  }
+
+  login(): void {
+    if (this.loginForm.valid) {
+      const fname1 = this.loginForm.value.fname1;
+      const password1 = this.loginForm.value.password1;
+
+      this.getUsers().subscribe((localData: details[] | any) => {
+        if (Array.isArray(localData)) {
+          const existingUser = localData.find((user: details) => user.fname1 === fname1);
+          if (existingUser) {
+            console.log('Username already exists');
+            this.loginForm.reset();
+            this._route.navigate(['dashboard']);
           } else {
-            alert("not able to login ")
-            this._route.navigate([login])
+            this.http.get<details[]>(this.jsonServerEndpoint).subscribe((jsonServerData: details[] | any) => {
+              if (Array.isArray(jsonServerData)) {
+                const user = jsonServerData.find((user: details) =>
+                  this.checkLoginCredentials(user, fname1, password1)
+                );
+                if (user) {
+                  console.log('User is successfully logged in');
+                  this.loginForm.reset();
+                  this._route.navigate(['dashboard']);
+                } else {
+                  console.log('Invalid username or password');
+                  alert('Invalid username or password');
+                }
+              } else {
+                console.log('Invalid JSON server response');
+              }
+            });
           }
-        }, err => {
-          alert("Something Went Wrong Please try Again");
-      }
-    )
+        }
+      });
+    }
   }
 }

@@ -1,0 +1,20 @@
+[
+  {
+    "fname1": "John",
+    "password1": "password123",
+    "ConformPassword1": "password123",
+    "fnumber1": "1234567890",
+    "ActType1": "Type A",
+    "CCnumber1": "1234567890123456",
+    "CCType1": "Visa"
+  },
+  {
+    "fname1": "Alice",
+    "password1": "password456",
+    "ConformPassword1": "password456",
+    "fnumber1": "9876543210",
+    "ActType1": "Type B",
+    "CCnumber1": "6543210987654321",
+    "CCType1": "MasterCard"
+  }
+]

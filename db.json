@@ -1,13 +1,84 @@
 {
   "signup": [
     {
-      "fname": "pal.dakshendra80@gmail.com",
-      "password": "Daksh@123",
-      "fnumber": "8826721481",
-      "CCnumber": "9988776655443322",
-      "CCType": "American Express",
-      "ConformPassword": "Daksh@123",
+      "fname1": "pal.dakshendra80@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "8826721481",
+      "CCnumber1": "1234567890",
+      "CCType1": "American Express",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
       "id": 1
+    },
+    {
+      "fname1": "daksh80@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "123456789",
+      "CCnumber1": "0987654321",
+      "CCType1": "Visa Master Card",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
+      "id": 2
+    },
+    {
+      "fname1": "abc12@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "1262654189",
+      "CCnumber1": "123456789",
+      "CCType1": "sbi signature",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
+      "id": 3
+    },
+    {
+      "fname1": "abc12@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "0987654321",
+      "CCnumber1": "223344556677",
+      "CCType1": "Master Card",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
+      "id": 4
+    },
+    {
+      "fname1": "rex90@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "8899006612",
+      "CCnumber1": "8899001234",
+      "CCType1": "hdfc millennia ",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
+      "id": 5
+    },
+    {
+      "fname1": "lolo90@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "123456789",
+      "CCnumber1": "4433228908",
+      "CCType1": "hdfc moneyback",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
+      "id": 6
+    },
+    {
+      "fname1": "lolo10@gmail.com",
+      "password1": "Daksh@123",
+      "fnumber1": "123456789",
+      "CCnumber1": "4433228908",
+      "CCType1": "Indusind moneyback",
+      "ConformPassword1": "Daksh@123",
+      "ActType1": "Active",
+      "id": 7
+    },
+    {
+      "fname1": "ram10@gmail.com",
+      "password1": "Daksh@123",
+      "confirmPassword1": "Daksh@123",
+      "fnumber1": "8899776655",
+      "ActType1": "Inactive",
+      "CCnumber1": "11223344556677",
+      "CCType1": "Rupy",
+      "id": 8
     }
   ],
   "comments": [
