@@ -79,13 +79,34 @@
       "CCnumber1": "11223344556677",
       "CCType1": "Rupy",
       "id": 8
+    },
+    {
+      "fname1": "Abc90@gmail.com",
+      "password1": "Daksh@123",
+      "confirmPassword1": "Daksh@123",
+      "fnumber1": "112233445566",
+      "ActType1": "Inactive",
+      "CCnumber1": "123456789987654",
+      "CCType1": "VIVI",
+      "id": 9
     }
   ],
-  "comments": [
+  "addcreditcard": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "CCNo": "78376233778",
+      "CCName": "Dakshendra Singh ",
+      "CCExp": "12/25",
+      "Bname": "HDFC signature bank",
+      "Cvvnum": "125"
+    },
+    {
+      "CCNo": "5789302376734",
+      "CCName": "Dakshendra singh",
+      "CCExp": "12/25",
+      "Bname": "HDFC signature card",
+      "Cvvnum": "125",
+      "id": 2
     }
   ],
   "profile": {

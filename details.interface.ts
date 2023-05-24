@@ -1,5 +1,5 @@
 export interface details {
-  fname1: string;
+    fname1: string;
     password1: string;
     confirmPassword1: string;
     fnumber1: string;

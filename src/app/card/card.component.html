@@ -1,3 +1,26 @@
-<button (click)="Testing()">Display name</button>
-<input id="txtName" type="text"/>
-<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Phone Number</th>
+        <th>Credit Card Number</th>
+        <th>Credit Card Type</th>
+        <th>Confirm Password</th>
+        <th>Active Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detail of detailsList">
+        <td>{{ detail.fname1 }}</td>
+        <td>{{ detail.password1 }}</td>
+        <td>{{ detail.fnumber1 }}</td>
+        <td>{{ detail.CCnumber1 }}</td>
+        <td>{{ detail.CCType1 }}</td>
+        <td>{{ detail.confirmPassword1}}</td>
+        <td>{{ detail.ActType1 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { ToastrModule } from 'ngx-toastr';
+import { CreditcardComponent } from './creditcard/creditcard.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreditcardComponent
   ],
   imports: [
     BrowserModule,
