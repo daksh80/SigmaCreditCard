@@ -1,0 +1,28 @@
+<app-dashboard></app-dashboard>
+<div class="container">
+    <form [formGroup]="updatecreditcard" class="form-box">
+        <div class="form-group">
+            <label>Credit Card Number</label>
+            <input type="text" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Please Add Credit Card Number"/>
+        </div>
+        <div class="form-group">
+            <label>User Name </label>
+            <input type="text" formControlName="CCName" class="form-control mb-3 mt-3" placeholder="User Name"/>
+        </div>
+        <div class="form-group">
+            <label>Card Expiry </label>
+            <input type="text" formControlName="CCExp" class="form-control mb-3 mt-3" placeholder="Card Expiry"/>
+        </div>
+        <div class="form-group">
+            <label>Bank Name </label>
+            <input type="text" formControlName="Bname" class="form-control mb-3 mt-3" placeholder="Bank Name"/>
+        </div>
+        <div class="form-group">
+            <label>CVVNumber</label>
+            <input type="text" formControlName="Cvvnum" class="form-control mb-3 mt-3" placeholder="Bank Name"/>
+        </div>
+        <button type="submit"  class="btn btn-success" (click)="update()">Submit</button>
+
+    </form>
+
+</div>

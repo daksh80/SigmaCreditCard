@@ -93,20 +93,12 @@
   ],
   "addcreditcard": [
     {
-      "id": 1,
-      "CCNo": "78376233778",
-      "CCName": "Dakshendra Singh ",
-      "CCExp": "12/25",
-      "Bname": "HDFC signature bank",
-      "Cvvnum": "125"
-    },
-    {
-      "CCNo": "5789302376734",
-      "CCName": "Dakshendra singh",
-      "CCExp": "12/25",
-      "Bname": "HDFC signature card",
-      "Cvvnum": "125",
-      "id": 2
+      "CCNo": "890738328973",
+      "CCName": "Ramu Kaka",
+      "CCExp": "12/30",
+      "Bname": "Lena Dena Bank",
+      "Cvvnum": "678",
+      "id": 3
     }
   ],
   "profile": {

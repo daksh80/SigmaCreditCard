@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { details } from 'details.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { SharedService } from 'src/shared.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,8 +15,12 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private _route: Router ) { }
-
+constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private sharedService: SharedService
+  ) { }
   ngOnInit(): void {
     this.signupForm = this.fb.group({
       fname1: ['', Validators.required],
@@ -59,17 +64,24 @@ export class SignupComponent implements OnInit {
               CCnumber1,
               CCType1
             };
-            this.http.post<any>('http://localhost:3000/signup', newUser)
+                
+
+                  this.http.post<any>('http://localhost:3000/signup', newUser)
               .subscribe(
                 () => {
                   console.log('Signup successful');
                   data.push(newUser);
+                  this.sharedService.setDetailsArray(data);
                   this.signupForm.reset()
-                  this._route.navigate(['dashboard'])
-                  // Save the updated user array back to the JSON file or perform necessary actions
+                  this.router.navigate(['dashboard']);
+                  
                 },
                 error => {
                   console.log('Error during signup', error);
+                data.push(newUser);
+                this.sharedService.setDetailsArray(data);
+                this.signupForm.reset()
+                //this.router.navigate(['dashboard']);
                 }
               );
           }

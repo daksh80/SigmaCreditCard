@@ -1,1 +1,34 @@
-<p>emi-calculator works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+    <form [formGroup]="emiCalculate" class="form-box">
+        <div class="form-group">
+            <label>Credit Card Limit</label>
+            <input type="text" formControlName="CClimit" class="form-control mb-3 mt-3" placeholder="Credit Card Limit"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Spend</label>
+            <input type="text" formControlName="CCSpend" class="form-control mb-3 mt-3" placeholder="Credit Card Spend"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Tenure</label>
+            <input type="text" formControlName="CCtenure" class="form-control mb-3 mt-3" placeholder="Credit Card Tenure"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Intreset Type</label>
+            <input type="text" formControlName="CCItyp" class="form-control mb-3 mt-3" placeholder="Credit Card Intreset Type"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Intreset</label>
+            <input type="text" formControlName="CCIntr" class="form-control mb-3 mt-3" placeholder="Credit Card Intreset"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Intrest Monthly/Yearly</label>
+            <input type="text" formControlName="CCMY" class="form-control mb-3 mt-3" placeholder="Credit Card Intrest Monthly/Yearly"/>
+        </div>
+        <div class="form-group">
+            <label>Credit Card Type</label>
+            <input type="text" formControlName="CCType" class="form-control mb-3 mt-3" placeholder="Credit Card Type"/>
+        </div>
+            <button type="submit"  class="btn btn-success" (click)="emiCalculategrp()">Submit</button>
+    </form>
+</div>

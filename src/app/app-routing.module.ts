@@ -5,6 +5,8 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OffersComponent } from './offers/offers.component';
 import { CreditcardComponent } from './creditcard/creditcard.component';
+import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
+import { UpdatecreditdetailsComponent } from './updatecreditdetails/updatecreditdetails.component';
 
 const routes: Routes = [
   { redirectTo: 'login', path: '', pathMatch: 'full' },
@@ -12,7 +14,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'offers', component: OffersComponent },
-  { path: 'creditcard', component: CreditcardComponent}
+  { path: 'creditcard', component: CreditcardComponent },
+  { path: 'emi-calculator', component: EmiCalculatorComponent },
+  { path: 'updatecreditdetails', component: UpdatecreditdetailsComponent}
 ];
 
 @NgModule({

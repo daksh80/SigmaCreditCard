@@ -1,0 +1,15 @@
+.container {
+  margin: 20px;
+}
+
+.card-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card-item {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}

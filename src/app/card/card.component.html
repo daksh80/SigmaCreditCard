@@ -1,26 +1,14 @@
 <div class="container">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Password</th>
-        <th>Phone Number</th>
-        <th>Credit Card Number</th>
-        <th>Credit Card Type</th>
-        <th>Confirm Password</th>
-        <th>Active Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let detail of detailsList">
-        <td>{{ detail.fname1 }}</td>
-        <td>{{ detail.password1 }}</td>
-        <td>{{ detail.fnumber1 }}</td>
-        <td>{{ detail.CCnumber1 }}</td>
-        <td>{{ detail.CCType1 }}</td>
-        <td>{{ detail.confirmPassword1}}</td>
-        <td>{{ detail.ActType1 }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="card-list">
+    <li *ngFor="let detail of creditList" class="card-item" (click)="onCardClick(detail)">
+      <strong>Credit Card Number:</strong> {{ detail.CCNo }}<br>
+      <strong>Credit Card Name:</strong> {{ detail.CCName }}<br>
+      <strong>Credit Card Expiry Date:</strong> {{ detail.CCExp }}<br>
+      <strong>Credit Card Name:</strong> {{ detail.Bname }}<br>
+      <strong>Credit Card Cvvnum:</strong> {{ detail.Cvvnum }}<br>
+      <button (click)="update(detail)">update</button>
+      <button (click)="delete(detail.id)">delete</button>
+      <br>
+    </li>
+  </ul>
 </div>

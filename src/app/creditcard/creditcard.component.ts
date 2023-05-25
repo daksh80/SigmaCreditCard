@@ -30,32 +30,30 @@ export class CreditcardComponent implements OnInit {
   }
 
   private getUsers(): Observable<creditcard[]> {
-    return this.http.get<creditcard[]>('http://localhost:3000/addcreditcard'); // Provide the correct endpoint URL for fetching credit card data
+    return this.http.get<creditcard[]>('http://localhost:3000/addcreditcard'); 
   }
 
   addcc(): void {
   if (this.addcreditcard.valid) {
-    const { CCNo, CCName, CCExp, Bname, Cvvnum } = this.addcreditcard.value;
+    const { CCNo, CCName, CCExp, Bname, Cvvnum,id } = this.addcreditcard.value;
 
     const newCreditcard: creditcard = {
       CCNo,
       CCName,
       CCExp,
       Bname,
-      Cvvnum
+      Cvvnum,
+      id
     };
 
     this.http
       .post('http://localhost:3000/addcreditcard', newCreditcard)
       .subscribe(
         (response) => {
-          // Data added successfully
           console.log('Data added:', response);
-          // You can perform additional actions here, such as navigating to a different page
         },
         (error) => {
           console.error('Error adding data:', error);
-          // Handle the error condition as needed
         }
       );
   }
