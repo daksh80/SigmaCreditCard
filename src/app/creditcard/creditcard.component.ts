@@ -25,7 +25,8 @@ export class CreditcardComponent implements OnInit {
       CCName: ['', Validators.required],
       CCExp: ['', Validators.required],
       Bname: ['', Validators.required],
-      Cvvnum: ['', Validators.required]
+      Cvvnum: ['', Validators.required],
+      Act: ['',Validators.required]
     });
   }
 
@@ -35,7 +36,7 @@ export class CreditcardComponent implements OnInit {
 
   addcc(): void {
   if (this.addcreditcard.valid) {
-    const { CCNo, CCName, CCExp, Bname, Cvvnum,id } = this.addcreditcard.value;
+    const { CCNo, CCName, CCExp, Bname, Cvvnum,id,Act } = this.addcreditcard.value;
 
     const newCreditcard: creditcard = {
       CCNo,
@@ -43,7 +44,8 @@ export class CreditcardComponent implements OnInit {
       CCExp,
       Bname,
       Cvvnum,
-      id
+      id,
+      Act
     };
 
     this.http

@@ -4,5 +4,6 @@ export interface creditcard{
     CCExp: string;
     Bname: string;
     Cvvnum: string;
-    id: string
+    id: string;
+    Act : string
 }

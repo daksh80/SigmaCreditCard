@@ -5,7 +5,8 @@
       "CCName": "Dakshendra Singh ",
       "CCExp": "12/25",
       "Bname": "HDFC signature bank",
-      "Cvvnum": "125"
+      "Cvvnum": "125",
+      "Act": "Active"
     },
     {
       "CCNo": "5789302376734",
@@ -13,6 +14,7 @@
       "CCExp": "12/25",
       "Bname": "HDFC signature card",
       "Cvvnum": "125",
-      "id": 2
+      "id": 2,
+      "Act": "InActive"
     }
   ]

@@ -1,34 +1,46 @@
 <app-navbar></app-navbar>
+
 <div class="container">
-    <form [formGroup]="emiCalculate" class="form-box">
-        <div class="form-group">
-            <label>Credit Card Limit</label>
-            <input type="text" formControlName="CClimit" class="form-control mb-3 mt-3" placeholder="Credit Card Limit"/>
-        </div>
-        <div class="form-group">
-            <label>Credit Card Spend</label>
-            <input type="text" formControlName="CCSpend" class="form-control mb-3 mt-3" placeholder="Credit Card Spend"/>
-        </div>
-        <div class="form-group">
-            <label>Credit Card Tenure</label>
-            <input type="text" formControlName="CCtenure" class="form-control mb-3 mt-3" placeholder="Credit Card Tenure"/>
-        </div>
-        <div class="form-group">
-            <label>Credit Card Intreset Type</label>
-            <input type="text" formControlName="CCItyp" class="form-control mb-3 mt-3" placeholder="Credit Card Intreset Type"/>
-        </div>
-        <div class="form-group">
-            <label>Credit Card Intreset</label>
-            <input type="text" formControlName="CCIntr" class="form-control mb-3 mt-3" placeholder="Credit Card Intreset"/>
-        </div>
-        <div class="form-group">
-            <label>Credit Card Intrest Monthly/Yearly</label>
-            <input type="text" formControlName="CCMY" class="form-control mb-3 mt-3" placeholder="Credit Card Intrest Monthly/Yearly"/>
-        </div>
-        <div class="form-group">
-            <label>Credit Card Type</label>
-            <input type="text" formControlName="CCType" class="form-control mb-3 mt-3" placeholder="Credit Card Type"/>
-        </div>
-            <button type="submit"  class="btn btn-success" (click)="emiCalculategrp()">Submit</button>
-    </form>
+  <form [formGroup]="emiCalculate" class="form-box">
+    <div class="form-group">
+      <label>Credit Card Limit</label>
+      <input type="range" formControlName="CClimit" class="form-control-range mb-3 mt-3" placeholder="Credit Card Limit" min="0" max="1000" step="10" (input)="updateLimitValue($event)">
+      <input type="text" [value]="emiCalculate.get('CClimit')?.value" class="form-control" disabled>
+    </div>
+
+    <div class="form-group">
+      <label>Credit Card Spend</label>
+      <input type="range" formControlName="CCSpend" class="form-control-range mb-3 mt-3" placeholder="Credit Card Spend" min="0" max="1000" step="10" (input)="updateSpendValue($event)">
+      <input type="text" [value]="emiCalculate.get('CCSpend')?.value" class="form-control" disabled>
+    </div>
+
+    <div class="form-group">
+      <label>Credit Card Tenure</label>
+      <input type="range" formControlName="CCtenure" class="form-control-range mb-3 mt-3" placeholder="Credit Card Tenure" min="0" max="12" step="1" (input)="updateTenureValue($event)">
+      <input type="text" [value]="emiCalculate.get('CCtenure')?.value" class="form-control" disabled>
+    </div>
+
+    <div class="form-group">
+      <label>Credit Card Interest Type</label>
+      <input type="range" formControlName="CCItyp" class="form-control-range mb-3 mt-3" placeholder="Credit Card Interest Type" min="0" max="10" step="0.5" (input)="updateInterestTypeValue($event)">
+      <input type="text" [value]="emiCalculate.get('CCItyp')?.value" class="form-control" disabled>
+    </div>
+
+    <div class="form-group">
+      <label>Credit Card Interest</label>
+      <input type="text" formControlName="CCIntr" class="form-control mb-3 mt-3" placeholder="Credit Card Interest">
+    </div>
+
+    <div class="form-group">
+      <label>Credit Card Interest Monthly/Yearly</label>
+      <input type="text" formControlName="CCMY" class="form-control mb-3 mt-3" placeholder="Credit Card Interest Monthly/Yearly">
+    </div>
+
+    <div class="form-group">
+      <label>Credit Card Type</label>
+      <input type="text" formControlName="CCType" class="form-control mb-3 mt-3" placeholder="Credit Card Type">
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="emiCalculategrp()">Submit</button>
+  </form>
 </div>

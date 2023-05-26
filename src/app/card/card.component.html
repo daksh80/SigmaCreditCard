@@ -6,8 +6,10 @@
       <strong>Credit Card Expiry Date:</strong> {{ detail.CCExp }}<br>
       <strong>Credit Card Name:</strong> {{ detail.Bname }}<br>
       <strong>Credit Card Cvvnum:</strong> {{ detail.Cvvnum }}<br>
+      <strong>Credit Card Active/InActive:</strong>{{ detail.Act}}<br>
       <button (click)="update(detail)">update</button>
       <button (click)="delete(detail.id)">delete</button>
+      <button (click)="ActiveIn()">Active/InActive</button>
       <br>
     </li>
   </ul>

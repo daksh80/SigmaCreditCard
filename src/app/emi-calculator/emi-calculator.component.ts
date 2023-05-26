@@ -1,7 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-emi-calculator',
@@ -9,8 +7,9 @@ import { Route } from '@angular/router';
   styleUrls: ['./emi-calculator.component.css']
 })
 export class EmiCalculatorComponent implements OnInit {
-  emiCalculate!: FormGroup
-  constructor(private _https: HttpClientModule, private fb: FormBuilder) {}
+  emiCalculate!: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.emiCalculate = this.fb.group({
@@ -23,7 +22,28 @@ export class EmiCalculatorComponent implements OnInit {
       CCType: ['', Validators.required]
     });
   }
-  emiCalculategrp(): void{
-    
+
+  updateLimitValue(event: Event): void {
+  const value = (event.target as HTMLInputElement).value;
+  this.emiCalculate.patchValue({ CClimit: value });
+}
+
+  updateSpendValue(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.emiCalculate.patchValue({ CCSpend: value });
+  }
+
+  updateTenureValue(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.emiCalculate.patchValue({ CCtenure: value });
+  }
+
+  updateInterestTypeValue(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.emiCalculate.patchValue({ CCItyp: value });
+  }
+
+  emiCalculategrp(): void {
+    // Handle the form submission logic here
   }
 }

@@ -1,7 +1,7 @@
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { creditcard } from 'creditcard.interface';
 import { SharedService } from 'src/shared.service';
 
 @Component({
@@ -10,16 +10,35 @@ import { SharedService } from 'src/shared.service';
   styleUrls: ['./updatecreditdetails.component.css']
 })
 export class UpdatecreditdetailsComponent implements OnInit {
-  constructor(private _https: HttpClientModule, private route: Router, private shared: SharedService,private fb: FormBuilder) { }
-  updatecreditcard!: FormGroup
+  updatecreditcard!: FormGroup;
+  creditArray: creditcard[] | null = null;
+
+  constructor(
+    private sharedService: SharedService,
+    private fb: FormBuilder
+  ) { }
   
   ngOnInit(): void {
     this.updatecreditcard = this.fb.group({
-      
+      CCNo: ['', Validators.required],
+      CCName: ['', Validators.required],
+      CCExp: ['', Validators.required],
+      Bname: ['', Validators.required],
+      Cvvnum: ['', Validators.required]
     });
-      
+
+    this.sharedService.getCreditCardArray().subscribe((creditArray: creditcard[] | null) => {
+      this.creditArray = creditArray;
+      console.log(this.creditArray?.values)
+    });
   }
-  update(): void{
-    
+  
+ updatecredit(): void {
+  if (this.updatecreditcard.valid && this.creditArray) {
+    const postData = this.updatecreditcard.value;
+    const id = this.creditArray[0].id; // Assuming there is only one credit card in the array
+    this.sharedService.updateCreditCard({ id, ...postData }); // Merge the ID with the form data
   }
+}
+
 }
