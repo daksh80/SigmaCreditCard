@@ -18,10 +18,15 @@
       <input type="text" [value]="emiCalculate.get('CCtenure')?.value" class="form-control" disabled>
     </div>
 
-    <div class="form-group">
+   <div class="form-group">
       <label>Credit Card Interest Type</label>
-      <input type="range" formControlName="CCItyp" class="form-control-range mb-3 mt-3" placeholder="Credit Card Interest Type" min="0" max="10" step="0.5" (input)="updateInterestTypeValue($event)">
-      <input type="text" [value]="emiCalculate.get('CCItyp')?.value" class="form-control" disabled>
+      <select formControlName="CCItyp" class="form-control mb-3 mt-3">
+        <option value="0">Home Loan</option>
+        <option value="1">Personal loan</option>
+        <option value="2">Car Loan</option>
+        <option value="1">Education loan</option>
+        <option value="2">Health Loan</option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -30,13 +35,32 @@
     </div>
 
     <div class="form-group">
-      <label>Credit Card Interest Monthly/Yearly</label>
-      <input type="text" formControlName="CCMY" class="form-control mb-3 mt-3" placeholder="Credit Card Interest Monthly/Yearly">
+      <label>Credit Card Interest Monthly</label>
+      <select formControlName="CCMY" class="form-control mb-3 mt-3">
+        <option value="0">O month</option>
+        <option value="1">1 month</option>
+        <option value="2">2 month</option>
+        <option value="3">3 month</option>
+        <option value="4">4 month</option>
+        <option value="5">5 month</option>
+        <option value="6">6 month</option>
+        <option value="7">7 month</option>
+        <option value="8">8 month</option>
+        <option value="9">9 month</option>
+        <option value="10">10 month</option>
+        <option value="11">11 month</option>
+        <option value="12">12 month</option>
+      </select>
     </div>
 
     <div class="form-group">
       <label>Credit Card Type</label>
-      <input type="text" formControlName="CCType" class="form-control mb-3 mt-3" placeholder="Credit Card Type">
+      <select formControlName="CCType" class="form-control mb-3 mt-3">
+        <option value="0">Visa</option>
+        <option value="1">Master Card</option>
+        <option value="2">American Express</option>
+        <option value="4">Rupy</option>
+      </select>
     </div>
 
     <button type="submit" class="btn btn-success" (click)="emiCalculategrp()">Submit</button>

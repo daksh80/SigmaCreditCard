@@ -28,7 +28,7 @@ import { UpdatecreditdetailsComponent } from './updatecreditdetails/updatecredit
     SignupComponent,
     DashboardComponent,
     CreditcardComponent,
-    UpdatecreditdetailsComponent
+    UpdatecreditdetailsComponent,
   ],
   imports: [
     BrowserModule,
