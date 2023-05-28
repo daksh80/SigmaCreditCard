@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       password1: ['', Validators.required]
     });
 
-    this.sharedService.getDetailsArray().subscribe((detailsArray: details[] | null) => {
+    this.getUsers().subscribe((detailsArray: details[] | null) => {
       this.detailsArray = detailsArray;
     });
   }
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       if (existingUser) {
         console.log('Username already exists');
         this.loginForm.reset();
-        this.router.navigate(['dashboard']);
+        this.router.navigate([`dashboard/${existingUser.uid}`]);
       } else {
         this.http.get<details[]>(this.jsonServerEndpoint).subscribe((jsonServerData: details[] | any) => {
           if (Array.isArray(jsonServerData)) {
@@ -60,9 +60,9 @@ export class LoginComponent implements OnInit {
               this.checkLoginCredentials(user, fname1, password1)
             );
             if (user) {
-              console.log('User is successfully logged in');
+              console.log('User is successfully logged in','${user.uid}');
               this.loginForm.reset();
-              this.router.navigate(['dashboard']);
+              this.router.navigate([`dashboard/${user.uid}`]);
             } else {
               console.log('Invalid username or password');
               alert('Invalid username or password');

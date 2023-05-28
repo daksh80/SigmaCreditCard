@@ -6,4 +6,5 @@ export interface details {
     ActType1: string;
     CCnumber1: string;
     CCType1: string;
+    uid: string;
 }

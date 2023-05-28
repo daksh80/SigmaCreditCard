@@ -1,35 +1,39 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { creditcard } from 'creditcard.interface';
-import { details } from 'details.interface';
-import { Observable } from 'rxjs';
-import { SharedService } from 'src/shared.service';
+import { HttpClient } from "@angular/common/http";
+import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { creditcard } from "creditcard.interface";
+import { details } from "details.interface";
+import { Observable } from "rxjs";
+import { SharedService } from "src/shared.service";
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: "app-card",
+  templateUrl: "./card.component.html",
+  styleUrls: ["./card.component.css"],
 })
 export class CardComponent implements OnInit {
   creditList: creditcard[] = [];
+  @Input() uid: string | undefined = "1";
 
-  constructor(private http: HttpClient, private route: Router, private sharedService: SharedService) {}
+  constructor(
+    private http: HttpClient,
+    private route: Router,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
-    this.getUsers().subscribe(
-      (data) => {
-        this.creditList = data;
-        console.log(this.creditList);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    
+    console.log(this.uid);
+    this.sharedService
+      .getUserCreditCard(this.uid)
+      .subscribe((creditCards: creditcard[]) => {
+        this.creditList = creditCards;
+        console.log("12121", creditCards);
+      });
   }
 
   private getUsers(): Observable<creditcard[]> {
-    return this.http.get<creditcard[]>('http://localhost:3000/addcreditcard');
+    return this.http.get<creditcard[]>("http://localhost:3000/addcreditcard");
   }
 
   onCardClick(detail: creditcard) {
@@ -37,16 +41,18 @@ export class CardComponent implements OnInit {
   }
 
   update(detail: creditcard): void {
-    this.sharedService.setCreditCardArray([detail]); // Pass an array with a single credit card object
-    this.route.navigate(['updatecreditdetails']);
+    this.sharedService.setCreditCardArray([detail]); 
+    this.route.navigate(["updatecreditdetails"]);
     console.log(detail);
   }
 
   delete(id: string): void {
-    this.http.delete('http://localhost:3000/addcreditcard/' + id).subscribe((data) => {
-      console.log(data);
-      this.getUsers();
-    });
+    this.http
+      .delete("http://localhost:3000/addcreditcard/" + id)
+      .subscribe((data) => {
+        console.log(data);
+        this.getUsers();
+      });
   }
 
   ActiveIn(): void {

@@ -12,7 +12,7 @@ const routes: Routes = [
   { redirectTo: 'login', path: '', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/:uid', component: DashboardComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'creditcard', component: CreditcardComponent },
   { path: 'emi-calculator', component: EmiCalculatorComponent },

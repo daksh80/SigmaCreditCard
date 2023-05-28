@@ -1,3 +1,103 @@
-
 <app-navbar></app-navbar>
-<app-card></app-card>
+<app-card [uid]="uid"></app-card>
+
+<div class="outer-div">
+  <div class="top-container">
+    <div class="left-container">
+      <div class="box loan-amount-container">
+        <div class="top top-container">
+          <div class="loan-amount-txt">
+            <mat-label>Loan Amount</mat-label>
+          </div>
+          <div class="loan-amout-value">
+            ₹<input
+              matInput
+              [(ngModel)]="loanAmount"
+              type="number"
+              class="input-la"
+            />
+          </div>
+        </div>
+        <div class="slider slider-container">
+          <mat-slider
+            [max]="max"
+            [min]="min"
+            [step]="step"
+            [discrete]="thumbLabel"
+            [showTickMarks]="showTicks"
+            [(ngModel)]="loanAmount"
+          >
+          </mat-slider>
+        </div>
+      </div>
+      <div class="box rate-container">
+        <div class="top top-container">
+          <div class="rate-txt">
+            <mat-label>Rate of Interest</mat-label>
+          </div>
+          <div class="rate-value">
+            <input
+              matInput
+              [(ngModel)]="rateOfInterest"
+              type="number"
+              class="input-roi"
+            />%
+          </div>
+        </div>
+        <div class="slider slider-container">
+          <mat-slider
+            [max]="max"
+            [min]="min"
+            [step]="step"
+            [discrete]="thumbLabel"
+            [showTickMarks]="showTicks"
+            [(ngModel)]="rateOfInterest"
+          >
+          </mat-slider>
+        </div>
+      </div>
+      <div class="box loan-term-container">
+        <div class="top top-container">
+          <div class="loan-term-txt">
+            <mat-label>Loan Term</mat-label>
+          </div>
+          <div class="loan-amout-value">
+            <input
+              matInput
+              [(ngModel)]="loanTerm"
+              type="number"
+              class="input-lt"
+            />years
+          </div>
+        </div>
+        <div class="slider slider-container">
+          <mat-slider
+            [max]="12"
+            [min]="0"
+            [step]="1"
+            [discrete]="thumbLabel"
+            [showTickMarks]="showTicks"
+            [(ngModel)]="loanTerm"
+          >
+          </mat-slider>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="calculateLoan()">
+        Calculate
+      </button>
+    </div>
+    <div class="right-container">
+      <div id="loanChart"></div>
+      <div class="breakdown">
+        <h3>Loan Calculation</h3>
+        <p>Loan Amount: {{ loanAmount }}</p>
+        <p>Rate of Interest: {{ rateOfInterest }}%</p>
+        <p>Loan Term: {{ loanTerm }} years</p>
+        <p>Total Interest: {{ calculateInterest() }}</p>
+        <p>Total Amount: {{ calculateTotalAmount() }}</p>
+        <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-container"></div>
+</div>

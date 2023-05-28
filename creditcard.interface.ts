@@ -7,4 +7,5 @@ export interface creditcard{
     id: string;
     Act: string;
     Nickname: string;
+    uid: string;
 }
