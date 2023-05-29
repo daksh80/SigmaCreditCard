@@ -1,5 +1,6 @@
-<app-navbar></app-navbar>
+<app-navbar [uid]="uid"></app-navbar>
 <app-card [uid]="uid"></app-card>
+
 
 <div class="outer-div">
   <div class="top-container">
@@ -10,25 +11,15 @@
             <mat-label>Loan Amount</mat-label>
           </div>
           <div class="loan-amout-value">
-            ₹<input
-              matInput
-              [(ngModel)]="loanAmount"
-              type="number"
-              class="input-la"
-            />
+            ₹<input type="number" matInput [(ngModel)]="loanAmount"  class="input-la" />
           </div>
         </div>
         <div class="slider slider-container">
-          <mat-slider
-            [max]="max"
-            [min]="min"
-            [step]="step"
-            [discrete]="thumbLabel"
-            [showTickMarks]="showTicks"
-            [(ngModel)]="loanAmount"
-          >
+          <mat-slider [min]="min" [max]="max" [step]="step">
+            <input matSliderThumb [(ngModel)]="loanAmount">
           </mat-slider>
-        </div>
+          
+        </div> 
       </div>
       <div class="box rate-container">
         <div class="top top-container">
@@ -36,24 +27,17 @@
             <mat-label>Rate of Interest</mat-label>
           </div>
           <div class="rate-value">
-            <input
+            <input type="number"
               matInput
               [(ngModel)]="rateOfInterest"
-              type="number"
-              class="input-roi"
-            />%
+              class="input-roi"/>%
           </div>
         </div>
         <div class="slider slider-container">
-          <mat-slider
-            [max]="max"
-            [min]="min"
-            [step]="step"
-            [discrete]="thumbLabel"
-            [showTickMarks]="showTicks"
-            [(ngModel)]="rateOfInterest"
-          >
+          <mat-slider [min]="min" [max]="max" [step]="step">
+            <input matSliderThumb [(ngModel)]="rateOfInterest">
           </mat-slider>
+          
         </div>
       </div>
       <div class="box loan-term-container">
@@ -70,17 +54,9 @@
             />years
           </div>
         </div>
-        <div class="slider slider-container">
-          <mat-slider
-            [max]="12"
-            [min]="0"
-            [step]="1"
-            [discrete]="thumbLabel"
-            [showTickMarks]="showTicks"
-            [(ngModel)]="loanTerm"
-          >
-          </mat-slider>
-        </div>
+        <mat-slider [min]="min" [max]="max" [step]="step">
+          <input matSliderThumb [(ngModel)]="loanTerm">
+        </mat-slider>
       </div>
       <button mat-raised-button color="primary" (click)="calculateLoan()">
         Calculate

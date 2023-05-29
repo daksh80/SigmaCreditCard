@@ -93,16 +93,6 @@
   ],
   "addcreditcard": [
     {
-      "id": 1,
-      "CCNo": "162497863127",
-      "CCName": "abd,shjfb,hjksb",
-      "CCExp": "magsdj,hgf",
-      "Bname": "sdbfk,jvb",
-      "Cvvnum": "sdcbh,gfk",
-      "Nickname": "Ramu kaka",
-      "uid": "1"
-    },
-    {
       "CCNo": "adgjkfgkjds",
       "CCName": "bvaschjvkds",
       "CCExp": "adshk.jfgh",
@@ -112,6 +102,17 @@
       "id": 2,
       "Nickname": "daksh",
       "uid": "1"
+    },
+    {
+      "CCNo": "1496727236868723",
+      "CCName": "Harry",
+      "CCExp": "12/24",
+      "Bname": "hrksdgfkv",
+      "Cvvnum": "123",
+      "Act": "Active",
+      "NName": "sdfgkug",
+      "uid": "2",
+      "id": 3
     }
   ],
   "profile": {

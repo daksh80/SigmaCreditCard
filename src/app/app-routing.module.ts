@@ -11,12 +11,14 @@ import { UpdatecreditdetailsComponent } from './updatecreditdetails/updatecredit
 const routes: Routes = [
   { redirectTo: 'login', path: '', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login/signup', component: SignupComponent },
   { path: 'dashboard/:uid', component: DashboardComponent },
+  // { path: 'dashboard', component: DashboardComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'creditcard', component: CreditcardComponent },
   { path: 'emi-calculator', component: EmiCalculatorComponent },
-  { path: 'updatecreditdetails', component: UpdatecreditdetailsComponent}
+  { path: 'updatecreditdetails', component: UpdatecreditdetailsComponent},
+  { path: '', component: LoginComponent}
 ];
 
 @NgModule({

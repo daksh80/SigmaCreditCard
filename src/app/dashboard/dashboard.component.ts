@@ -4,7 +4,8 @@ import { creditcard } from "creditcard.interface";
 import * as Highcharts from "highcharts";
 import { Subscription } from "rxjs";
 import { SharedService } from "src/shared.service";
-import * as _ from "lodash";
+// import * as _ from "lodash";
+import {  ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-dashboard",
@@ -15,12 +16,22 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private toastr: ToastrService
   ) {}
 
   uid: string | undefined;
   selectedUserCreditCard: creditcard[] | undefined;
   highcharts = Highcharts;
+  disabled = false;
+  max = 100;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+  loanAmount = 0;
+  rateOfInterest = 0;
+  loanTerm = 0;
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
@@ -32,8 +43,6 @@ export class DashboardComponent implements OnInit {
         this.updateChart();
       });
   }
-
-
   updateChart() {
     const chart = Highcharts.chart("loanChart", {
       chart: {
@@ -81,15 +90,7 @@ export class DashboardComponent implements OnInit {
     ]);
   }
 
-  disabled = false;
-  max = 100;
-  min = 0;
-  showTicks = false;
-  step = 1;
-  thumbLabel = false;
-  loanAmount = 0;
-  rateOfInterest = 0;
-  loanTerm = 0;
+  
 
   calculateLoan() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);

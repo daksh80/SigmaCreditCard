@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
         console.log('Username already exists');
         this.loginForm.reset();
         this.router.navigate([`dashboard/${existingUser.uid}`]);
+        //this.router.navigate(["dashboard"]);
       } else {
         this.http.get<details[]>(this.jsonServerEndpoint).subscribe((jsonServerData: details[] | any) => {
           if (Array.isArray(jsonServerData)) {
@@ -63,6 +64,7 @@ export class LoginComponent implements OnInit {
               console.log('User is successfully logged in','${user.uid}');
               this.loginForm.reset();
               this.router.navigate([`dashboard/${user.uid}`]);
+              //this.router.navigate(["dashboard"]);
             } else {
               console.log('Invalid username or password');
               alert('Invalid username or password');

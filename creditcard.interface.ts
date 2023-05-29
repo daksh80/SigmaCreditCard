@@ -6,6 +6,6 @@ export interface creditcard{
     Cvvnum: string;
     id: string;
     Act: string;
-    Nickname: string;
+    NName: string;
     uid: string;
 }
