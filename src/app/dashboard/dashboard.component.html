@@ -73,5 +73,22 @@
       </div>
     </div>
   </div>
-  <div class="bottom-container"></div>
+  <div class="bottom-container">
+    <div class="container">
+      <ul class="card-list">
+        <li *ngFor="let detail of creditList" class="card-item">
+          <strong>Unique Id:</strong>{{detail.id}}<br>
+          <strong>Nick Name:</strong>{{detail.NName}}<br>
+          <strong>Card Number:</strong> {{ detail.CCNo }}<br>
+          <strong>Card Name:</strong> {{ detail.CCName }}<br>
+          <strong>Card Expiry Date:</strong> {{ detail.CCExp }}<br>
+          <strong>Card Name:</strong> {{ detail.Bname }}<br>
+          <strong>Card Cvvnum:</strong> {{ detail.Cvvnum }}<br>
+          <strong>Card Active/InActive:</strong>{{ detail.Act}}<br>
+          <br>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
 </div>

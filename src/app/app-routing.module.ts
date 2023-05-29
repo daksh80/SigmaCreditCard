@@ -7,6 +7,7 @@ import { OffersComponent } from './offers/offers.component';
 import { CreditcardComponent } from './creditcard/creditcard.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
 import { UpdatecreditdetailsComponent } from './updatecreditdetails/updatecreditdetails.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { redirectTo: 'login', path: '', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'creditcard', component: CreditcardComponent },
   { path: 'emi-calculator', component: EmiCalculatorComponent },
   { path: 'updatecreditdetails', component: UpdatecreditdetailsComponent},
-  { path: '', component: LoginComponent}
+  { path: '', component: LoginComponent},
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

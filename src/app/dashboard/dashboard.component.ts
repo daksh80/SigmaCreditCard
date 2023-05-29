@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   uid: string | undefined;
   selectedUserCreditCard: creditcard[] | undefined;
   selectedcreditList: creditcard[] | null = null;
+  creditList: creditcard[] = [];
     highcharts = Highcharts;
   disabled = false;
   max = 100;
@@ -45,8 +46,9 @@ export class DashboardComponent implements OnInit {
       });
 
       this.sharedService.getEmicreditcardArray().subscribe((selectedArray: creditcard[] | null) => {
-        this.selectedcreditList = selectedArray;
-        console.log("this.selectedcreditList",this.selectedcreditList);
+        //this.selectedcreditList = selectedArray;
+        this.creditList = selectedArray!;
+        console.log("this.selectedcreditList",this.creditList);
       });
   }
   

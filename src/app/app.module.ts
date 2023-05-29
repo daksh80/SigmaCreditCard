@@ -23,6 +23,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatCardModule } from "@angular/material/card";
 import { HighchartsChartModule, HighchartsChartComponent } from "highcharts-angular";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HighchartsChartModule, HighchartsChartComponent } from "highcharts-angu
     DashboardComponent,
     CreditcardComponent,
     UpdatecreditdetailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

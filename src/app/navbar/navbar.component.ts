@@ -1,9 +1,6 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { creditcard } from 'creditcard.interface';
-import { details } from 'details.interface';
-import { Observable } from 'rxjs';
 import { SharedService } from 'src/shared.service';
 
 @Component({
@@ -12,40 +9,46 @@ import { SharedService } from 'src/shared.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  // authService: any;
-  // private detailsArray: details[] | null = null;
-  @Input() uid: string | undefined = "1";
+  @Input() uid: string | undefined;
   creditList: creditcard[] = [];
+  dashUid: string | undefined = '';
+  flag = false;
 
+  constructor(private _router: Router, private sharedService: SharedService) {}
 
-  constructor(private _router: Router,private sharedService: SharedService, private http: HttpClient) {}
-
-  // private getUsers(): Observable<details[]> {
-  //   return this.http.get<details[]>("http://localhost:3000/addcreditcard");
-  // }
   ngOnInit(): void {
-    console.log(this.uid);
-    this.sharedService
-      .getUserCreditCard(this.uid)
-      .subscribe((creditCards: creditcard[]) => {
-        this.creditList = creditCards;
-        console.log("nav_bar", creditCards);
-      });
-    // this.getUsers().subscribe((detailsArray: details[] | null) => {
-    //   this.detailsArray = detailsArray;
-    // });
+    console.log("ngOnInit", this.uid);
+    if (!this.flag) {
+      this.getCreditCardDetails();
+    }
   }
-   goToDashboard(): void{
-    console.log("dashboard",this.uid);
-    this._router.navigate([`dashboard/${this.uid}`]);
-    // console.log(this.uid);
-  //  console.log("leeloenifewdnfc",this.detailsArray)
-  //   this._router.navigate(["updatecreditdetails"])
+
+  getCreditCardDetails(): void {
+    this.sharedService.getUserCreditCard(this.uid).subscribe((creditCards: creditcard[]) => {
+      this.creditList = creditCards;
+      if (this.creditList.length > 0 && !this.dashUid) {
+        const firstCreditCard = this.creditList[0];
+        console.log("nav_bar_ram", firstCreditCard.uid);
+        this.dashUid = firstCreditCard.uid;
+        console.log("this.dashUid", this.dashUid);
+      }
+      this.flag = true;
+    });
   }
-  logout(): void{
-    debugger;
-    // this.authService.clearAuthentication();
-    console.log("hgoifhvoir");
+
+  goToDashboard(): void {
+    console.log("goToDashboard", this.dashUid);
+    if (this.dashUid) {
+      this._router.navigate([`dashboard/${this.dashUid}`]);
+    } else {
+      // Handle the case when dashUid is undefined
+      console.log("dashUid is undefined");
+      // You can choose to display an error message or take any other appropriate action
+    }
+  }  
+
+  logout(): void {
+    console.log("logout");
     this._router.navigate(['']);
   }
 }
