@@ -12,6 +12,7 @@ import * as _ from "lodash";
 export class SharedService {
   private detailsArraySubject: BehaviorSubject<details[] | null> = new BehaviorSubject<details[] | null>(null);
   private creditArraySubject: BehaviorSubject<creditcard[] | null> = new BehaviorSubject<creditcard[] | null>(null);
+  private emicreditcardArraySubject: BehaviorSubject<creditcard[] | null> = new BehaviorSubject<creditcard[] | null>(null);
 
   constructor(private http: HttpClient) { }
 
@@ -51,5 +52,13 @@ export class SharedService {
     this.http.put(`http://localhost:3000/addcreditcard/${creditCard.id}`, creditCard).subscribe(() => {
       console.log(`Credit card updated successfully: ${creditCard.id}`);
     });
+  }
+
+  setEmicreditcardArray(detail: creditcard[]): void {
+    this.emicreditcardArraySubject.next(detail);
+  }
+
+  getEmicreditcardArray(): BehaviorSubject<creditcard[] | null> {
+    return this.emicreditcardArraySubject;
   }
 }

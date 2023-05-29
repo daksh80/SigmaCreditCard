@@ -22,7 +22,8 @@ export class DashboardComponent implements OnInit {
 
   uid: string | undefined;
   selectedUserCreditCard: creditcard[] | undefined;
-  highcharts = Highcharts;
+  selectedcreditList: creditcard[] | null = null;
+    highcharts = Highcharts;
   disabled = false;
   max = 100;
   min = 0;
@@ -42,7 +43,13 @@ export class DashboardComponent implements OnInit {
         console.log("hellloooo",this.selectedUserCreditCard);
         this.updateChart();
       });
+
+      this.sharedService.getEmicreditcardArray().subscribe((selectedArray: creditcard[] | null) => {
+        this.selectedcreditList = selectedArray;
+        console.log("this.selectedcreditList",this.selectedcreditList);
+      });
   }
+  
   updateChart() {
     const chart = Highcharts.chart("loanChart", {
       chart: {

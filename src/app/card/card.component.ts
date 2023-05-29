@@ -37,6 +37,7 @@ export class CardComponent implements OnInit {
   }
 
   onCardClick(detail: creditcard) {
+    this.sharedService.setEmicreditcardArray([detail]);
     console.log(detail);
   }
 
