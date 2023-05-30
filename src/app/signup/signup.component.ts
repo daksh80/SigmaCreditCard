@@ -23,13 +23,13 @@ export class SignupComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      fname1: ["", Validators.required],
-      password1: ["", Validators.required],
-      confirmPassword1: ["", Validators.required],
-      fnumber1: ["", Validators.required],
-      ActType1: ["", Validators.required],
-      CCnumber1: ["", Validators.required],
-      CCType1: ["", Validators.required],
+      fname: ["", Validators.required],
+      password: ["", Validators.required],
+      confirmPassword: ["", Validators.required],
+      fnumber: ["", Validators.required],
+      ActType: ["", Validators.required],
+      CCnumber: ["", Validators.required],
+      CCType: ["", Validators.required],
     });
   }
 
@@ -40,32 +40,32 @@ export class SignupComponent implements OnInit {
   signup(): void {
     if (this.signupForm.valid) {
       const {
-        fname1,
-        password1,
-        confirmPassword1,
-        fnumber1,
-        ActType1,
-        CCnumber1,
-        CCType1,
+        fname,
+        password,
+        confirmPassword,
+        fnumber,
+        ActType,
+        CCnumber,
+        CCType,
         uid,
       } = this.signupForm.value;
 
       this.getUsers().subscribe((data: details[] | any) => {
         if (Array.isArray(data)) {
           const existingUser = data.find(
-            (user: details) => user.fname1 === fname1
+            (user: details) => user.fname === fname
           );
           if (existingUser) {
             console.log("Username already exists");
           } else {
             const newUser: details = {
-              fname1,
-              password1,
-              confirmPassword1,
-              fnumber1,
-              ActType1,
-              CCnumber1,
-              CCType1,
+              fname,
+              password,
+              confirmPassword,
+              fnumber,
+              ActType,
+              CCnumber,
+              CCType,
               uid,
             };
 

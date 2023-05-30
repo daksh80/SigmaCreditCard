@@ -38,7 +38,7 @@ export class CreditcardComponent implements OnInit {
 
   addcc(): void {
     if (this.addcreditcard.valid) {
-      const { CCNo, CCName, CCExp, Bname, Cvvnum, id, Act, NName, uid } =
+      const { CCNo, CCName, CCExp, Bname, Cvvnum, id, Act, NName, uid,CCType} =
         this.addcreditcard.value;
 
       const newCreditcard: creditcard = {
@@ -51,6 +51,7 @@ export class CreditcardComponent implements OnInit {
         Act,
         NName,
         uid,
+        CCType
       };
 
       this.http

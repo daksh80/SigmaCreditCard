@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      fname1: ['', Validators.required],
-      password1: ['', Validators.required]
+      fname: ['', Validators.required],
+      password: ['', Validators.required]
     });
 
     this.getUsers().subscribe((detailsArray: details[] | null) => {
@@ -39,16 +39,16 @@ export class LoginComponent implements OnInit {
     return this.http.get<details[]>('assets/localdb.json');
   }
 
-  private checkLoginCredentials(user: details, fname1: string, password1: string): boolean {
-    return user.fname1 === fname1 && user.password1 === password1;
+  private checkLoginCredentials(user: details, fname: string, password: string): boolean {
+    return user.fname === fname && user.password === password;
   }
 
   login(): void {
     if (this.loginForm.valid && this.detailsArray) {
-      const fname1 = this.loginForm.value.fname1;
-      const password1 = this.loginForm.value.password1;
+      const fname = this.loginForm.value.fname;
+      const password = this.loginForm.value.password;
 
-      const existingUser = this.detailsArray.find((user: details) => user.fname1 === fname1);
+      const existingUser = this.detailsArray.find((user: details) => user.fname === fname);
       if (existingUser) {
         console.log('Username already exists');
         this.loginForm.reset();
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         this.http.get<details[]>(this.jsonServerEndpoint).subscribe((jsonServerData: details[] | any) => {
           if (Array.isArray(jsonServerData)) {
             const user = jsonServerData.find((user: details) =>
-              this.checkLoginCredentials(user, fname1, password1)
+              this.checkLoginCredentials(user, fname, password)
             );
             if (user) {
               console.log('User is successfully logged in','${user.uid}');

@@ -8,4 +8,5 @@ export interface creditcard{
     Act: string;
     NName: string;
     uid: string;
+    CCType: string;
 }

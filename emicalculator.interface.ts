@@ -3,5 +3,6 @@ export interface emicalculator{
     CCType: string,
     LoanType: string,
     LoanLimit: string,
-    cid: string
+    cid: string,
+
 }

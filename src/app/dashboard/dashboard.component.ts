@@ -2,13 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import * as Highcharts from "highcharts";
-import { Observable, Subscription } from "rxjs";
+import { catchError, map,Observable, of, Subscription } from "rxjs";
 import { SharedService } from "src/shared.service";
 // import * as _ from "lodash";
 import {  ToastrService } from "ngx-toastr";
 import { HttpClient } from "@angular/common/http";
 import { emicalculator } from "emicalculator.interface";
 import { FormControl } from "@angular/forms";
+import { toInteger } from "lodash";
 
 @Component({
   selector: "app-dashboard",
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private sharedService: SharedService,
     private toastr: ToastrService,
-    private _http: HttpClient
+    private _http: HttpClient,
   ) {}
   selectedFW = new FormControl();
   frameworks: string[] = ['Personal', 'Car', 'Home','Gold'];
@@ -40,6 +41,8 @@ export class DashboardComponent implements OnInit {
   loanAmount = 0;
   rateOfInterest = 0;
   loanTerm = 0;
+  roi: string | undefined;
+  creditroi: emicalculator[] = [];
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
@@ -58,6 +61,12 @@ export class DashboardComponent implements OnInit {
         console.log("this.selectedcreditList",this.creditList);
         
       });
+
+      this.rateOfInterest = 0
+
+
+      
+     
       
   }
 
@@ -72,8 +81,48 @@ export class DashboardComponent implements OnInit {
     });
   }
   loanType(loanT: any): void{
+    
       console.log("Loan Type",loanT);
+      this.getroi(loanT)
+      .subscribe((creditCards: emicalculator[]) => {
+        this.creditroi= creditCards;
+        console.log("12121loantype", this.creditroi[0].roi);
+        
+        
+      });
+
+      if(this.creditroi){
+       
+      }
   }
+
+  getroi(loanT: any | undefined): Observable<emicalculator[]>{
+
+    return this.getEmicalculator().pipe(
+      map((emidata: emicalculator[])=>{
+        console.log('flag',emidata);
+  
+        // console.log("getroifunction",emidata.filter((card: emicalculator) => card.CCType === loanT));
+
+         return emidata.filter((card: emicalculator) => card.LoanType === loanT);
+      }),
+      catchError((err) => {
+        console.log(err);
+        return of([]);
+      })
+    );
+  }
+
+  // getroi(loanT:any): Observable<emicalculator[]>{
+  //  return this.getEmicalculator().pipe(
+  //   map((emidata) =>{
+  //     console.group('flag1',emidata)
+  //     return emidata
+  //   })
+  //   )
+
+    
+  // }
 
   
   updateChart() {
