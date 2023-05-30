@@ -2,10 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import * as Highcharts from "highcharts";
-import { Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { SharedService } from "src/shared.service";
 // import * as _ from "lodash";
 import {  ToastrService } from "ngx-toastr";
+import { HttpClient } from "@angular/common/http";
+import { emicalculator } from "emicalculator.interface";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-dashboard",
@@ -17,14 +20,17 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private sharedService: SharedService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _http: HttpClient
   ) {}
-
+  selectedFW = new FormControl();
+  frameworks: string[] = ['Personal', 'Car', 'Home','Gold'];
   uid: string | undefined;
   selectedUserCreditCard: creditcard[] | undefined;
   selectedcreditList: creditcard[] | null = null;
   creditList: creditcard[] = [];
-    highcharts = Highcharts;
+  emicalculateList: emicalculator[]= [];
+  highcharts = Highcharts;
   disabled = false;
   max = 100;
   min = 0;
@@ -43,14 +49,32 @@ export class DashboardComponent implements OnInit {
         this.selectedUserCreditCard = creditCards;
         console.log("hellloooo",this.selectedUserCreditCard);
         this.updateChart();
+        this.loadUsers();
       });
 
       this.sharedService.getEmicreditcardArray().subscribe((selectedArray: creditcard[] | null) => {
         //this.selectedcreditList = selectedArray;
         this.creditList = selectedArray!;
         console.log("this.selectedcreditList",this.creditList);
+        
       });
+      
   }
+
+  private getEmicalculator(): Observable<emicalculator[]> {
+    return this._http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
+  }
+
+  loadUsers(): void {
+    this.getEmicalculator().subscribe((users: emicalculator[]) => {
+      this.emicalculateList = users;
+      console.log("emicalculator",this.emicalculateList); 
+    });
+  }
+  loanType(loanT: any): void{
+      console.log("Loan Type",loanT);
+  }
+
   
   updateChart() {
     const chart = Highcharts.chart("loanChart", {
@@ -102,6 +126,7 @@ export class DashboardComponent implements OnInit {
   
 
   calculateLoan() {
+    console.log()
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);

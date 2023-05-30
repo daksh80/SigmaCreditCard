@@ -24,6 +24,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatCardModule } from "@angular/material/card";
 import { HighchartsChartModule, HighchartsChartComponent } from "highcharts-angular";
 import { ProfileComponent } from './profile/profile.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatCheckboxModule,
     MatSliderModule,
     HighchartsChartModule,
+    MatSelectModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

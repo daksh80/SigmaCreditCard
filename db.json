@@ -5,7 +5,7 @@
       "password1": "Daksh@123",
       "fnumber1": "8826721481",
       "CCnumber1": "1234567890",
-      "CCType1": "American Express",
+      "CCType1": "Visa",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 1
@@ -15,7 +15,7 @@
       "password1": "Daksh@123",
       "fnumber1": "123456789",
       "CCnumber1": "0987654321",
-      "CCType1": "Visa Master Card",
+      "CCType1": "Visa",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 2
@@ -25,7 +25,7 @@
       "password1": "Daksh@123",
       "fnumber1": "1262654189",
       "CCnumber1": "123456789",
-      "CCType1": "sbi signature",
+      "CCType1": "Visa",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 3
@@ -35,7 +35,7 @@
       "password1": "Daksh@123",
       "fnumber1": "0987654321",
       "CCnumber1": "223344556677",
-      "CCType1": "Master Card",
+      "CCType1": "MasterCard",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 4
@@ -45,7 +45,7 @@
       "password1": "Daksh@123",
       "fnumber1": "8899006612",
       "CCnumber1": "8899001234",
-      "CCType1": "hdfc millennia ",
+      "CCType1": "MasterCard",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 5
@@ -55,7 +55,7 @@
       "password1": "Daksh@123",
       "fnumber1": "123456789",
       "CCnumber1": "4433228908",
-      "CCType1": "hdfc moneyback",
+      "CCType1": "MasterCard",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 6
@@ -65,7 +65,7 @@
       "password1": "Daksh@123",
       "fnumber1": "123456789",
       "CCnumber1": "4433228908",
-      "CCType1": "Indusind moneyback",
+      "CCType1": "RupyCard",
       "ConformPassword1": "Daksh@123",
       "ActType1": "Active",
       "uid": 7
@@ -77,7 +77,7 @@
       "fnumber1": "8899776655",
       "ActType1": "Inactive",
       "CCnumber1": "11223344556677",
-      "CCType1": "Rupy",
+      "CCType1": "RupyCard",
       "uid": 8
     },
     {
@@ -87,7 +87,7 @@
       "fnumber1": "112233445566",
       "ActType1": "Inactive",
       "CCnumber1": "123456789987654",
-      "CCType1": "VIVI",
+      "CCType1": "RupyCard",
       "uid": 9
     }
   ],
@@ -105,6 +105,17 @@
     },
     {
       "CCNo": "1496727236868723",
+      "CCName": "Harry",
+      "CCExp": "12/24",
+      "Bname": "hrksdgfkv",
+      "Cvvnum": "123",
+      "Act": "Active",
+      "NName": "sdfgkug",
+      "uid": "2",
+      "id": 3
+    },
+    {
+      "CCNo": "149672723686872372816378",
       "CCName": "Harry",
       "CCExp": "12/24",
       "Bname": "hrksdgfkv",

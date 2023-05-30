@@ -60,17 +60,19 @@
       </button>
     </div>
     <div class="right-container">
-      <div id="loanChart"></div>
-      <div class="breakdown">
-        <h3>Loan Calculation</h3>
-        <p>Loan Amount: {{ loanAmount }}</p>
-        <p>Rate of Interest: {{ rateOfInterest }}%</p>
-        <p>Loan Term: {{ loanTerm }} years</p>
-        <p>Total Interest: {{ calculateInterest() }}</p>
-        <p>Total Amount: {{ calculateTotalAmount() }}</p>
-        <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
-      </div>
-    </div>
   </div>
   <div class="bottom-container"></div>
+  <div class="container">
+  <div id="loanChart"></div>
+    <div class="breakdown">
+      <h3>Loan Calculation</h3>
+      <p>Loan Amount: {{ loanAmount }}</p>
+      <p>Rate of Interest: {{ rateOfInterest }}%</p>
+      <p>Loan Term: {{ loanTerm }} years</p>
+      <p>Total Interest: {{ calculateInterest() }}</p>
+      <p>Total Amount: {{ calculateTotalAmount() }}</p>
+      <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
+    </div>
+  </div>
+  </div>
 </div>
