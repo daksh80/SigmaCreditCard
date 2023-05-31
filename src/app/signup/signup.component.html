@@ -28,7 +28,11 @@
         <label>Credit Card Type</label>
         <input type="text" formControlName="CCType" class="form-control mb-3 mt-3" placeholder="Enter User CC Type" required />
       </div>
-  
+      
+      <div class="form-group">
+        <label>Unique id</label>
+        <input type="text" formControlName="uid" class="form-control mb-3 mt-3" placeholder="Enter User uuid" required />
+      </div>
       <span>Already have an Account <a routerLink="">Login</a></span>
       <br />
       <button type="submit" class="btn btn-success" (click)="signup()">Submit</button>

@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { SharedService } from "src/shared.service";
 
+
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
@@ -30,6 +31,7 @@ export class SignupComponent implements OnInit {
       ActType: ["", Validators.required],
       CCnumber: ["", Validators.required],
       CCType: ["", Validators.required],
+      uid: ["",Validators.required]
     });
   }
 
@@ -47,14 +49,13 @@ export class SignupComponent implements OnInit {
         ActType,
         CCnumber,
         CCType,
-        uid,
+        uid
       } = this.signupForm.value;
-
+      
+  
       this.getUsers().subscribe((data: details[] | any) => {
         if (Array.isArray(data)) {
-          const existingUser = data.find(
-            (user: details) => user.fname === fname
-          );
+          const existingUser = data.find((user: details) => user.fname === fname);
           if (existingUser) {
             console.log("Username already exists");
           } else {
@@ -66,27 +67,27 @@ export class SignupComponent implements OnInit {
               ActType,
               CCnumber,
               CCType,
-              uid,
+              uid
             };
-
-            this.http
-              .post<any>("http://localhost:3000/signup", newUser)
-              .subscribe(
-                () => {
-                  console.log("Signup successful");
-                  data.push(newUser);
-                  this.sharedService.setDetailsArray(data);
-                  this.signupForm.reset();
-                  this.router.navigate(["dashboard"]);
-                },
-                (error) => {
-                  console.log("Error during signup", error);
-                  data.push(newUser);
-                  this.sharedService.setDetailsArray(data);
-                  this.signupForm.reset();
-                  //this.router.navigate(['dashboard']);
-                }
-              );
+  
+            this.http.post<any>("http://localhost:3000/signup", newUser).subscribe(
+              () => {
+                console.log("Signup successful");
+                data.push(newUser);
+                localStorage.setItem("newUser", JSON.stringify(data));
+                this.sharedService.setDetailsArray(data);
+                this.signupForm.reset();
+                this.router.navigate(["dashboard"]);
+              },
+              (error) => {
+                console.log("Error during signup", error);
+                console.log("Error response from server:", error.error);
+                data.push(newUser);
+                localStorage.setItem("newUser", JSON.stringify(data));
+                this.sharedService.setDetailsArray(data);
+                this.signupForm.reset();
+              }
+            );
           }
         } else {
           console.log("User data is not an array");
@@ -94,4 +95,4 @@ export class SignupComponent implements OnInit {
       });
     }
   }
-}
+}  

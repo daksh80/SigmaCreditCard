@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     return this.http.get<details[]>('assets/localdb.json');
   }
 
+
   private checkLoginCredentials(user: details, fname: string, password: string): boolean {
     return user.fname === fname && user.password === password;
   }

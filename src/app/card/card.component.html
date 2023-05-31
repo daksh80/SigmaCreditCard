@@ -12,7 +12,9 @@
       <strong>card Type:</strong>{{detail.CCType}}<br>
       <button (click)="update(detail)">update</button>
       <button (click)="delete(detail.id)">delete</button>
-      <button (click)="ActiveIn()">Active/InActive</button>
+      <button (click)="toggleCardStatus(detail)">
+        {{ detail.Act === 'Active' ? 'Deactivate' : 'Activate' }}
+      </button>
       <br>
     </li>
   </ul>

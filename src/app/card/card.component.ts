@@ -17,7 +17,9 @@ export class CardComponent implements OnInit {
   @Input() uid: string | undefined = "1";
   cardType: emicalculator[]=[]
   creditLimit: string | undefined
-  
+  cardActiveIn : string | undefined
+  detail : creditcard[] = []
+   
 
   constructor(
     private http: HttpClient,
@@ -42,6 +44,8 @@ export class CardComponent implements OnInit {
 
   onCardClick(detail: creditcard) {
     this.sharedService.setEmicreditcardArray([detail]);
+    this.cardActiveIn = detail.Act;
+    console.log("card Active or inActive",this.cardActiveIn);
     this.getcardname(detail.CCType).subscribe((cardName : emicalculator[])=>{
       this.cardType= cardName
         console.log(this.cardType[0].LoanLimit);
@@ -97,10 +101,11 @@ export class CardComponent implements OnInit {
      window.location.reload()
   }
 
-  ActiveIn(): void {
-    // Implement your logic for the ActiveIn function
+ toggleCardStatus(detail: creditcard): void {
+    const updatedCard = { ...detail };
+    updatedCard.Act = updatedCard.Act === 'Active' ? 'Inactive' : 'Active';
+    this.sharedService.updateCreditCard(updatedCard);
+    window.location.reload()
   }
-
-  
 }
-
+  
