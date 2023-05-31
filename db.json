@@ -105,18 +105,6 @@
       "uid": "1"
     },
     {
-      "CCNo": "1496727236868723",
-      "CCName": "Harry",
-      "CCExp": "12/24",
-      "CCType": "MasterCard",
-      "Bname": "hrksdgfkv",
-      "Cvvnum": "123",
-      "Act": "Active",
-      "NName": "sdfgkug",
-      "uid": "2",
-      "id": 3
-    },
-    {
       "CCNo": "149672723686872372816378",
       "CCName": "Harry",
       "CCExp": "12/24",
@@ -129,9 +117,11 @@
       "id": 3
     }
   ],
-  "profile": [{
-    "name": "typicode"
-  }],
+  "profile": [
+    {
+      "name": "typicode"
+    }
+  ],
   "emiCalculator": [
     {
       "roi": "10",
@@ -139,83 +129,83 @@
       "LoanType": "Personal",
       "LoanLimit": "500000",
       "cid": "Visa"
-   },
-   {
-     "roi": "15",
+    },
+    {
+      "roi": "15",
       "CCType": "Visa",
       "LoanType": "Car",
       "LoanLimit": "500000",
       "cid": "Visa"
-   },
-   {
-     "roi": "15",
+    },
+    {
+      "roi": "15",
       "CCType": "Visa",
       "LoanType": "Home",
       "LoanLimit": "500000",
       "cid": "Visa"
-   },
-   {
+    },
+    {
       "roi": "20",
       "CCType": "Visa",
       "LoanType": "Gold",
       "LoanLimit": "500000",
       "cid": "Visa"
-   },
-   {
-    "roi": "10",
-    "CCType": "MasterCard",
-    "LoanType": "Personal",
-    "LoanLimit": "500000",
-    "cid": "MasterCard"
- },
- {
-   "roi": "15",
-    "CCType": "MasterCard",
-    "LoanType": "Car",
-    "LoanLimit": "500000",
-    "cid": "MasterCard"
- },
- {
-   "roi": "15",
-    "CCType": "MasterCard",
-    "LoanType": "Home",
-    "LoanLimit": "500000",
-    "cid": "MasterCard"
- },
- {
-    "roi": "20",
-    "CCType": "MasterCard",
-    "LoanType": "Gold",
-    "LoanLimit": "500000",
-    "cid": "MasterCard"
- },
- {
-  "roi": "10",
-  "CCType": "RupyCard",
-  "LoanType": "Personal",
-  "LoanLimit": "500000",
-  "cid": "RupyCard"
-},
-{
- "roi": "15",
-  "CCType": "RupyCard",
-  "LoanType": "Car",
-  "LoanLimit": "500000",
-  "cid": "RupyCard"
-},
-{
- "roi": "15",
-  "CCType": "RupyCard",
-  "LoanType": "Home",
-  "LoanLimit": "500000",
-  "cid": "RupyCard"
-},
-{
-  "roi": "20",
-  "CCType": "RupyCard",
-  "LoanType": "Gold",
-  "LoanLimit": "500000",
-  "cid": "RupyCard"
-}
-]
+    },
+    {
+      "roi": "10",
+      "CCType": "MasterCard",
+      "LoanType": "Personal",
+      "LoanLimit": "500000",
+      "cid": "MasterCard"
+    },
+    {
+      "roi": "15",
+      "CCType": "MasterCard",
+      "LoanType": "Car",
+      "LoanLimit": "500000",
+      "cid": "MasterCard"
+    },
+    {
+      "roi": "15",
+      "CCType": "MasterCard",
+      "LoanType": "Home",
+      "LoanLimit": "500000",
+      "cid": "MasterCard"
+    },
+    {
+      "roi": "20",
+      "CCType": "MasterCard",
+      "LoanType": "Gold",
+      "LoanLimit": "500000",
+      "cid": "MasterCard"
+    },
+    {
+      "roi": "10",
+      "CCType": "RupyCard",
+      "LoanType": "Personal",
+      "LoanLimit": "900500000",
+      "cid": "RupyCard"
+    },
+    {
+      "roi": "15",
+      "CCType": "RupyCard",
+      "LoanType": "Car",
+      "LoanLimit": "500000",
+      "cid": "RupyCard"
+    },
+    {
+      "roi": "15",
+      "CCType": "RupyCard",
+      "LoanType": "Home",
+      "LoanLimit": "500000",
+      "cid": "RupyCard"
+    },
+    {
+      "roi": "20",
+      "CCType": "RupyCard",
+      "LoanType": "Gold",
+      "LoanLimit": "500000",
+      "cid": "RupyCard"
+    }
+  ]
 }

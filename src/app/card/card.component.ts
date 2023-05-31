@@ -3,7 +3,8 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import { details } from "details.interface";
-import { Observable } from "rxjs";
+import { emicalculator } from "emicalculator.interface";
+import { Observable, catchError, map, of } from "rxjs";
 import { SharedService } from "src/shared.service";
 
 @Component({
@@ -14,6 +15,9 @@ import { SharedService } from "src/shared.service";
 export class CardComponent implements OnInit {
   creditList: creditcard[] = [];
   @Input() uid: string | undefined = "1";
+  cardType: emicalculator[]=[]
+  creditLimit: string | undefined
+  
 
   constructor(
     private http: HttpClient,
@@ -38,13 +42,49 @@ export class CardComponent implements OnInit {
 
   onCardClick(detail: creditcard) {
     this.sharedService.setEmicreditcardArray([detail]);
-    console.log(detail);
+    this.getcardname(detail.CCType).subscribe((cardName : emicalculator[])=>{
+      this.cardType= cardName
+        console.log(this.cardType[0].LoanLimit);
+        this.creditLimit=this.cardType[0].LoanLimit
+        this.sharedService.setcreditLimit(this.creditLimit); 
+      
+        //this.route.navigate([this.cardType[0].LoanLimit])
+    });
+    console.log("clickable detailed array",detail.CCType);
+   
+    this.onclicklimitset()
   }
+
+  onclicklimitset(){
+      this.sharedService.cardComponentSubject.next(1)
+  }
+
+  private getEmicalculator(): Observable<emicalculator[]> {
+    return this.http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
+  }
+
+  getcardname(cardName: string): Observable<emicalculator[]>{
+    debugger;
+    return this.getEmicalculator().pipe(
+    map((emidata: emicalculator[])=>{
+      console.log('flag',emidata);
+      debugger;
+       return emidata.filter((card: emicalculator) => card.CCType === cardName);
+    }),
+    catchError((err) => {
+      console.log(err);
+      return of([]);
+    })
+    )
+}
+
 
   update(detail: creditcard): void {
     this.sharedService.setCreditCardArray([detail]); 
     this.route.navigate(["updatecreditdetails"]);
     console.log(detail);
+    window.location.reload()
+
   }
 
   delete(id: string): void {
@@ -54,9 +94,13 @@ export class CardComponent implements OnInit {
         console.log(data);
         this.getUsers();
       });
+     window.location.reload()
   }
 
   ActiveIn(): void {
     // Implement your logic for the ActiveIn function
   }
+
+  
 }
+

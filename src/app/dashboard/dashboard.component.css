@@ -1,6 +1,6 @@
 .outer-div{
     width: 100%;
-    height: 650px;
+    height: 750px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,7 +34,7 @@
 
 .bottom-container{
     width: 100%;
-    height: 20%;
+    height: 100%;
     border-radius: 10px;
 }
 

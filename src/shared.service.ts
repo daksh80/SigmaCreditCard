@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { details } from 'details.interface';
 import { creditcard } from 'creditcard.interface';
@@ -13,6 +13,8 @@ export class SharedService {
   private detailsArraySubject: BehaviorSubject<details[] | null> = new BehaviorSubject<details[] | null>(null);
   private creditArraySubject: BehaviorSubject<creditcard[] | null> = new BehaviorSubject<creditcard[] | null>(null);
   private emicreditcardArraySubject: BehaviorSubject<creditcard[] | null> = new BehaviorSubject<creditcard[] | null>(null);
+  private limit: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private uidSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient) { }
 
@@ -61,4 +63,37 @@ export class SharedService {
   getEmicreditcardArray(): BehaviorSubject<creditcard[] | null> {
     return this.emicreditcardArraySubject;
   }
+
+  
+  setcreditLimit(limit: string): void {
+    debugger;
+    console.log("limit shared service ", limit);
+    this.limit.next(limit);
+  }
+  
+
+  /**
+   * @description - sadfagjsdf;jhasdlfhjb 
+   * @param limit - credit limit from somewhere
+   * @returns - Credit observable fdsafdf
+   * 
+   */
+  getcreditLimit(): Observable<string | null> {
+    debugger;
+    return this.limit.asObservable();
+  }
+
+  /** using for cross component comms */
+  cardComponentSubject = new Subject<any>();
+
+  setuid(uid: string): void {
+    if (!this.uidSubject.getValue()) { // Check if the uidSubject is already set
+      this.uidSubject.next(uid);
+    }
+  }
+  
+  getuid(): Observable<string | null> {
+    return this.uidSubject.asObservable();
+  }
+  
 }

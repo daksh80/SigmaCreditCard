@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
+    this.sharedService.setuid(this.uid);
     this.sharedService
       .getUserCreditCard(this.uid)
       .subscribe((creditCards: creditcard[]) => {
@@ -62,12 +63,14 @@ export class DashboardComponent implements OnInit {
         
       });
 
-      this.rateOfInterest = 0
-
-
+      this.rateOfInterest = 0;
+      this.loanAmount=0;
       
-     
-      
+      // this.sharedService.cardComponentSubject.subscribe({
+      //   next: (v) => this.sharedService.getcreditLimit().subscribe(limit => {
+      //     console.log("this is limit",limit);
+      //   })
+      // })
   }
 
   private getEmicalculator(): Observable<emicalculator[]> {
@@ -80,6 +83,8 @@ export class DashboardComponent implements OnInit {
       console.log("emicalculator",this.emicalculateList); 
     });
   }
+  
+
   loanType(loanT: any): void{
     
       console.log("Loan Type",loanT);
@@ -87,23 +92,22 @@ export class DashboardComponent implements OnInit {
       .subscribe((creditCards: emicalculator[]) => {
         this.creditroi= creditCards;
         console.log("12121loantype", this.creditroi[0].roi);
-        
-        
+        this.rateOfInterest = toInteger(this.creditroi[0].roi)   
+        this.sharedService.getcreditLimit().subscribe(limit => {
+          this.loanAmount = toInteger(limit)
+          console.log("this is limit",limit);
+        });     
       });
 
-      if(this.creditroi){
-       
-      }
+      this.rateOfInterest=0;
   }
+
 
   getroi(loanT: any | undefined): Observable<emicalculator[]>{
 
     return this.getEmicalculator().pipe(
       map((emidata: emicalculator[])=>{
         console.log('flag',emidata);
-  
-        // console.log("getroifunction",emidata.filter((card: emicalculator) => card.CCType === loanT));
-
          return emidata.filter((card: emicalculator) => card.LoanType === loanT);
       }),
       catchError((err) => {
