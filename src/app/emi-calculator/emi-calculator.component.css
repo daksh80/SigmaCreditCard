@@ -1,94 +1,101 @@
-.outer-div{
-  width: 100%;
-  height: 650px;
+.outer-div {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  display:flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 5px;
+  padding: 20px;
+  background-color: #ffe6f2;
 }
 
-.top-container{
-  height: 80%;
-  width: 100%;
-  border-radius: 10px;
-  background-color: #fff;
+.top-container {
   display: flex;
-}
-
-.left-container{
-  width: 55%;
-  height: 100%;
-  padding: 75px 46px;
-}
-
-.right-container{
-  width: 45%;
-  height: 100%;
-  padding: 75px 50px;
-}
-
-.bottom-container{
-  width: 100%;
-  height: 20%;
-  border-radius: 10px;
-}
-
-.box{
-  display: flex;
-  flex-direction: column;
-}
-
-.top{
-  display: flex;
+  align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.slider{
-  margin-top: 26px;
-  margin-bottom: 30px;
+.left-container {
+  flex: 1;
+  margin-right: 20px;
 }
 
-.input-roi{
-  width: 2;
+.box {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.loan-amout-value{
-  /* width: 5rem; */
+.box .top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.loan-amount-container{
-  
+.box .loan-amout-value {
+  display: flex;
+  align-items: center;
 }
 
-.top-container{
-  
+.input-la,
+.input-roi,
+.input-lt {
+  width: 80px;
+  margin-left: 10px;
+  border: none;
+  background-color: #f8f8f8;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.slider-container{
-  
+.slider-container {
+  margin-top: 10px;
 }
 
-mat-slider{
-  width: 100%;
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
-
-input[type="number"], textarea {
-border: none;
-outline: none;
-text-align: right;
-color: rgba(17, 20, 28, 0.8);
-border-bottom: 1px solid #ccc; /* You can adjust the color and thickness of the outline */
-width: 7rem;
+.right-container {
+  flex: 1;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
+.bottom-container {
+  margin-top: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#loanChart {
+  height: 300px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breakdown {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breakdown h3 {
+  margin-bottom: 10px;
+  font-family: 'Arial', sans-serif;
+  color: #ff80b3;
+}
+
+.breakdown p {
+  margin-bottom: 5px;
+  font-family: 'Arial', sans-serif;
+  color: #666;
 }

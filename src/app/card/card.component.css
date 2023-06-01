@@ -1,15 +1,58 @@
 .container {
-  margin: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .card-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card-item {
-  background-color: #f2f2f2;
-  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
   margin-bottom: 10px;
-  border-radius: 4px;
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-basis: calc(33.33% - 10px); /* Adjust the width as needed */
+  box-sizing: border-box;
+}
+
+.card-item:hover {
+  background-color: #f5f5f5;
+}
+
+.card-item strong {
+  font-weight: bold;
+}
+
+.card-item button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #eaeaea;
+  color: #333333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-item button:hover {
+  background-color: #d5d5d5;
+}
+
+.card-item button:last-child {
+  margin-left: 10px;
+}
+
+.card-item .active {
+  color: green;
+}
+
+.card-item .inactive {
+  color: red;
 }

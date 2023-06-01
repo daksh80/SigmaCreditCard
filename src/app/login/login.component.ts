@@ -73,8 +73,8 @@ export class LoginComponent implements OnInit {
       if (existingUser) {
         console.log('Username already exists');
         this.loginForm.reset();
-        this.router.navigate(["dashboard"]);
-       // this.router.navigate([`dashboard/${existingUser.uid}`]);
+        //this.router.navigate(["dashboard"]);
+        this.router.navigate([`dashboard/${existingUser.uid}`]);
         console.log(existingUser,"existing user id");
         const logindata = JSON.stringify(existingUser);
         localStorage.setItem('logindata', logindata);
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
               const logindata = JSON.stringify(user)
               localStorage.setItem('logindata', logindata);
               this.loginForm.reset();
-              //this.router.navigate([`dashboard/${user.uid}`]);
+              this.router.navigate([`dashboard/${user.uid}`]);
               this.router.navigate(["dashboard"]);
             } else {
               console.log('Invalid username or password');
