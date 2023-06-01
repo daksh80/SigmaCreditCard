@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
       CCType: ["", Validators.required],
       uid: ["",Validators.required]
     });
+    //localStorage.clear();
   }
 
   private getUsers(): Observable<details[]> {
@@ -74,7 +75,7 @@ export class SignupComponent implements OnInit {
               () => {
                 console.log("Signup successful");
                 data.push(newUser);
-                localStorage.setItem("newUser", JSON.stringify(data));
+                // localStorage.setItem("newUser", JSON.stringify(data));
                 this.sharedService.setDetailsArray(data);
                 this.signupForm.reset();
                 this.router.navigate(["dashboard"]);
@@ -83,7 +84,7 @@ export class SignupComponent implements OnInit {
                 console.log("Error during signup", error);
                 console.log("Error response from server:", error.error);
                 data.push(newUser);
-                localStorage.setItem("newUser", JSON.stringify(data));
+                // localStorage.setItem("newUser", JSON.stringify(data));
                 this.sharedService.setDetailsArray(data);
                 this.signupForm.reset();
               }

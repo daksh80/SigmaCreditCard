@@ -15,11 +15,11 @@ import { SharedService } from "src/shared.service";
 export class CardComponent implements OnInit {
   creditList: creditcard[] = [];
   @Input() uid: string | undefined = "1";
-  cardType: emicalculator[]=[]
-  creditLimit: string | undefined
-  cardActiveIn : string | undefined
-  detail : creditcard[] = []
-   
+  cardType: emicalculator[] = [];
+  creditLimit: string | undefined;
+  cardActiveIn: string | undefined;
+  detail: creditcard[] = [];
+  getdata: string | null | undefined;
 
   constructor(
     private http: HttpClient,
@@ -28,7 +28,6 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     console.log(this.uid);
     this.sharedService
       .getUserCreditCard(this.uid)
@@ -45,67 +44,116 @@ export class CardComponent implements OnInit {
   onCardClick(detail: creditcard) {
     this.sharedService.setEmicreditcardArray([detail]);
     this.cardActiveIn = detail.Act;
-    console.log("card Active or inActive",this.cardActiveIn);
-    this.getcardname(detail.CCType).subscribe((cardName : emicalculator[])=>{
-      this.cardType= cardName
+    console.log("card Active or inActive", this.cardActiveIn);
+    this.getcardname(detail.CCType).subscribe(
+      (cardName: emicalculator[]) => {
+        this.cardType = cardName;
         console.log(this.cardType[0].LoanLimit);
-        this.creditLimit=this.cardType[0].LoanLimit
-        this.sharedService.setcreditLimit(this.creditLimit); 
-      
+        this.creditLimit = this.cardType[0].LoanLimit;
+        this.sharedService.setcreditLimit(this.creditLimit);
         //this.route.navigate([this.cardType[0].LoanLimit])
-    });
-    console.log("clickable detailed array",detail.CCType);
-   
-    this.onclicklimitset()
+      }
+    );
+    console.log("clickable detailed array", detail.CCType);
+
+    this.onclicklimitset();
   }
 
-  onclicklimitset(){
-      this.sharedService.cardComponentSubject.next(1)
+  onclicklimitset() {
+    this.sharedService.cardComponentSubject.next(1);
   }
 
   private getEmicalculator(): Observable<emicalculator[]> {
     return this.http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
   }
 
-  getcardname(cardName: string): Observable<emicalculator[]>{
+  getcardname(cardName: string): Observable<emicalculator[]> {
     debugger;
     return this.getEmicalculator().pipe(
-    map((emidata: emicalculator[])=>{
-      console.log('flag',emidata);
-      debugger;
-       return emidata.filter((card: emicalculator) => card.CCType === cardName);
-    }),
-    catchError((err) => {
-      console.log(err);
-      return of([]);
-    })
-    )
-}
-
+      map((emidata: emicalculator[]) => {
+        console.log("flag", emidata);
+        debugger;
+        return emidata.filter((card: emicalculator) => card.CCType === cardName);
+      }),
+      catchError((err) => {
+        console.log(err);
+        this.getdata = localStorage.getItem("data");
+        const carddata = JSON.parse(this.getdata || "");
+        const carddataArray = carddata?.emiCalculator || [];
+        console.log("roi Credit Card Details:", carddataArray);
+        return of(carddataArray.filter((card: emicalculator) => card.CCType === cardName));
+      })
+    );
+  }
 
   update(detail: creditcard): void {
-    this.sharedService.setCreditCardArray([detail]); 
+    this.sharedService.setCreditCardArray([detail]);
     this.route.navigate(["updatecreditdetails"]);
     console.log(detail);
-    window.location.reload()
-
+    //window.location.reload();
   }
 
   delete(id: string): void {
-    this.http
-      .delete("http://localhost:3000/addcreditcard/" + id)
-      .subscribe((data) => {
+    this.http.delete("http://localhost:3000/addcreditcard/" + id).subscribe(
+      (data) => {
         console.log(data);
         this.getUsers();
-      });
-     window.location.reload()
+        this.deleteFromLocalStorage(id); // Delete from local storage
+        window.location.reload(); // Reload the page after deletion
+      },
+      (error) => {
+        console.error("Error deleting data from JSON server:", error);
+        console.log("delete id",id);
+        this.deleteFromLocalStorage(id); 
+       // window.location.reload(); 
+      }
+    );
   }
-
- toggleCardStatus(detail: creditcard): void {
-    const updatedCard = { ...detail };
-    updatedCard.Act = updatedCard.Act === 'Active' ? 'Inactive' : 'Active';
-    this.sharedService.updateCreditCard(updatedCard);
-    window.location.reload()
-  }
-}
   
+  
+  private deleteFromLocalStorage(id: string): void {
+    const localStorageData = localStorage.getItem("data");
+    console.log("localstorage data max",localStorageData);    
+    if (localStorageData) {
+      const parsedData = JSON.parse(localStorageData);
+      const addCreditCardData = parsedData.addcreditcard;
+  
+      const updatedAddCreditCardData = addCreditCardData.filter((card: any) => card.id != id);
+      parsedData.addcreditcard = updatedAddCreditCardData;
+      console.log("parsedData",parsedData)
+      localStorage.setItem("data", JSON.stringify(parsedData));
+    }
+  
+   // window.location.reload();
+  }
+  
+  
+  
+  
+  toggleCardStatus(detail: any): void {
+    console.log("toggleCardStatus", detail);
+    let updatedCard = { ...detail };
+    console.log("updated Card", updatedCard);
+    updatedCard.Act = updatedCard.Act === "Active" ? "Inactive" : "Active";
+  
+    const localStorageData = localStorage.getItem("data");
+    if (localStorageData) {
+      const parsedData = JSON.parse(localStorageData);
+      const updateCreditCards = parsedData.addcreditcard;
+  
+      // Find the index of the credit card to update
+      const index = updateCreditCards.findIndex((card: any) => card.id === detail.id);
+  
+      if (index !== -1) {
+        // Update the credit card in the array
+        updateCreditCards[index] = updatedCard;
+        
+        // Save the updated array back to local storage
+        localStorage.setItem("data", JSON.stringify(parsedData));
+      }
+    }
+  
+    this.sharedService.updateCreditCard(updatedCard);
+  }
+  
+}

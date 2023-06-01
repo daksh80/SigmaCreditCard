@@ -61,7 +61,16 @@ export class CreditcardComponent implements OnInit {
             console.log("Data added:", response);
           },
           (error) => {
+            const localStorageData = localStorage.getItem("data");
+            if (localStorageData) {
+              const parsedData = JSON.parse(localStorageData);
+              const creditCardArray = parsedData.addcreditcard || [];
+              creditCardArray.push(newCreditcard);
+              parsedData.addcreditcard = creditCardArray;
+              localStorage.setItem("data", JSON.stringify(parsedData));
+            }
             console.error("Error adding data:", error);
+
           }
         );
     }

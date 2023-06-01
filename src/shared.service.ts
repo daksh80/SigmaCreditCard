@@ -15,6 +15,7 @@ export class SharedService {
   private emicreditcardArraySubject: BehaviorSubject<creditcard[] | null> = new BehaviorSubject<creditcard[] | null>(null);
   private limit: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private uidSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  getdata: string | null | undefined;
 
   constructor(private http: HttpClient) { }
 
@@ -36,11 +37,16 @@ export class SharedService {
         return data.filter((card: creditcard) => card.uid === uid);
       }),
       catchError((err) => {
-        console.log(err);
-        return of([]);
+        console.log("Error:", err);
+        this.getdata = localStorage.getItem('data');
+        const carddata = JSON.parse(this.getdata || '');
+        const carddataArray = carddata?.addcreditcard || [];
+        console.log("Credit Card Details:", carddataArray);
+        return of(carddataArray.filter((card: creditcard) => card.uid === uid) as creditcard[]);
       })
     );
   }
+  
 
   getUsers(): Observable<creditcard[]> {
     return this.http.get<creditcard[]>('http://localhost:3000/addcreditcard');

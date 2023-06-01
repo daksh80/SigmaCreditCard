@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="card-list">
     <li *ngFor="let detail of creditList" class="card-item" (click)="onCardClick(detail)">
-      <strong>Unique Id:</strong>{{detail.id}}<br>
+      <strong>Id:</strong>{{detail.id}}<br>
       <strong>Nick Name:</strong>{{detail.NName}}<br>
       <strong>Card Number:</strong> {{ detail.CCNo }}<br>
       <strong>Card Name:</strong> {{ detail.CCName }}<br>

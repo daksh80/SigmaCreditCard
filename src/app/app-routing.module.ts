@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login/signup', component: SignupComponent },
   { path: 'dashboard/:uid', component: DashboardComponent },
-  // { path: 'dashboard', component: DashboardComponent },
+   { path: 'dashboard', component: DashboardComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'creditcard', component: CreditcardComponent },
   { path: 'emi-calculator', component: EmiCalculatorComponent },

@@ -6,8 +6,8 @@
     "fnumber": "1234567890",
     "ActType": "Type A",
     "CCnumber": "1234567890123456",
-    "CCType": "Visa"
-    
+    "CCType": "Visa",
+    "uid": 1
   },
   {
     "fname": "Alice",
@@ -16,6 +16,7 @@
     "fnumber": "9876543210",
     "ActType": "Type B",
     "CCnumber": "6543210987654321",
-    "CCType": "MasterCard"
+    "CCType": "MasterCard",
+    "uid": 2
   }
 ]

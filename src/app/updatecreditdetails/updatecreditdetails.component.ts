@@ -24,7 +24,8 @@ export class UpdatecreditdetailsComponent implements OnInit {
       CCName: ['', Validators.required],
       CCExp: ['', Validators.required],
       Bname: ['', Validators.required],
-      Cvvnum: ['', Validators.required]
+      Cvvnum: ['', Validators.required],
+      uid: ['', Validators.required]
     });
 
     this.sharedService.getCreditCardArray().subscribe((creditArray: creditcard[] | null) => {
@@ -33,12 +34,29 @@ export class UpdatecreditdetailsComponent implements OnInit {
     });
   }
   
- updatecredit(): void {
-  if (this.updatecreditcard.valid && this.creditArray) {
-    const postData = this.updatecreditcard.value;
-    const id = this.creditArray[0].id; // Assuming there is only one credit card in the array
-    this.sharedService.updateCreditCard({ id, ...postData }); // Merge the ID with the form data
+  updatecredit(): void {
+    if (this.updatecreditcard.valid && this.creditArray) {
+      const postData = this.updatecreditcard.value;
+      const id = this.creditArray[0].id;
+  
+      const localStorageData = localStorage.getItem("data");
+      if (localStorageData) {
+        const parsedData = JSON.parse(localStorageData);
+        const updateCreditCards = parsedData.addcreditcard;
+  
+        const index = updateCreditCards.findIndex((card: any) => card.id === id);
+  
+        if (index !== -1) {
+          updateCreditCards[index] = { id, ...postData };
+  
+          localStorage.setItem("data", JSON.stringify(parsedData));
+        }
+      }
+  
+      this.sharedService.updateCreditCard({ id, ...postData }); 
+    }
   }
+  
+  
 }
 
-}

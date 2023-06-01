@@ -43,6 +43,8 @@ export class DashboardComponent implements OnInit {
   loanTerm = 0;
   roi: string | undefined;
   creditroi: emicalculator[] = [];
+  getdata: string | null | undefined;
+
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
@@ -112,7 +114,12 @@ export class DashboardComponent implements OnInit {
       }),
       catchError((err) => {
         console.log(err);
-        return of([]);
+        // return of([]);
+        this.getdata = localStorage.getItem('data');
+        const carddata = JSON.parse(this.getdata || '');
+        const roidataArray = carddata?.emiCalculator || [];
+        console.log("roi Credit Card Details:", roidataArray);
+        return of (roidataArray.filter((card: emicalculator) => card.LoanType === loanT));
       })
     );
   }

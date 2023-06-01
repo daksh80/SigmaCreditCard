@@ -60,6 +60,7 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     console.log("logout");
+    localStorage.removeItem('logindata');
     this._router.navigate(['']);
   }
   AddCreditCard() : void{

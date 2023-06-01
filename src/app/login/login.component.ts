@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { details } from 'details.interface';
 import { SharedService } from 'src/shared.service';
+import * as jsonData from 'db.json';
+
 
 
 @Component({
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   private jsonServerEndpoint = 'http://localhost:3000/signup'; // Update with your JSON server endpoint
   private detailsArray: details[] | null = null;
+  getdata: string | null | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -30,14 +33,31 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    this.getUsers().subscribe((detailsArray: details[] | null) => {
-      this.detailsArray = detailsArray;
-    });
+    // this.getUsers().subscribe((detailsArray: details[] | null) => {
+    //   this.detailsArray = detailsArray;
+    // });
+
+  // for localstoage logic written here 
+  //localStorage.clear();
+  const data = JSON.stringify(jsonData);
+  localStorage.setItem('data', data);
+  this.getdata = localStorage.getItem('data');
+  console.log(this.getdata)
+
+
+  const signupdata = JSON.parse(this.getdata || '');
+  const signupArray = signupdata?.signup || [];
+  console.log(signupArray);
+
+  this.detailsArray = signupArray;
+
   }
 
-  private getUsers(): Observable<details[]> {
-    return this.http.get<details[]>('assets/localdb.json');
-  }
+  // private getUsers(): Observable<details[]> {
+  //   return this.http.get<details[]>('assets/localdb.json');
+  // }
+
+  
 
 
   private checkLoginCredentials(user: details, fname: string, password: string): boolean {
@@ -53,8 +73,12 @@ export class LoginComponent implements OnInit {
       if (existingUser) {
         console.log('Username already exists');
         this.loginForm.reset();
-        this.router.navigate([`dashboard/${existingUser.uid}`]);
-        //this.router.navigate(["dashboard"]);
+        this.router.navigate(["dashboard"]);
+       // this.router.navigate([`dashboard/${existingUser.uid}`]);
+        console.log(existingUser,"existing user id");
+        const logindata = JSON.stringify(existingUser);
+        localStorage.setItem('logindata', logindata);
+        // this.router.navigate(["dashboard"]);
       } else {
         this.http.get<details[]>(this.jsonServerEndpoint).subscribe((jsonServerData: details[] | any) => {
           if (Array.isArray(jsonServerData)) {
@@ -63,9 +87,12 @@ export class LoginComponent implements OnInit {
             );
             if (user) {
               console.log('User is successfully logged in','${user.uid}');
+              console.log('user:', user);
+              const logindata = JSON.stringify(user)
+              localStorage.setItem('logindata', logindata);
               this.loginForm.reset();
-              this.router.navigate([`dashboard/${user.uid}`]);
-              //this.router.navigate(["dashboard"]);
+              //this.router.navigate([`dashboard/${user.uid}`]);
+              this.router.navigate(["dashboard"]);
             } else {
               console.log('Invalid username or password');
               alert('Invalid username or password');
