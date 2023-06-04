@@ -4,7 +4,6 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { details } from "details.interface";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DashboardComponent } from "../dashboard/dashboard.component";
 import { SharedService } from "src/shared.service";
 
 
@@ -73,10 +72,21 @@ export class SignupComponent implements OnInit {
   
             this.http.post<any>("http://localhost:3000/signup", newUser).subscribe(
               () => {
+                 
                 console.log("Signup successful");
+                 
                 data.push(newUser);
-                // localStorage.setItem("newUser", JSON.stringify(data));
+                localStorage.setItem("newUser", JSON.stringify(data));
                 this.sharedService.setDetailsArray(data);
+                const localStorageData = localStorage.getItem("data");
+                if (localStorageData) {
+                  const parsedData = JSON.parse(localStorageData);
+                   
+                  const signupArray = parsedData.signup || [];
+                  signupArray.push(this.signupForm);
+                  parsedData.signup = signupArray;
+                  localStorage.setItem("data", JSON.stringify(parsedData));
+                }
                 this.signupForm.reset();
                 this.router.navigate(["dashboard"]);
               },
@@ -84,9 +94,21 @@ export class SignupComponent implements OnInit {
                 console.log("Error during signup", error);
                 console.log("Error response from server:", error.error);
                 data.push(newUser);
-                // localStorage.setItem("newUser", JSON.stringify(data));
+                 
+                const localStorageData = localStorage.getItem("data");
+                if (localStorageData) {
+                  const parsedData = JSON.parse(localStorageData);
+                  const signupArray = parsedData.signup || [];
+                  signupArray.push(this.signupForm);
+                  parsedData.signup = signupArray;
+                  localStorage.setItem("data", JSON.stringify(parsedData));
+                  console.log(signupArray);
+                }
+                console.error("Error adding data:", error);            
                 this.sharedService.setDetailsArray(data);
                 this.signupForm.reset();
+                this.router.navigate([`dashboard/${uid}`]);
+
               }
             );
           }

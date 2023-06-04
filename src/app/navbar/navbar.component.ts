@@ -14,8 +14,9 @@ export class NavbarComponent implements OnInit {
   creditList: creditcard[] = [];
   dashUid: string | undefined = '';
   flag = false;
-  shareduid: string | null = null; ;
-
+  shareduid: string | null = null;
+  // authService: any;
+ 
   constructor(private _router: Router, private sharedService: SharedService) {}
 
   ngOnInit(): void {
@@ -48,8 +49,8 @@ export class NavbarComponent implements OnInit {
   goToDashboard(): void {
     console.log("goToDashboard", this.shareduid);
     if (this.shareduid) {
-      debugger;
-      this._router.navigate([`dashboard/${this.shareduid}`]);
+       
+      this._router.navigate([`card/${this.shareduid}`]);
     } else {
       // Handle the case when dashUid is undefined
       console.log("dashUid is undefined");
@@ -60,7 +61,9 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     console.log("logout");
+    // this.authService.logout();
     localStorage.removeItem('logindata');
+    localStorage.removeItem('token');
     this._router.navigate(['']);
   }
   AddCreditCard() : void{

@@ -10,6 +10,7 @@ import { HttpClient } from "@angular/common/http";
 import { emicalculator } from "emicalculator.interface";
 import { FormControl } from "@angular/forms";
 import { toInteger } from "lodash";
+import { details } from "details.interface";
 
 @Component({
   selector: "app-dashboard",
@@ -44,13 +45,34 @@ export class DashboardComponent implements OnInit {
   roi: string | undefined;
   creditroi: emicalculator[] = [];
   getdata: string | null | undefined;
+  loggedInUser : details | null | undefined;
+  bgImage:any; 
+
 
 
   ngOnInit(): void {
+
+    this.loggedInUser = null;
+      const logindata = localStorage.getItem("logindata");
+      if (logindata !== null) {
+         
+      this.loggedInUser = JSON.parse(logindata);
+      }else{
+        this.router.navigate(['']);
+      }
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
     this.sharedService.setuid(this.uid);
+     
+      console.log("this.loggedInUser",this.loggedInUser?.uid);
+      console.log("this.uid ngonint", this.uid)
+      if(this.loggedInUser?.uid !== this.uid && this.loggedInUser?.uid!==undefined){
+        this.router.navigate([`dashboard/${this.loggedInUser?.uid}`]);
+      }else{
+        this.router.navigate(['']);
+        localStorage.removeItem('logindata');
+      }
     this.sharedService
-      .getUserCreditCard(this.uid)
+      .getUserCreditCard(this.loggedInUser?.uid)
       .subscribe((creditCards: creditcard[]) => {
         this.selectedUserCreditCard = creditCards;
         console.log("hellloooo",this.selectedUserCreditCard);
@@ -58,6 +80,8 @@ export class DashboardComponent implements OnInit {
         this.loadUsers();
       });
 
+     
+      
       this.sharedService.getEmicreditcardArray().subscribe((selectedArray: creditcard[] | null) => {
         //this.selectedcreditList = selectedArray;
         this.creditList = selectedArray!;
@@ -68,11 +92,18 @@ export class DashboardComponent implements OnInit {
       this.rateOfInterest = 0;
       this.loanAmount=0;
       
+
       // this.sharedService.cardComponentSubject.subscribe({
       //   next: (v) => this.sharedService.getcreditLimit().subscribe(limit => {
       //     console.log("this is limit",limit);
       //   })
       // })
+      
+
+      //localstorage 
+      this.bgImage = this.currentCardBackground();
+
+      
   }
 
   private getEmicalculator(): Observable<emicalculator[]> {
@@ -134,6 +165,11 @@ export class DashboardComponent implements OnInit {
 
     
   // }
+  currentCardBackground () {
+    let random = Math.floor(Math.random() * 25 + 1)
+    return `assets/images/${random}.jpeg`; 
+  }
+
 
   
   updateChart() {

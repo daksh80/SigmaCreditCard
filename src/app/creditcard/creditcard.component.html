@@ -14,50 +14,62 @@
       <input type="text" formControlName="CCName" class="form-control mb-3 mt-3" placeholder="User Name" required />
       <div *ngIf="addcreditcard.get('CCName')?.invalid && (addcreditcard.get('CCName')?.dirty || addcreditcard.get('CCName')?.touched)" class="text-danger">
         User Name
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Card Expiry</label>
       <input type="text" formControlName="CCExp" class="form-control mb-3 mt-3" placeholder="Card Expiry" required />
       <div *ngIf="addcreditcard.get('CCExp')?.invalid && (addcreditcard.get('CCExp')?.dirty || addcreditcard.get('CCExp')?.touched)" class="text-danger">
         Card Expiry
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Bank Name</label>
       <input type="text" formControlName="Bname" class="form-control mb-3 mt-3" placeholder="Bank Name" required />
       <div *ngIf="addcreditcard.get('Bname')?.invalid && (addcreditcard.get('Bname')?.dirty || addcreditcard.get('Bname')?.touched)" class="text-danger">
         Bank Name
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label>CVV Number</label>
       <input type="text" formControlName="Cvvnum" class="form-control mb-3 mt-3" placeholder="CVV number" required />
       <div *ngIf="addcreditcard.get('Cvvnum')?.invalid && (addcreditcard.get('Cvvnum')?.dirty || addcreditcard.get('Cvvnum')?.touched)" class="text-danger">
         CVV number
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Active/Inactive</label>
       <input type="text" formControlName="Act" class="form-control mb-3 mt-3" placeholder="Active or Inactive" required />
       <div *ngIf="addcreditcard.get('Act')?.invalid && (addcreditcard.get('Act')?.dirty || addcreditcard.get('Act')?.touched)" class="text-danger">
         Active or Inactive
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Nick Name</label>
       <input type="text" formControlName="NName" class="form-control mb-3 mt-3" placeholder="Nick Name" required />
       <div *ngIf="addcreditcard.get('NName')?.invalid && (addcreditcard.get('NName')?.dirty || addcreditcard.get('NName')?.touched)" class="text-danger">
         Nick Name
-    </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Unique id</label>
       <input type="text" formControlName="uid" class="form-control mb-3 mt-3" placeholder="Unique id" required />
       <div *ngIf="addcreditcard.get('uid')?.invalid && (addcreditcard.get('uid')?.dirty || addcreditcard.get('uid')?.touched)" class="text-danger">
-        Nick Name
-    </div>
+        Unique id
+      </div>
     </div>
     <button type="submit" class="btn btn-success" [disabled]="addcreditcard.invalid">Submit</button>
   </form>
+
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <div class="card-number">CC No: {{ addcreditcard.get('CCNo')?.value }}</div>
+        <div class="card-type">Type: {{ addcreditcard.get('CCType')?.value }}</div>
+      </div>
+      <div class="card-info">
+        <div class="card-nickname">Nick Name: {{ addcreditcard.get('NName')?.value }}</div>
+      </div>
+    </div>
+  </div>
 </div>

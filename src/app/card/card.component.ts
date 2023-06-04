@@ -1,11 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import { details } from "details.interface";
 import { emicalculator } from "emicalculator.interface";
 import { Observable, catchError, map, of } from "rxjs";
 import { SharedService } from "src/shared.service";
+import { IMaskModule } from 'angular-imask';
+import { CardServiceService } from "src/card-service.service";
 
 @Component({
   selector: "app-card",
@@ -14,34 +16,73 @@ import { SharedService } from "src/shared.service";
 })
 export class CardComponent implements OnInit {
   creditList: creditcard[] = [];
-  @Input() uid: string | undefined = "1";
+   @Input() uid: string | undefined = "1";
   cardType: emicalculator[] = [];
   creditLimit: string | undefined;
   cardActiveIn: string | undefined;
   detail: creditcard[] = [];
   getdata: string | null | undefined;
 
+
+  // updated code
+  loggedInUser : details | null | undefined;
+
+  // card 
+  // isCardFlipped: boolean = false;   
+  // randomBackgrounds: {
+  //   type: Boolean;
+  //   default: true;
+  // } | undefined;
+  // backgroundImage: [String, Object] | undefined; 
+  // cardNumber: string | undefined;
+  // imask = {mask:'0000 000 000 0000'};
+  // name:string | undefined;
+  bgImage:any; 
+
   constructor(
     private http: HttpClient,
-    private route: Router,
-    private sharedService: SharedService
+  private router: Router,
+  private sharedService: SharedService,
+  public _cardSer: CardServiceService,
+  public router_ : ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    console.log(this.uid);
+    this.loggedInUser = null;
+    console.log("ngonInit card",this.uid);
+    this.uid = this.router_.snapshot.paramMap?.get("uid") || "";
+    if (this.uid !== undefined) {
+      this.sharedService.setuid(this.uid);
+    }
+         
+      // console.log("this.loggedInUser",this.loggedInUser?.uid);
+      console.log("this.uid ngonint", this.uid)
     this.sharedService
       .getUserCreditCard(this.uid)
       .subscribe((creditCards: creditcard[]) => {
         this.creditList = creditCards;
         console.log("12121", creditCards);
       });
+       this.bgImage = this.currentCardBackground();
+     
   }
+  /**
+   * @description this function takes data from json server and return creditcard details from addcreditcard json 
+   * @returns return getuser as Observable
+   */
 
   private getUsers(): Observable<creditcard[]> {
     return this.http.get<creditcard[]>("http://localhost:3000/addcreditcard");
   }
+  
+  /**
+   * @description  
+   * @param detail
+   * @returns  
+   */
 
   onCardClick(detail: creditcard) {
+    if(detail.Act == "Active"){
     this.sharedService.setEmicreditcardArray([detail]);
     this.cardActiveIn = detail.Act;
     console.log("card Active or inActive", this.cardActiveIn);
@@ -54,8 +95,10 @@ export class CardComponent implements OnInit {
         //this.route.navigate([this.cardType[0].LoanLimit])
       }
     );
+    
     console.log("clickable detailed array", detail.CCType);
-
+    this.router.navigate([`dashboard/${this.uid}`]);
+    }
     this.onclicklimitset();
   }
 
@@ -68,11 +111,11 @@ export class CardComponent implements OnInit {
   }
 
   getcardname(cardName: string): Observable<emicalculator[]> {
-    debugger;
+     
     return this.getEmicalculator().pipe(
       map((emidata: emicalculator[]) => {
         console.log("flag", emidata);
-        debugger;
+         
         return emidata.filter((card: emicalculator) => card.CCType === cardName);
       }),
       catchError((err) => {
@@ -86,9 +129,18 @@ export class CardComponent implements OnInit {
     );
   }
 
+  // counter = (i:number) => { return (new Array(i)); }
+  currentCardBackground () {
+    let random = Math.floor(Math.random() * 25 + 1)
+    return `assets/images/${random}.jpeg`; 
+  }
+
+
   update(detail: creditcard): void {
     this.sharedService.setCreditCardArray([detail]);
-    this.route.navigate(["updatecreditdetails"]);
+     
+    this.router.navigate(["updatecreditdetails"]);
+     
     console.log(detail);
     //window.location.reload();
   }

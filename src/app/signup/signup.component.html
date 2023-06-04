@@ -2,7 +2,7 @@
   <form [formGroup]="signupForm" class="form-box">
     <div class="form-group">
       <label>Signup</label>
-      <input type="text" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter User Email id" required />
+      <input type="email" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter User Email id" required />
       <div *ngIf="signupForm.get('fname')?.invalid && (signupForm.get('fname')?.dirty || signupForm.get('fname')?.touched)" class="text-danger">
         Email is required.
       </div>
@@ -59,8 +59,8 @@
       </div>
     </div>    
     <div class="form-group">
-      <label>Unique id</label>
-      <input type="password" formControlName="uid" class="form-control mb-3 mt-3" placeholder="Enter User uuid" minlength="3" maxlength="3" required />
+      <label>User Name</label>
+      <input type="text" formControlName="uid" class="form-control mb-3 mt-3" placeholder="Enter User Name"  required />
       <div *ngIf="signupForm.get('uid')?.invalid && (signupForm.get('uid')?.dirty || signupForm.get('uid')?.touched)" class="text-danger">
         Unique id is required.
       </div>

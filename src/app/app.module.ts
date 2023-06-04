@@ -22,9 +22,12 @@ import { FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatCardModule } from "@angular/material/card";
-import { HighchartsChartModule, HighchartsChartComponent } from "highcharts-angular";
+import { HighchartsChartModule } from "highcharts-angular";
 import { ProfileComponent } from './profile/profile.component';
 import { MatSelectModule } from '@angular/material/select';
+import { IMaskModule } from "angular-imask";
+import {MatButtonModule} from '@angular/material/button';
+//import { NzButtonModule } from 'ng-zorro-antd/button'; 
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatSliderModule,
     HighchartsChartModule,
     MatSelectModule,
+    IMaskModule,
+    MatButtonModule,
+    // NzButtonModule,
     ToastrModule.forRoot(),
   ],
   providers: [],

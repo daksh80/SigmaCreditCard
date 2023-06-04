@@ -19,17 +19,49 @@ export class SharedService {
 
   constructor(private http: HttpClient) { }
 
-  setDetailsArray(detailsArray: details[]): void {
+  isLoggedIn() {
+    return !!localStorage.getItem("token");
+  }
+
+  /***
+   *@description- setDetailsArray return  data from http://localhost:3000/signup and localstorage from signup array and 
+   * @argument - detailsArray type  of details instances of classes derived from that interface can be returned.  
+   * @extends - this function exported to signup component
+   * @type   private detailsArraySubject: BehaviorSubject<details[] | null> = new BehaviorSubject<details[] | null>(null);
+   * @param setCreditCardArray
+   * @returns - this function return detailsArray
+   */
+
+   setDetailsArray(detailsArray: details[]): void {
     this.detailsArraySubject.next(detailsArray);
   }
+  /***
+   * @description - this function pass detailsArray  and it store data of user 
+   * @param getDetailsArray
+   * @returns - this function return detailed Array after storing it and this function is dependent on setDetailsArray
+   */
 
   getDetailsArray(): BehaviorSubject<details[] | null> {
     return this.detailsArraySubject;
   }
 
+  /**
+   * @description this function takes creditcard details and stored in creditCardArray of instance creditcard type
+   * @param creditCardArray
+   * @type private creditArraySubject: BehaviorSubject<creditcard[] | null> = new BehaviorSubject<creditcard[] | null>(null);
+   * @returns this function return  creditCardArray
+   */
+
   setCreditCardArray(creditCardArray: creditcard[]): void {
     this.creditArraySubject.next(creditCardArray);
   }
+
+  /**
+   * 
+   * @description this function takes data from getUsers()/localstorage(addcreditcard) function and filter it on the based of uid.
+   * @component card.component , dashboard.component , navbar.component
+   * @returns this function return creditcardArray after filtering using uid
+   */
 
   getUserCreditCard(uid: string | undefined): Observable<creditcard[]> {
     return this.getUsers().pipe(
@@ -46,57 +78,103 @@ export class SharedService {
       })
     );
   }
+
+  /**
+   * @component -card component , creditcard.component , login.component, signup.component 
+   * @returns this function return addcreditcard data 
+   */
   
 
   getUsers(): Observable<creditcard[]> {
     return this.http.get<creditcard[]>('http://localhost:3000/addcreditcard');
   }
 
+  /**
+   * 
+   * @component - updatecreditdetails.component
+   * @returns this function return credit Array
+   */
   getCreditCardArray(): BehaviorSubject<creditcard[] | null> {
     return this.creditArraySubject;
   }
 
+  /**
+   * 
+   * @component - card.component , updateCreditCard.component 
+   * @param creditCard 
+   * @returns this function update credit card details in  json -server
+   */
   updateCreditCard(creditCard: creditcard): void {
     this.http.put(`http://localhost:3000/addcreditcard/${creditCard.id}`, creditCard).subscribe(() => {
       console.log(`Credit card updated successfully: ${creditCard.id}`);
     });
   }
 
+  /**
+   * @component - card component 
+   * @param detail 
+   * @returns  it will return select card array which are in card component
+   */
+
   setEmicreditcardArray(detail: creditcard[]): void {
     this.emicreditcardArraySubject.next(detail);
   }
 
+  /**
+   * @component - dashboard.component
+   * @returns - it will return selected credit array 
+   */
   getEmicreditcardArray(): BehaviorSubject<creditcard[] | null> {
     return this.emicreditcardArraySubject;
   }
 
+  /**
+   * @component card.component
+   * @param limit 
+   * @type private limit: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+   * @return this function set selected card limit like (visa, mastercard, rupy)
+   */
   
   setcreditLimit(limit: string): void {
-    debugger;
+     
     console.log("limit shared service ", limit);
     this.limit.next(limit);
   }
   
 
   /**
-   * @description - sadfagjsdf;jhasdlfhjb 
+   * @description - this function set credit limit on the basis of selected card
+   * @component - dashboard.component
    * @param limit - credit limit from somewhere
-   * @returns - Credit observable fdsafdf
+   * @returns - Credit observable and return limit
    * 
    */
   getcreditLimit(): Observable<string | null> {
-    debugger;
+     
     return this.limit.asObservable();
   }
 
   /** using for cross component comms */
   cardComponentSubject = new Subject<any>();
 
+  /**
+   * @description this function set uid at the time of login  Check if the uidSubject is already set
+   * @param uid 
+   * @type  private uidSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+   * @return uid observable and return uid
+   */
+
   setuid(uid: string): void {
-    if (!this.uidSubject.getValue()) { // Check if the uidSubject is already set
+    if (!this.uidSubject.getValue()) { 
       this.uidSubject.next(uid);
     }
   }
+ 
+  /**
+   * 
+   * @description this function take uid from setuid function and return  uid 
+   * @returns this function return uid as observable type
+   */
   
   getuid(): Observable<string | null> {
     return this.uidSubject.asObservable();
