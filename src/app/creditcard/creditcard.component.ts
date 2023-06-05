@@ -67,6 +67,7 @@ export class CreditcardComponent implements OnInit {
             console.log("Data added:", response);
           },
           (error) => {
+            console.log("credit data",newCreditcard);
             const localStorageData = localStorage.getItem("data");
             if (localStorageData) {
               const parsedData = JSON.parse(localStorageData);

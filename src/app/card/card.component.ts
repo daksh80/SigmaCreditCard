@@ -51,25 +51,29 @@ export class CardComponent implements OnInit {
     if (this.uid !== undefined) {
       this.sharedService.setuid(this.uid);
     }
-
+ debugger;
     const logindata = localStorage.getItem("logindata");
     if (logindata !== null) {
       this.loggedInUser = JSON.parse(logindata);
-      this.sharedService
-        .getUserCreditCard(this.uid)
-        .subscribe((creditCards: creditcard[]) => {
+      if (this.loggedInUser) {
+        this.sharedService.getUserCreditCard(this.loggedInUser.uid).subscribe((creditCards: creditcard[]) => {
           this.creditList = creditCards;
           console.log("Credit Card List:", this.creditList);
         });
+      } else {
+        // Handle the case when loggedInUser is null or undefined
+        console.log("No logged-in user found.");
+      }
     } else {
       this.router.navigate(['']);
     }
+    debugger;
 
-    if (this.loggedInUser?.uid !== this.uid && this.loggedInUser?.uid !== undefined) {
+    if (this.loggedInUser?.uid === this.uid && this.loggedInUser?.uid !== undefined && this.loggedInUser?.uid !== null) {
       this.router.navigate([`card/${this.loggedInUser?.uid}`]);
     } else {
-      this.router.navigate(['']);
-      localStorage.removeItem('logindata');
+      // this.router.navigate(['']);
+      // localStorage.removeItem('logindata');
     }
 
     this.bgImage = this.currentCardBackground();

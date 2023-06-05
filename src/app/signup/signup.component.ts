@@ -6,6 +6,8 @@ import { details } from "details.interface";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SharedService } from "src/shared.service";
 import * as jsonData from "db.json";
+import * as CryptoJS from "crypto-js";
+
 
 @Component({
   selector: "app-signup",
@@ -16,6 +18,8 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   getdata: string | null | undefined;
 usernameExists: any;
+encryptSecretKey = "5";
+
 
   constructor(
     private fb: FormBuilder,
@@ -46,15 +50,10 @@ usernameExists: any;
       validators: this.passwordCheck.bind(this)
     });
   
-    const localStorageData = localStorage.getItem("data");
-    if (!localStorageData) {
-      const initialData = {
-        signup: []
-      };
-      localStorage.setItem("data", JSON.stringify(initialData));
-    }
-  
+    const data = JSON.stringify(jsonData);
+    localStorage.setItem("data", data);
     this.getdata = localStorage.getItem("data");
+    console.log(this.getdata);
   }
   
 
@@ -67,66 +66,107 @@ usernameExists: any;
   private getUsers(): Observable<details[]> {
     return this.http.get<details[]>("assets/localdb.json");
   }
-
-  signup(): void {
-    if (this.signupForm.valid) {
-      const {
-        fname,
-        password,
-        ConformPassword,
-        fnumber,
-        ActType,
-        CCnumber,
-        CCType,
-        uid
-      } = this.signupForm.value;
-  
-      this.getUsers().subscribe((data: details[] | any) => {
-        if (Array.isArray(data)) {
-          const existingUser = data.find((user: details) => user.fname === fname);
-          if (existingUser) {
-            console.log("Username already exists");
-          } else {
-            const newUser: details = {
-              fname,
-              password,
-              ConformPassword,
-              fnumber,
-              ActType,
-              CCnumber,
-              CCType,
-              uid,
-            };
-  
-            // Update the data in local storage
-            const localStorageData = localStorage.getItem("data");
-            if (localStorageData) {
-              const parsedData = JSON.parse(localStorageData);
-              parsedData.signup.push(newUser);
-              localStorage.setItem("data", JSON.stringify(parsedData));
-              this.router.navigate([`card/${uid}`]); 
-            } else {
-              const newData = { signup: [newUser] };
-              localStorage.setItem("data", JSON.stringify(newData));
-              this.router.navigate([`card/${uid}`]); 
-            }
-  
-            // Update the data in JSON server
-            this.http.post<any>("http://localhost:3000/signup", newUser).subscribe(
-              () => {
-                console.log("Data updated in JSON server");
-                this.router.navigate(["/login"]);
-              },
-              (error: any) => {
-                console.error("Failed to update data in JSON server", error);
-                // Handle error
-              }
-            );
-          }
-        }
-      });
-    } else {
-      console.log("Form invalid");
+  encryptData(data: string) {
+    try {
+      return CryptoJS.AES.encrypt(
+        JSON.stringify(data),
+        this.encryptSecretKey
+      ).toString();
+    } catch (e) {
+      console.log(e);
+      return e;
     }
   }
-}  
+
+  decryptData(data: string) {
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
+      if (bytes.toString()) {
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  // ...
+
+signup(): void {
+  if (this.signupForm.valid) {
+    const {
+      fname,
+      password,
+      ConformPassword,
+      fnumber,
+      ActType,
+      CCnumber,
+      CCType,
+      uid
+    } = this.signupForm.value;
+
+    this.getUsers().subscribe((data: details[] | any) => {
+      debugger
+      if (Array.isArray(data)) {
+        debugger
+        const existingUser = data.find((user: details) => user.fname === fname);
+        if (existingUser) {
+          console.log("Username already exists");
+        } else {
+          const newUser: details = {
+            fname,
+            password,
+            ConformPassword,
+            fnumber,
+            ActType,
+            CCnumber,
+            CCType,
+            uid,
+          };
+
+          // Update the data in local storage
+          const localStorageData = localStorage.getItem("data");
+          if (localStorageData) {
+            const parsedData = JSON.parse(localStorageData);
+            parsedData.signup.push(newUser);
+            console.log("new User uid", newUser.uid);
+            const loginData = {
+              fname: newUser.fname,
+              password: newUser.password,
+              ConformPassword: newUser.ConformPassword,
+              fnumber: newUser.fnumber,
+              ActType: newUser.ActType,
+              CCnumber: newUser.CCnumber,
+              CCType: newUser.CCType,
+              uid: newUser.uid
+            };
+
+            localStorage.setItem("logindata", JSON.stringify(loginData));
+            localStorage.setItem("data", JSON.stringify(parsedData));
+            localStorage.setItem("token",JSON.stringify(this.encryptData(fname + password)))
+            this.router.navigate([`card/${uid}`]); 
+          } else {
+            const newData = { signup: [newUser] };
+            localStorage.setItem("data", JSON.stringify(newData));
+            this.router.navigate([`card/${uid}`]); 
+          }
+
+          // Update the data in JSON server
+          this.http.post<any>("http://localhost:3000/signup", newUser).subscribe(
+            () => {
+              console.log("Data updated in JSON server");
+              this.router.navigate(["/login"]);
+            },
+            (error: any) => {
+              console.error("Failed to update data in JSON server", error);
+              // Handle error
+            }
+          );
+        }
+      }
+    });
+  } else {
+    console.log("Form invalid");
+  }
+}
+}
