@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import { Observable } from "rxjs";
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: "app-creditcard",
@@ -12,23 +13,29 @@ import { Observable } from "rxjs";
 })
 export class CreditcardComponent implements OnInit {
   addcreditcard!: FormGroup;
+  bsConfig: Partial<BsDatepickerConfig>;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private fb: FormBuilder
-  ) {}
+  ) {
+    this.bsConfig = {
+      containerClass: 'theme-default',
+      dateInputFormat: 'MM/YYYY'
+    };
+  }
 
   ngOnInit(): void {
     this.addcreditcard = this.fb.group({
-      CCNo: ["", Validators.required],
+      CCNo: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
       CCName: ["", Validators.required],
-      CCExp: ["", Validators.required],
+      CCExp: ['', Validators.required],
       Bname: ["", Validators.required],
-      Cvvnum: ["", Validators.required],
+      Cvvnum: ["", [Validators.required, Validators.pattern(/^\d{3,4}$/)]],
       Act: ["", Validators.required],
       NName: ["", Validators.required],
-      uid: ["",Validators.required]
+      uid: ["", Validators.required]
     });
   }
 
@@ -38,8 +45,7 @@ export class CreditcardComponent implements OnInit {
 
   addcc(): void {
     if (this.addcreditcard.valid) {
-      const { CCNo, CCName, CCExp, Bname, Cvvnum, id, Act, NName, uid,CCType} =
-        this.addcreditcard.value;
+      const { CCNo, CCName, CCExp, Bname, Cvvnum, Act, NName, uid } = this.addcreditcard.value;
 
       const newCreditcard: creditcard = {
         CCNo,
@@ -47,11 +53,11 @@ export class CreditcardComponent implements OnInit {
         CCExp,
         Bname,
         Cvvnum,
-        id,
         Act,
         NName,
         uid,
-        CCType
+        id: "",
+        CCType: ""
       };
 
       this.http
@@ -70,7 +76,6 @@ export class CreditcardComponent implements OnInit {
               localStorage.setItem("data", JSON.stringify(parsedData));
             }
             console.error("Error adding data:", error);
-
           }
         );
     }

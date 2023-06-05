@@ -1,69 +1,53 @@
-/* login.component.css */
-
 .container {
-  width: 400px;
+  max-width: 500px;
   margin: 0 auto;
+}
+
+.form-box {
   padding: 20px;
-  border: 1px solid #ccc;
+  background-color: #f0f0f0;
   border-radius: 5px;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-}
-
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="text"],
-select {
+.form-control {
   width: 100%;
-  padding: 10px;
+  height: 40px;
+  border-radius: 3px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-.alert {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f44336;
-  color: white;
-  border-radius: 5px;
-}
-
-span a {
-  color: #0069d9;
-  text-decoration: none;
-}
-
-span a:hover {
-  text-decoration: underline;
+  padding: 5px;
 }
 
 .text-danger {
   color: red;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.card-container {
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  margin-bottom: 10px;
 }

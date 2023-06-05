@@ -27,6 +27,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MatSelectModule } from '@angular/material/select';
 import { IMaskModule } from "angular-imask";
 import {MatButtonModule} from '@angular/material/button';
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 //import { NzButtonModule } from 'ng-zorro-antd/button'; 
 
 @NgModule({
@@ -61,6 +62,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule,
     // NzButtonModule,
     ToastrModule.forRoot(),
+    BsDatepickerModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent],

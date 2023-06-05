@@ -7,7 +7,6 @@ import { emicalculator } from "emicalculator.interface";
 import { Observable, catchError, map, of } from "rxjs";
 import { SharedService } from "src/shared.service";
 import { IMaskModule } from 'angular-imask';
-import { CardServiceService } from "src/card-service.service";
 
 @Component({
   selector: "app-card",
@@ -43,27 +42,37 @@ export class CardComponent implements OnInit {
     private http: HttpClient,
   private router: Router,
   private sharedService: SharedService,
-  public _cardSer: CardServiceService,
   public router_ : ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loggedInUser = null;
-    console.log("ngonInit card",this.uid);
-    this.uid = this.router_.snapshot.paramMap?.get("uid") || "";
+   this.loggedInUser = null;
+    this.uid = this.router_.snapshot.paramMap.get("uid") || "";
     if (this.uid !== undefined) {
       this.sharedService.setuid(this.uid);
     }
-         
-      // console.log("this.loggedInUser",this.loggedInUser?.uid);
-      console.log("this.uid ngonint", this.uid)
-    this.sharedService
-      .getUserCreditCard(this.uid)
-      .subscribe((creditCards: creditcard[]) => {
-        this.creditList = creditCards;
-        console.log("12121", creditCards);
-      });
-       this.bgImage = this.currentCardBackground();
+
+    const logindata = localStorage.getItem("logindata");
+    if (logindata !== null) {
+      this.loggedInUser = JSON.parse(logindata);
+      this.sharedService
+        .getUserCreditCard(this.uid)
+        .subscribe((creditCards: creditcard[]) => {
+          this.creditList = creditCards;
+          console.log("Credit Card List:", this.creditList);
+        });
+    } else {
+      this.router.navigate(['']);
+    }
+
+    if (this.loggedInUser?.uid !== this.uid && this.loggedInUser?.uid !== undefined) {
+      this.router.navigate([`card/${this.loggedInUser?.uid}`]);
+    } else {
+      this.router.navigate(['']);
+      localStorage.removeItem('logindata');
+    }
+
+    this.bgImage = this.currentCardBackground();
      
   }
   /**

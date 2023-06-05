@@ -1,8 +1,9 @@
 <div class="container">
+  <h2>Signup</h2> 
   <form [formGroup]="signupForm" class="form-box">
     <div class="form-group">
-      <label>Signup</label>
-      <input type="email" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter User Email id" required />
+      <label>Email</label>
+      <input type="email" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter User Email id" required email="true"/>
       <div *ngIf="signupForm.get('fname')?.invalid && (signupForm.get('fname')?.dirty || signupForm.get('fname')?.touched)" class="text-danger">
         Email is required.
       </div>
@@ -16,18 +17,26 @@
     </div>
     <div class="form-group">
       <label>Confirm Password</label>
-      <input type="password" formControlName="confirmPassword" class="form-control mb-3 mt-3" placeholder="Please Confirm Password" required />
-      <div *ngIf="signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)" class="text-danger">
+      <input type="password" formControlName="ConformPassword" class="form-control mb-3 mt-3" placeholder="Please ConformPassword Password" required />
+      <div *ngIf="signupForm.get('ConformPassword')?.invalid && (signupForm.get('ConformPassword')?.dirty || signupForm.get('ConformPassword')?.touched)" class="text-danger">
         Confirm Password is required.
       </div>
+      <div *ngIf="signupForm.errors?.['passwordNotMatch']" class="text-danger">
+        Password does not match.
+      </div> 
     </div>
     <div class="form-group">
       <label>Phone Number</label>
-      <input type="number" formControlName="fnumber" class="form-control mb-3 mt-3" placeholder="Please Enter Mobile Number" minlength="10" maxlength="10" required />
+      <input type="tel" formControlName="fnumber" class="form-control mb-3 mt-3" placeholder="Please Enter Mobile Number" pattern="[0-9]{10}" required />
       <div *ngIf="signupForm.get('fnumber')?.invalid && (signupForm.get('fnumber')?.dirty || signupForm.get('fnumber')?.touched)" class="text-danger">
-        Phone Number is required.
+        <ng-container *ngIf="signupForm.get('fnumber')?.errors?.['required']">
+          Phone Number is required.
+        </ng-container>
+        <ng-container *ngIf="signupForm.get('fnumber')?.errors?.['pattern']">
+          Please enter a valid 10-digit phone number.
+        </ng-container>
       </div>
-    </div>          
+    </div>                 
     <div class="form-group">
       <label>Active / Inactive Type</label>
       <select formControlName="ActType" class="form-control mb-3 mt-3" required>
@@ -41,11 +50,20 @@
     </div>    
     <div class="form-group">
       <label>Credit Card Number</label>
-      <input type="number" formControlName="CCnumber" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" required />
+      <input type="tel" formControlName="CCnumber" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" pattern="[0-9]{13,16}" required />
       <div *ngIf="signupForm.get('CCnumber')?.invalid && (signupForm.get('CCnumber')?.dirty || signupForm.get('CCnumber')?.touched)" class="text-danger">
-        Credit Card Number is required.
+        <ng-container *ngIf="signupForm.get('CCnumber')?.errors?.['required']">
+          Credit Card Number is required.
+        </ng-container>
+        <ng-container *ngIf="signupForm.get('CCnumber')?.errors?.['pattern']">
+          Please enter a valid credit card number.
+        </ng-container>
+        <ng-container *ngIf="signupForm.get('CCnumber')?.errors?.['luhnCheck']">
+          Invalid credit card number.
+        </ng-container>
       </div>
     </div>
+    
     <div class="form-group">
       <label>Credit Card Type</label>
       <select formControlName="CCType" class="form-control mb-3 mt-3" required>
@@ -64,14 +82,25 @@
       <div *ngIf="signupForm.get('uid')?.invalid && (signupForm.get('uid')?.dirty || signupForm.get('uid')?.touched)" class="text-danger">
         Unique id is required.
       </div>
-    </div>
+    </div> 
     
     <span>Already have an Account <a routerLink="">Login</a></span>
     <br />
-    <button type="submit" class="btn btn-success" [disabled]="signupForm.invalid">Submit</button>
+    <button (click)="signup()">Sign Up</button>
     
     <div *ngIf="signupForm.invalid && (signupForm.dirty || signupForm.touched)" class="text-danger mt-3">
       Please fill in all required fields.
     </div>
   </form>
+  <div class="card-container" *ngIf="signupForm.valid">
+    <div class="card">
+      <h3>Email: {{ signupForm.get('fname')?.value }}</h3>
+      <p>Password: {{ signupForm.get('password')?.value }}</p>
+      <p>Phone Number: {{ signupForm.get('fnumber')?.value }}</p>
+      <p>Active / Inactive Type: {{ signupForm.get('ActType')?.value }}</p>
+      <p>Credit Card Number: {{ signupForm.get('CCnumber')?.value }}</p>
+      <p>Credit Card Type: {{ signupForm.get('CCType')?.value }}</p>
+      <p>User Name: {{ signupForm.get('uid')?.value }}</p>
+    </div>
+  </div>
 </div>

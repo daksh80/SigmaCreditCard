@@ -1,7 +1,7 @@
 export interface details {
     fname: string;
     password: string;
-    confirmPassword: string;
+    ConformPassword: string;
     fnumber: string;
     ActType: string;
     CCnumber: string;

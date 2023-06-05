@@ -6,7 +6,8 @@
       <label>Credit Card Number</label>
       <input type="text" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Please Add Credit Card Number" required />
       <div *ngIf="addcreditcard.get('CCNo')?.invalid && (addcreditcard.get('CCNo')?.dirty || addcreditcard.get('CCNo')?.touched)" class="text-danger">
-        Please Add Credit Card Number
+        <div *ngIf="addcreditcard.get('CCNo')?.errors?.['required']">Please Add Credit Card Number</div>
+        <div *ngIf="addcreditcard.get('CCNo')?.errors?.['pattern']">Invalid Credit Card Number</div>
       </div>
     </div>
     <div class="form-group">
@@ -18,7 +19,15 @@
     </div>
     <div class="form-group">
       <label>Card Expiry</label>
-      <input type="text" formControlName="CCExp" class="form-control mb-3 mt-3" placeholder="Card Expiry" required />
+      <input
+        type="text"
+        formControlName="CCExp"
+        class="form-control mb-3 mt-3"
+        placeholder="Card Expiry"
+        bsDatepicker
+        [bsConfig]="bsConfig"
+        required
+      />
       <div *ngIf="addcreditcard.get('CCExp')?.invalid && (addcreditcard.get('CCExp')?.dirty || addcreditcard.get('CCExp')?.touched)" class="text-danger">
         Card Expiry
       </div>
@@ -32,18 +41,41 @@
     </div>
     <div class="form-group">
       <label>CVV Number</label>
-      <input type="text" formControlName="Cvvnum" class="form-control mb-3 mt-3" placeholder="CVV number" required />
-      <div *ngIf="addcreditcard.get('Cvvnum')?.invalid && (addcreditcard.get('Cvvnum')?.dirty || addcreditcard.get('Cvvnum')?.touched)" class="text-danger">
-        CVV number
+      <input
+        type="text"
+        formControlName="Cvvnum"
+        class="form-control mb-3 mt-3"
+        placeholder="CVV number"
+        required
+      />
+      <div
+        *ngIf="addcreditcard.get('Cvvnum')?.invalid && (addcreditcard.get('Cvvnum')?.dirty || addcreditcard.get('Cvvnum')?.touched)"
+        class="text-danger"
+      >
+        <ng-container *ngIf="addcreditcard.get('Cvvnum')?.errors?.['required']">
+          CVV number is required.
+        </ng-container>
+        <ng-container *ngIf="addcreditcard.get('Cvvnum')?.errors?.['pattern']">
+          CVV number should be a 3 or 4-digit number.
+        </ng-container>
       </div>
     </div>
+    
     <div class="form-group">
       <label>Active/Inactive</label>
-      <input type="text" formControlName="Act" class="form-control mb-3 mt-3" placeholder="Active or Inactive" required />
-      <div *ngIf="addcreditcard.get('Act')?.invalid && (addcreditcard.get('Act')?.dirty || addcreditcard.get('Act')?.touched)" class="text-danger">
-        Active or Inactive
+      <select formControlName="Act" class="form-control mb-3 mt-3" required>
+        <option value="">Select Active/Inactive</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+      <div
+        *ngIf="addcreditcard.get('Act')?.invalid && (addcreditcard.get('Act')?.dirty || addcreditcard.get('Act')?.touched)"
+        class="text-danger"
+      >
+        Active or Inactive is required.
       </div>
     </div>
+    
     <div class="form-group">
       <label>Nick Name</label>
       <input type="text" formControlName="NName" class="form-control mb-3 mt-3" placeholder="Nick Name" required />

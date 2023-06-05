@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CardServiceService } from 'src/card-service.service';
 import { IMaskModule } from 'angular-imask';
 
 @Component({
@@ -26,7 +25,7 @@ export class ProfileComponent implements OnInit{
     return `assets/images/${random}.jpeg`; 
   }
 
-  constructor(public _cardSer: CardServiceService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.bgImage = this.currentCardBackground();

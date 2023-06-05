@@ -1,8 +1,20 @@
 <app-navbar [uid]="uid"></app-navbar>
-<!-- <app-card [uid]="uid"></app-card>  -->
 <div class="outer-div">
   <div class="top-container">
     <div class="left-container">
+      <div>
+        <mat-label>Loan Type</mat-label>
+        <section>
+          <mat-form-field appearance="outline">
+            <mat-label>Loan Type</mat-label>
+            <mat-select [formControl]="selectedFW" >
+              <mat-option *ngFor="let framwork of frameworks" [value]="framwork" (click)="loanType(framwork)">
+              {{ framwork }}
+             </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </section>
+      </div>
       <div class="box loan-amount-container">
         <div class="top top-container">
           <div class="loan-amount-txt">
@@ -55,19 +67,6 @@
           <input matSliderThumb [(ngModel)]="loanTerm">
         </mat-slider>
       </div>
-      <div>
-      <mat-label>Loan Type</mat-label>
-      <section>
-        <mat-form-field appearance="outline">
-          <mat-label>Loan Type</mat-label>
-          <mat-select [formControl]="selectedFW" >
-            <mat-option *ngFor="let framwork of frameworks" [value]="framwork" (click)="loanType(framwork)">
-            {{ framwork }}
-           </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </section>
-    </div>
       <button mat-raised-button color="primary" (click)="calculateLoan()">
         Calculate
       </button>
