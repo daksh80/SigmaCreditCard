@@ -368,4 +368,21 @@ button {
   /* Add the following styles to adjust its position */
   margin-top: -2rem;
 }
+.card-body {
+  color: white;
+}
+
+.card-info {
+  background-color: #333;
+  padding: 10px;
+}
+
+.card-label {
+  font-weight: bold;
+}
+
+.card-field {
+  margin-bottom: 5px;
+}
+
 

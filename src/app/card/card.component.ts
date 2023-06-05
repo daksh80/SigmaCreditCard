@@ -25,17 +25,6 @@ export class CardComponent implements OnInit {
 
   // updated code
   loggedInUser : details | null | undefined;
-
-  // card 
-  // isCardFlipped: boolean = false;   
-  // randomBackgrounds: {
-  //   type: Boolean;
-  //   default: true;
-  // } | undefined;
-  // backgroundImage: [String, Object] | undefined; 
-  // cardNumber: string | undefined;
-  // imask = {mask:'0000 000 000 0000'};
-  // name:string | undefined;
   bgImage:any; 
 
   constructor(
@@ -48,10 +37,10 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
    this.loggedInUser = null;
     this.uid = this.router_.snapshot.paramMap.get("uid") || "";
+    //The snapshot in Angular provides a static snapshot of the current route state, including parameters, query parameters, and data.
     if (this.uid !== undefined) {
       this.sharedService.setuid(this.uid);
     }
- debugger;
     const logindata = localStorage.getItem("logindata");
     if (logindata !== null) {
       this.loggedInUser = JSON.parse(logindata);
@@ -67,10 +56,8 @@ export class CardComponent implements OnInit {
     } else {
       this.router.navigate(['']);
     }
-    debugger;
-
     if (this.loggedInUser?.uid === this.uid && this.loggedInUser?.uid !== undefined && this.loggedInUser?.uid !== null) {
-      this.router.navigate([`card/${this.loggedInUser?.uid}`]);
+      this.router.navigate([`card/${this.uid}`]);
     } else {
       // this.router.navigate(['']);
       // localStorage.removeItem('logindata');
@@ -89,8 +76,8 @@ export class CardComponent implements OnInit {
   }
   
   /**
-   * @description  
-   * @param detail
+   * @description  this function check if card is active or not if card is inactive it will not move to dashboard component and set creditLimit
+   * @param detail 
    * @returns  
    */
 
@@ -118,11 +105,20 @@ export class CardComponent implements OnInit {
   onclicklimitset() {
     this.sharedService.cardComponentSubject.next(1);
   }
-
+ /**
+  * @description this function take emiCalculator data from json-server
+  * @returns Observable 
+  */
   private getEmicalculator(): Observable<emicalculator[]> {
     return this.http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
   }
 
+  /**
+   * 
+   * @description 
+   * @param cardName 
+   * @returns 
+   */
   getcardname(cardName: string): Observable<emicalculator[]> {
      
     return this.getEmicalculator().pipe(
@@ -143,21 +139,37 @@ export class CardComponent implements OnInit {
   }
 
   // counter = (i:number) => { return (new Array(i)); }
+
+  /**
+   * @description card bacckground image
+   * @returns random image takes from assets folder
+   */
   currentCardBackground () {
     let random = Math.floor(Math.random() * 25 + 1)
     return `assets/images/${random}.jpeg`; 
   }
 
 
+  /**
+   * @description this function update data using uid 
+   * @param detail 
+   */
   update(detail: creditcard): void {
     this.sharedService.setCreditCardArray([detail]);
+     debugger;
+     console.log("update",detail);
+
+    this.router.navigate([`updatecreditdetails`]);
      
-    this.router.navigate(["updatecreditdetails"]);
-     
-    console.log(detail);
-    //window.location.reload();
+    // window.location.reload();
   }
 
+
+  /**
+   * @description this function delete data from  both json-server and from local storage 
+   * @param id 
+   * @returns call function deleteFromLocalStorage(id)
+   */
   delete(id: string): void {
     this.http.delete("http://localhost:3000/addcreditcard/" + id).subscribe(
       (data) => {
@@ -170,11 +182,15 @@ export class CardComponent implements OnInit {
         console.error("Error deleting data from JSON server:", error);
         console.log("delete id",id);
         this.deleteFromLocalStorage(id); 
-       // window.location.reload(); 
+        window.location.reload(); 
       }
     );
   }
   
+  /**
+   * @description this function delete data(local storage ) from card component 
+   * @param id 
+   */
   
   private deleteFromLocalStorage(id: string): void {
     const localStorageData = localStorage.getItem("data");
@@ -189,11 +205,14 @@ export class CardComponent implements OnInit {
       localStorage.setItem("data", JSON.stringify(parsedData));
     }
   
-   // window.location.reload();
+    //window.location.reload();
   }
   
   
-  
+  /**
+   * @description this function change the card status 
+   * @param detail 
+   */
   
   toggleCardStatus(detail: any): void {
     console.log("toggleCardStatus", detail);

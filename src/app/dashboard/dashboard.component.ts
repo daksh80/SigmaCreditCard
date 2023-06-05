@@ -100,15 +100,23 @@ export class DashboardComponent implements OnInit {
       // })
       
 
-      //localstorage 
-      this.bgImage = this.currentCardBackground();
+      //this.bgImage change card background image
+      //this.bgImage = this.currentCardBackground();
 
       
   }
 
+  /**
+   * @description this function takes emicalculator array from json-server
+   * @returns Observable 
+   */
   private getEmicalculator(): Observable<emicalculator[]> {
     return this._http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
   }
+
+  /**
+   * @description this function takes emicalculator data and store into emicalculateList
+   */
 
   loadUsers(): void {
     this.getEmicalculator().subscribe((users: emicalculator[]) => {
@@ -117,7 +125,10 @@ export class DashboardComponent implements OnInit {
     });
   }
   
-
+/**
+ * @description this function store roi(Rate of intreset) on the basis of loanType(Personal, car, Home & Gold) and 
+ * @param loanT 
+ */
   loanType(loanT: any): void{
     
       console.log("Loan Type",loanT);
@@ -135,6 +146,11 @@ export class DashboardComponent implements OnInit {
       this.rateOfInterest=0;
   }
 
+  /**
+   * @description this function filter data from json on  the  basis of loan type and filter 
+   * @param loanT 
+   * @returns card on the basis of loanType 
+   */
 
   getroi(loanT: any | undefined): Observable<emicalculator[]>{
 
@@ -165,13 +181,21 @@ export class DashboardComponent implements OnInit {
 
     
   // }
+
+  /**
+   * @returns return random image from for card background
+   */
   currentCardBackground () {
     let random = Math.floor(Math.random() * 25 + 1)
     return `assets/images/${random}.jpeg`; 
   }
 
 
-  
+  /**
+   * @description Highchart(library) for loanChart in loanchart it's shows details Loan Amount,Rate of Interest,Loan Term,Total Interest,Total Amount,Monthly Installment
+   * @chartType pie
+   * @title Loan Details
+   */
   updateChart() {
     const chart = Highcharts.chart("loanChart", {
       chart: {
@@ -219,7 +243,13 @@ export class DashboardComponent implements OnInit {
     ]);
   }
 
-  
+  /**
+   * @description this function calculateLoan using(intrest, totalAmount,monthlyInstallment)
+   * const interest = this.loanAmount * (this.rateOfInterest / 100);
+    const totalAmount = this.loanAmount + interest;
+    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+    and call updatechart() function
+   */
 
   calculateLoan() {
     console.log()
@@ -232,6 +262,13 @@ export class DashboardComponent implements OnInit {
     console.log("Monthly Installment:", monthlyInstallment);
     this.updateChart();
   }
+  /**
+   * @description this function calculate monthly installment 
+   * const interest = this.loanAmount * (this.rateOfInterest / 100);
+    const totalAmount = this.loanAmount + interest;
+    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+   * @returns it's return monthly installment upto 2 digit
+   */
   calculateMonthlyInstallment() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
@@ -239,11 +276,19 @@ export class DashboardComponent implements OnInit {
     return monthlyInstallment.toFixed(2);
   }
 
+  /**
+   * @description this function calculate Total amount = loanAmount + roi(rate of intreset)
+   * @returns this function return totalAmount upto 2 decimal place
+   */
   calculateTotalAmount() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
     return totalAmount.toFixed(2);
   }
+  /**
+   * @description this function calculate intrest 
+   * @returns this function return intreset upto 2 decimal place
+   */
 
   calculateInterest() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);

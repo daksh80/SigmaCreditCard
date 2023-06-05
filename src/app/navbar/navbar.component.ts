@@ -31,7 +31,9 @@ export class NavbarComponent implements OnInit {
     
   }
   
-  
+  /**
+   * @description this function get creditcard details
+   */
 
   getCreditCardDetails(): void {
     this.sharedService.getUserCreditCard(this.dashUid).subscribe((creditCards: creditcard[]) => {
@@ -46,6 +48,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  /**
+   * @description this function navigate to card component 
+   */
+
   goToDashboard(): void {
     console.log("goToDashboard", this.shareduid);
     if (this.shareduid) {
@@ -58,6 +64,9 @@ export class NavbarComponent implements OnInit {
     }
   }
   
+  /**
+   * @description this function remove logindata & token from localstorage and navigate to login component
+   */
 
   logout(): void {
     console.log("logout");
@@ -66,14 +75,23 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     this._router.navigate(['']);
   }
+  /**
+   * @description  this function navigate to credicard component
+   */
   AddCreditCard() : void{
     console.log('Add credit card')
     this._router.navigate(['creditcard']);
   }
+  /**
+   * @description this function navigate to emi-calculator component
+   */
   emicalculator() : void{
     console.log('emi calculator');
     this._router.navigate(['emi-calculator']);
   }
+  /**
+   * @description this function  navigate to profile component
+   */
   profile() : void{
     console.log('profile');
     this._router.navigate(['profile']);

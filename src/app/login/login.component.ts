@@ -15,7 +15,7 @@ import * as CryptoJS from "crypto-js";
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  private jsonServerEndpoint = "http://localhost:3000/signup"; // Update with your JSON server endpoint
+  private jsonServerEndpoint = "http://localhost:3000/signup"; 
   private detailsArray: details[] | null = null;
   getdata: string | null | undefined;
   encryptSecretKey = "5";
@@ -63,7 +63,11 @@ export class LoginComponent implements OnInit {
   ): boolean {
     return user.fname === fname && user.password === password;
   }
-
+/**
+ * @description this function encryptData using cryptoJs(CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns.)
+ * @param data 
+ * @returns encrypted key
+ */
 
   encryptData(data: string) {
     try {
@@ -77,6 +81,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * @description thisn function decrypt data  using CryptoJs
+   * @param data 
+   * @returns decrypted data 
+   */
   decryptData(data: string) {
     try {
       const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
@@ -88,6 +97,9 @@ export class LoginComponent implements OnInit {
       console.log(e);
     }
   }
+  /**
+   * @description this function store data locally(logindata) and genereate token and navigate to card 
+   */
 
   login(): void {
     if (this.loginForm.valid && this.detailsArray) {

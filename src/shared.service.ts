@@ -143,7 +143,7 @@ export class SharedService {
   
 
   /**
-   * @description - this function set credit limit on the basis of selected card
+   * @description - this function set credit limit(ROI) on the basis of selected card
    * @component - dashboard.component
    * @param limit - credit limit from somewhere
    * @returns - Credit observable and return limit

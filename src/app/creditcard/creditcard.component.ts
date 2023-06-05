@@ -42,6 +42,9 @@ export class CreditcardComponent implements OnInit {
   private getUsers(): Observable<creditcard[]> {
     return this.http.get<creditcard[]>("http://localhost:3000/addcreditcard");
   }
+  /**
+   * @description addcc() function store data and update data into addcreditcard array locally and json-server
+   */
 
   addcc(): void {
     if (this.addcreditcard.valid) {
@@ -75,7 +78,8 @@ export class CreditcardComponent implements OnInit {
               creditCardArray.push(newCreditcard);
               parsedData.addcreditcard = creditCardArray;
               localStorage.setItem("data", JSON.stringify(parsedData));
-            }
+              this.router.navigate([`card/${newCreditcard.uid}`]);      
+             }
             console.error("Error adding data:", error);
           }
         );
