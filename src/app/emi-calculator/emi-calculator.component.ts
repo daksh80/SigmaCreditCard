@@ -108,10 +108,10 @@ export class EmiCalculatorComponent implements OnInit {
    *Calculates loan details
    */
     calculateLoan() {
-       const interest =(this.loanTerm) * (this.loanAmount) * (this.rateOfInterest / 100) ;
+       const interest = (this.loanAmount) * (this.rateOfInterest / 100) ;
       const totalAmount = this.loanAmount + interest;
       const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-      const totalInterest = interest*this.loanTerm; // Calculate total interest based on loan term
+      const totalInterest = interest// Calculate total interest based on loan term
     
       console.log("Interest:", totalInterest);
       console.log("Total Amount:", totalAmount);
@@ -130,7 +130,6 @@ export class EmiCalculatorComponent implements OnInit {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-    const totalInterest = interest*this.loanTerm;
     return monthlyInstallment.toFixed(2);
   }
 
@@ -142,7 +141,6 @@ export class EmiCalculatorComponent implements OnInit {
   calculateTotalAmount() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
-    const totalInterest = interest*this.loanTerm;
     return totalAmount.toFixed(2);
   }
  /**
@@ -153,7 +151,7 @@ export class EmiCalculatorComponent implements OnInit {
 
  calculateInterest() {
   const interest = this.loanAmount * (this.rateOfInterest / 100);
-   this.totalInterest = interest * this.loanTerm; // Multiply interest by loan term
+   this.totalInterest = interest
   return this.totalInterest.toFixed(2);
 }
 }

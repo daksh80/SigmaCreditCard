@@ -299,8 +299,8 @@ export class DashboardComponent implements OnInit {
    * @returns The calculated total amount value
    */
   calculateTotalAmount() {
-    const interest = this.loanAmount * (this.rateOfInterest / 100);
-    const totalAmount = this.loanAmount + interest;
+    const interest = (this.loanTerm * 0.5) *this.loanAmount * (this.rateOfInterest / 100);
+    const totalAmount = this.loanAmount + (interest);
     return totalAmount.toFixed(2);
   }
   /**
@@ -309,7 +309,7 @@ export class DashboardComponent implements OnInit {
    */
 
   calculateInterest() {
-    const interest = this.loanAmount * (this.rateOfInterest / 100);
+    const interest = (this.loanTerm * 0.5) *(this.loanAmount) * (this.rateOfInterest / 100 );
     return interest.toFixed(2);
   }
 }
