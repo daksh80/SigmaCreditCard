@@ -1,6 +1,6 @@
 <div class="container">
   <form [formGroup]="updatecreditcard" class="form-box">
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Credit Card Number</label>
       <input
         type="text"
@@ -8,9 +8,25 @@
         class="form-control mb-3 mt-3"
         placeholder="Please Add Credit Card Number"
       />
-    </div>
+    </div> -->
     <div class="form-group">
-      <label>User Name </label>
+      <label>Credit Card Number</label>
+      <input type="tel" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" pattern="[0-9]{16}" required />
+      <div *ngIf="updatecreditcard.get('CCNo')?.invalid && (updatecreditcard.get('CCNo')?.dirty || updatecreditcard.get('CCNo')?.touched)" class="text-danger">
+        <ng-container *ngIf="updatecreditcard.get('CCNo')?.errors?.['required']">
+          Credit Card Number is required.
+        </ng-container>
+        <ng-container *ngIf="updatecreditcard.get('CCNo')?.errors?.['pattern']">
+          Please enter a valid credit card number.
+        </ng-container>
+        <ng-container *ngIf="updatecreditcard.get('CCNo')?.errors?.['luhnCheck']">
+          Invalid credit card number.
+        </ng-container>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>User Name</label>
       <input
         type="text"
         formControlName="CCName"
@@ -19,16 +35,22 @@
       />
     </div>
     <div class="form-group">
-      <label>Card Expiry </label>
+      <label>Card Expiry</label>
       <input
         type="text"
         formControlName="CCExp"
         class="form-control mb-3 mt-3"
         placeholder="Card Expiry"
+        bsDatepicker
+        [bsConfig]="bsConfig"
+        required
       />
+      <div *ngIf="updatecreditcard.get('CCExp')?.invalid && (updatecreditcard.get('CCExp')?.dirty || updatecreditcard.get('CCExp')?.touched)" class="text-danger">
+        Card Expiry is required.
+      </div>
     </div>
     <div class="form-group">
-      <label>Bank Name </label>
+      <label>Bank Name</label>
       <input
         type="text"
         formControlName="Bname"
@@ -37,49 +59,66 @@
       />
     </div>
     <div class="form-group">
-      <label>CVVNumber</label>
+      <label>CVV Number</label>
       <input
         type="text"
         formControlName="Cvvnum"
         class="form-control mb-3 mt-3"
-        placeholder="Bank Name"
+        placeholder="CVV Number"
       />
     </div>
     <div class="form-group">
-      <label>id</label>
+      <label>ID</label>
       <input
         type="text"
         formControlName="id"
         class="form-control mb-3 mt-3"
-        placeholder="card identity"
+        placeholder="Card Identity"
       />
     </div>
     <div class="form-group">
-      <label>uid</label>
+      <label>UID</label>
       <input
         type="text"
         formControlName="uid"
         class="form-control mb-3 mt-3"
-        placeholder="Unique identity"
+        placeholder="Unique Identity"
       />
     </div>
-    <div class="form-group">
-      <label>card Type</label>
+    <!-- <div class="form-group">
+      <label>Card Type</label>
       <input
         type="text"
         formControlName="Act"
         class="form-control mb-3 mt-3"
         placeholder="Active/Inactive"
       />
+    </div> -->
+    <div class="form-group">
+      <label>Active/Inactive</label>
+      <select formControlName="Act" class="form-control mb-3 mt-3" required>
+        <option value="">Select Active/Inactive</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+      <div
+        *ngIf="updatecreditcard.get('Act')?.invalid && (updatecreditcard.get('Act')?.dirty || updatecreditcard.get('Act')?.touched)"
+        class="text-danger"
+      >
+        Active or Inactive is required.
+      </div>
     </div>
     <div class="form-group">
-      <label>card Type</label>
-      <input
-        type="text"
-        formControlName="CCType"
-        class="form-control mb-3 mt-3"
-        placeholder="Card Type"
-      />
+      <label>Credit Card Type</label>
+      <select formControlName="CCType" class="form-control mb-3 mt-3" required>
+        <option value="">Select Credit Card Type</option>
+        <option value="Visa">Visa</option>
+        <option value="MasterCard">MasterCard</option>
+        <option value="RupyCard">RupyCard</option>
+      </select>
+      <div *ngIf="updatecreditcard.get('CCType')?.invalid && (updatecreditcard.get('CCType')?.dirty || updatecreditcard.get('CCType')?.touched)" class="text-danger">
+        Credit Card Type is required.
+      </div>
     </div>
     <button
       type="submit"

@@ -31,6 +31,8 @@ export class EmiCalculatorComponent implements OnInit {
   loanAmount = 0;
   rateOfInterest = 0;
   loanTerm = 0;
+  totalInterest=0;
+  interest=0;
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
@@ -47,7 +49,7 @@ export class EmiCalculatorComponent implements OnInit {
    * @chartType pie
    * @title Loan Details
    */
-  updateChart() {
+   updateChart() {
     const chart = Highcharts.chart("loanChart", {
       chart: {
         type: "pie",
@@ -79,21 +81,23 @@ export class EmiCalculatorComponent implements OnInit {
         },
       ],
     } as any);
-
-    const interest = this.loanAmount * (this.rateOfInterest / 100);
+  
+    const interest =  ((this.loanTerm) *this.loanAmount) * (this.rateOfInterest / 100) ;
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-
+    console.log("loan term",this.loanTerm);
+    const totalInterest = interest; // Calculate total interest based on loan term
+  
     chart.series[0].setData([
       { name: "Loan Amount", y: this.loanAmount },
       { name: "Rate of Interest", y: this.rateOfInterest },
       { name: "Loan Term", y: this.loanTerm },
-      { name: "Total Interest", y: interest },
+      { name: "Total Interest", y: interest}, // Update total interest value
       { name: "Total Amount", y: totalAmount },
       { name: "Monthly Installment", y: monthlyInstallment },
     ]);
   }
-
+  
   /**
    * @description this function calculateLoan using(intrest, totalAmount,monthlyInstallment)
    * const interest = this.loanAmount * (this.rateOfInterest / 100);
@@ -101,17 +105,17 @@ export class EmiCalculatorComponent implements OnInit {
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
     and call updatechart() function
    */
-
-  calculateLoan() {
-    const interest = this.loanAmount * (this.rateOfInterest / 100);
-    const totalAmount = this.loanAmount + interest;
-    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-
-    console.log("Interest:", interest);
-    console.log("Total Amount:", totalAmount);
-    console.log("Monthly Installment:", monthlyInstallment);
-    this.updateChart();
-  }
+    calculateLoan() {
+       const interest =(this.loanTerm) * (this.loanAmount) * (this.rateOfInterest / 100) ;
+      const totalAmount = this.loanAmount + interest;
+      const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+      const totalInterest = interest*this.loanTerm; // Calculate total interest based on loan term
+    
+      console.log("Interest:", totalInterest);
+      console.log("Total Amount:", totalAmount);
+      console.log("Monthly Installment:", monthlyInstallment);
+      this.updateChart();
+    }
    /**
    * @description this function calculate monthly installment 
    * const interest = this.loanAmount * (this.rateOfInterest / 100);
@@ -123,6 +127,7 @@ export class EmiCalculatorComponent implements OnInit {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+    const totalInterest = interest*this.loanTerm;
     return monthlyInstallment.toFixed(2);
   }
 
@@ -133,6 +138,7 @@ export class EmiCalculatorComponent implements OnInit {
   calculateTotalAmount() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
+    const totalInterest = interest*this.loanTerm;
     return totalAmount.toFixed(2);
   }
  /**
@@ -140,8 +146,9 @@ export class EmiCalculatorComponent implements OnInit {
    * @returns this function return intreset upto 2 decimal place
    */
 
-  calculateInterest() {
-    const interest = this.loanAmount * (this.rateOfInterest / 100);
-    return interest.toFixed(2);
-  }
+ calculateInterest() {
+  const interest = this.loanAmount * (this.rateOfInterest / 100);
+   this.totalInterest = interest * this.loanTerm; // Multiply interest by loan term
+  return this.totalInterest.toFixed(2);
+}
 }

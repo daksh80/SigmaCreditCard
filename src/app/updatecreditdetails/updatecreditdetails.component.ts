@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import { SharedService } from "src/shared.service";
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 
 @Component({
   selector: "app-updatecreditdetails",
@@ -13,18 +15,25 @@ export class UpdatecreditdetailsComponent implements OnInit {
   updatecreditcard!: FormGroup;
   creditArray: creditcard[] | null = null;
   uid: any;
+  bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private sharedService: SharedService, private fb: FormBuilder,private router: Router) {}
+
+  constructor(private sharedService: SharedService, private fb: FormBuilder,private router: Router) {
+    this.bsConfig = {
+      containerClass: 'theme-default',
+      dateInputFormat: 'MM/YYYY'
+    };
+  }
 
   ngOnInit(): void {
     const logindata = localStorage.getItem("logindata");
     const uid = logindata ? JSON.parse(logindata).uid : "";   
      this.updatecreditcard = this.fb.group({
-      CCNo: [this.creditArray ? this.creditArray[0].CCNo: "", Validators.required],
+      CCNo: [this.creditArray ? this.creditArray[0].CCNo: "", [Validators.required,Validators.pattern('^[0-9]{16}$')]],
       CCName: [this.creditArray ? this.creditArray[0].CCName: "", Validators.required],
       CCExp: [this.creditArray ? this.creditArray[0].CCExp:"", Validators.required],
       Bname: [this.creditArray ? this.creditArray[0].Bname:"", Validators.required],
-      Cvvnum: [this.creditArray ? this.creditArray[0].Cvvnum:"", Validators.required],
+      Cvvnum: [this.creditArray ? this.creditArray[0].Cvvnum:"", [Validators.required, Validators.pattern('^[0-9]{3,4}$')]],
       id: [this.creditArray ? this.creditArray[0].id : "", Validators.required],
       uid: [uid,Validators.required],
       Act: [this.creditArray ? this.creditArray[0].Act:"",Validators.required],

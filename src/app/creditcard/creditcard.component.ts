@@ -5,6 +5,9 @@ import { Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import { Observable } from "rxjs";
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { SharedService } from "src/shared.service";
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: "app-creditcard",
@@ -14,29 +17,52 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 export class CreditcardComponent implements OnInit {
   addcreditcard!: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
+  creditArray: creditcard[] | null = null;
+  uid: any;
+  kid: string = '';
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sharedService: SharedService,
+
   ) {
     this.bsConfig = {
       containerClass: 'theme-default',
       dateInputFormat: 'MM/YYYY'
     };
+    this.kid = uuidv4();
   }
 
   ngOnInit(): void {
+    const logindata = localStorage.getItem("logindata");
+    const uid = logindata ? JSON.parse(logindata).uid : "";   
     this.addcreditcard = this.fb.group({
-      CCNo: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
+      CCNo: ['', [Validators.required, Validators.pattern(/^\d{14}$/)]],
       CCName: ["", Validators.required],
-      CCExp: ['', Validators.required],
+      CCExp: ['MM/YYYY', Validators.required],
       Bname: ["", Validators.required],
-      Cvvnum: ["", [Validators.required, Validators.pattern(/^\d{3,4}$/)]],
+      Cvvnum: ["", [Validators.required, Validators.pattern(/^\d{3}$/)]],
       Act: ["", Validators.required],
       NName: ["", Validators.required],
-      uid: ["", Validators.required]
+      uid: [uid, Validators.required],
+      id : [this.kid,Validators.required],
+      CCType: ["",Validators.required]
     });
+
+    this.sharedService
+      .getCreditCardArray()
+      .subscribe((creditArray: creditcard[] | null) => {
+        this.creditArray = creditArray;
+        if (this.creditArray) {
+          const formValues = {
+            uid: uid
+          };
+          this.addcreditcard.patchValue(formValues);
+        }
+        console.log("update details component ",this.addcreditcard);
+      });
   }
 
   private getUsers(): Observable<creditcard[]> {
@@ -48,7 +74,7 @@ export class CreditcardComponent implements OnInit {
 
   addcc(): void {
     if (this.addcreditcard.valid) {
-      const { CCNo, CCName, CCExp, Bname, Cvvnum, Act, NName, uid } = this.addcreditcard.value;
+      const { CCNo, CCName, CCExp, Bname, Cvvnum, Act, NName, uid,id,CCType } = this.addcreditcard.value;
 
       const newCreditcard: creditcard = {
         CCNo,
@@ -59,8 +85,8 @@ export class CreditcardComponent implements OnInit {
         Act,
         NName,
         uid,
-        id: "",
-        CCType: ""
+        id,
+        CCType
       };
 
       this.http

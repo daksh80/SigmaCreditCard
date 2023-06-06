@@ -50,7 +50,7 @@
     </div>    
     <div class="form-group">
       <label>Credit Card Number</label>
-      <input type="tel" formControlName="CCnumber" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" pattern="[0-9]{13,16}" required />
+      <input type="tel" formControlName="CCnumber" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" pattern="[0-9]{13}" required />
       <div *ngIf="signupForm.get('CCnumber')?.invalid && (signupForm.get('CCnumber')?.dirty || signupForm.get('CCnumber')?.touched)" class="text-danger">
         <ng-container *ngIf="signupForm.get('CCnumber')?.errors?.['required']">
           Credit Card Number is required.

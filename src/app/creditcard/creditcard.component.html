@@ -23,15 +23,16 @@
         type="text"
         formControlName="CCExp"
         class="form-control mb-3 mt-3"
-        placeholder="Card Expiry"
+        placeholder="MM/YYYY"
         bsDatepicker
         [bsConfig]="bsConfig"
         required
       />
       <div *ngIf="addcreditcard.get('CCExp')?.invalid && (addcreditcard.get('CCExp')?.dirty || addcreditcard.get('CCExp')?.touched)" class="text-danger">
-        Card Expiry
+        Card Expiry is required.
       </div>
     </div>
+      
     <div class="form-group">
       <label>Bank Name</label>
       <input type="text" formControlName="Bname" class="form-control mb-3 mt-3" placeholder="Bank Name" required />
@@ -56,7 +57,7 @@
           CVV number is required.
         </ng-container>
         <ng-container *ngIf="addcreditcard.get('Cvvnum')?.errors?.['pattern']">
-          CVV number should be a 3 or 4-digit number.
+          CVV number should be a 3 number.
         </ng-container>
       </div>
     </div>
@@ -90,6 +91,25 @@
         Unique id
       </div>
     </div>
+    <div class="form-group">
+      <label>id</label>
+      <input type="text" formControlName="id" class="form-control mb-3 mt-3" placeholder="Unique id" required />
+      <div *ngIf="addcreditcard.get('id')?.invalid && (addcreditcard.get('id')?.dirty || addcreditcard.get('id')?.touched)" class="text-danger">
+        Unique id
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Credit Card Type</label>
+      <select formControlName="CCType" class="form-control mb-3 mt-3" required>
+        <option value="">Select Credit Card Type</option>
+        <option value="Visa">Visa</option>
+        <option value="MasterCard">MasterCard</option>
+        <option value="RupyCard">RupyCard</option>
+      </select>
+      <div *ngIf="addcreditcard.get('CCType')?.invalid && (addcreditcard.get('CCType')?.dirty || addcreditcard.get('CCType')?.touched)" class="text-danger">
+        Credit Card Type is required.
+      </div>
+    </div>  
     <button (click)="addcc()">Submit</button>
   </form>
 

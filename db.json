@@ -8,7 +8,7 @@
       "CCType": "Visa",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 1
+      "uid": "test@1"
     },
     {
       "fname": "daksh80@gmail.com",
@@ -18,7 +18,7 @@
       "CCType": "Visa",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 2
+      "uid": "test@123"
     },
     {
       "fname": "abc12@gmail.com",
@@ -28,7 +28,7 @@
       "CCType": "Visa",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 3
+      "uid": "3"
     },
     {
       "fname": "abc12@gmail.com",
@@ -38,7 +38,7 @@
       "CCType": "MasterCard",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 4
+      "uid": "4"
     },
     {
       "fname": "rex90@gmail.com",
@@ -48,7 +48,7 @@
       "CCType": "MasterCard",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 5
+      "uid": "5"
     },
     {
       "fname": "lolo90@gmail.com",
@@ -58,7 +58,7 @@
       "CCType": "MasterCard",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 6
+      "uid": "6"
     },
     {
       "fname": "lolo10@gmail.com",
@@ -68,7 +68,7 @@
       "CCType": "RupyCard",
       "ConformPassword": "Daksh@123",
       "ActType": "Active",
-      "uid": 7
+      "uid": "7"
     },
     {
       "fname": "ram10@gmail.com",
@@ -78,7 +78,7 @@
       "ActType": "Inactive",
       "CCnumber": "11223344556677",
       "CCType": "RupyCard",
-      "uid": 8
+      "uid": "8"
     },
     {
       "fname": "Abc90@gmail.com",
@@ -88,7 +88,7 @@
       "ActType": "Inactive",
       "CCnumber": "123456789987654",
       "CCType": "RupyCard",
-      "uid": 9
+      "uid": "9"
     }
   ],
   "addcreditcard": [
@@ -100,9 +100,9 @@
       "Bname": "Hdfc",
       "Cvvnum": "123",
       "Act": "Active",
-      "id": 2,
+      "id": "2",
       "Nickname": "daksh",
-      "uid": "1"
+      "uid": "test@1"
     },
     {
       "CCNo": "adgjkfgkjds",
@@ -112,9 +112,9 @@
       "Bname": "dscvhjgv",
       "Cvvnum": "dsbkhv,gds",
       "Act": "Active",
-      "id": 3,
+      "id": "3",
       "Nickname": "daksh",
-      "uid": "2"
+      "uid": "test@123"
     }
   ],
   "profile": [

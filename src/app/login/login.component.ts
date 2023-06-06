@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
 
     // for localstoage logic written here
     //localStorage.clear();
-    const data = JSON.stringify(jsonData);
-    localStorage.setItem("data", data);
-    this.getdata = localStorage.getItem("data");
-    console.log(this.getdata);
+    // const data = JSON.stringify(jsonData);
+    // localStorage.setItem("data", data);
+     this.getdata = localStorage.getItem("data");
+    // console.log(this.getdata);
 
     const signupdata = JSON.parse(this.getdata || "");
     const signupArray = signupdata?.signup || [];

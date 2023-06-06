@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   highcharts = Highcharts;
   disabled = false;
   max = 100;
+  creditAMount =0;
   min = 0;
   showTicks = false;
   step = 1;
@@ -68,8 +69,8 @@ export class DashboardComponent implements OnInit {
       if(this.loggedInUser?.uid !== this.uid && this.loggedInUser?.uid!==undefined){
         this.router.navigate([`dashboard/${this.loggedInUser?.uid}`]);
       }else{
-        this.router.navigate(['']);
-        localStorage.removeItem('logindata');
+        // this.router.navigate(['']);
+        // localStorage.removeItem('logindata');
       }
     this.sharedService
       .getUserCreditCard(this.loggedInUser?.uid)
@@ -139,6 +140,7 @@ export class DashboardComponent implements OnInit {
         this.rateOfInterest = toInteger(this.creditroi[0].roi)   
         this.sharedService.getcreditLimit().subscribe(limit => {
           this.loanAmount = toInteger(limit)
+          this.creditAMount= this.loanAmount
           console.log("this is limit",limit);
         });     
       });

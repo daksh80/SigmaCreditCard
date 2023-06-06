@@ -15,7 +15,7 @@ import { IMaskModule } from 'angular-imask';
 })
 export class CardComponent implements OnInit {
   creditList: creditcard[] = [];
-   @Input() uid: string | undefined = "1";
+   @Input() uid: string | undefined = "1"; // @Input() decorator is used in Angular to mark a property as an input property.
   cardType: emicalculator[] = [];
   creditLimit: string | undefined;
   cardActiveIn: string | undefined;
@@ -45,7 +45,8 @@ export class CardComponent implements OnInit {
     if (logindata !== null) {
       this.loggedInUser = JSON.parse(logindata);
       if (this.loggedInUser) {
-        this.sharedService.getUserCreditCard(this.loggedInUser.uid).subscribe((creditCards: creditcard[]) => {
+        //subscribe() method is used to subscribe to an Observable and receive notifications of new values emitted by the Observable.
+        this.sharedService.getUserCreditCard(this.uid).subscribe((creditCards: creditcard[]) => {
           this.creditList = creditCards;
           console.log("Credit Card List:", this.creditList);
         });
@@ -72,6 +73,7 @@ export class CardComponent implements OnInit {
    */
 
   private getUsers(): Observable<creditcard[]> {
+    // Observables are used extensively in Angular for handling asynchronous operations, such as making HTTP requests, handling user input, or listening to events.
     return this.http.get<creditcard[]>("http://localhost:3000/addcreditcard");
   }
   
@@ -82,6 +84,8 @@ export class CardComponent implements OnInit {
    */
 
   onCardClick(detail: creditcard) {
+    const logindata = localStorage.getItem("logindata");
+    const uid = logindata ? JSON.parse(logindata).uid : ""; 
     if(detail.Act == "Active"){
     this.sharedService.setEmicreditcardArray([detail]);
     this.cardActiveIn = detail.Act;
@@ -121,8 +125,8 @@ export class CardComponent implements OnInit {
    */
   getcardname(cardName: string): Observable<emicalculator[]> {
      
-    return this.getEmicalculator().pipe(
-      map((emidata: emicalculator[]) => {
+    return this.getEmicalculator().pipe(    //data processing pipeline (Observable + pipe)
+      map((emidata: emicalculator[]) => { // It applies a given transformation function to each value emitted by the source Observable and returns a new Observable with the transformed values.
         console.log("flag", emidata);
          
         return emidata.filter((card: emicalculator) => card.CCType === cardName);
@@ -130,8 +134,8 @@ export class CardComponent implements OnInit {
       catchError((err) => {
         console.log(err);
         this.getdata = localStorage.getItem("data");
-        const carddata = JSON.parse(this.getdata || "");
-        const carddataArray = carddata?.emiCalculator || [];
+        const carddata = JSON.parse(this.getdata || "");   // parser is used to convert it into javascript object
+        const carddataArray = carddata?.emiCalculator || [];  // tries to access the emiCalculator property.
         console.log("roi Credit Card Details:", carddataArray);
         return of(carddataArray.filter((card: emicalculator) => card.CCType === cardName));
       })
@@ -170,19 +174,24 @@ export class CardComponent implements OnInit {
    * @param id 
    * @returns call function deleteFromLocalStorage(id)
    */
-  delete(id: string): void {
+  deleteCard(id: string): void {
+    debugger
     this.http.delete("http://localhost:3000/addcreditcard/" + id).subscribe(
       (data) => {
         console.log(data);
+        debugger;
         this.getUsers();
         this.deleteFromLocalStorage(id); // Delete from local storage
         window.location.reload(); // Reload the page after deletion
       },
       (error) => {
+        debugger
         console.error("Error deleting data from JSON server:", error);
         console.log("delete id",id);
         this.deleteFromLocalStorage(id); 
-        window.location.reload(); 
+       // this.router.navigate
+        window.location.reload();  
+
       }
     );
   }
@@ -193,6 +202,7 @@ export class CardComponent implements OnInit {
    */
   
   private deleteFromLocalStorage(id: string): void {
+    debugger;
     const localStorageData = localStorage.getItem("data");
     console.log("localstorage data max",localStorageData);    
     if (localStorageData) {
@@ -205,7 +215,8 @@ export class CardComponent implements OnInit {
       localStorage.setItem("data", JSON.stringify(parsedData));
     }
   
-    //window.location.reload();
+    window.location.reload();
+    this.router.navigate([`card/${this.uid}`]);
   }
   
   
@@ -234,10 +245,15 @@ export class CardComponent implements OnInit {
         
         // Save the updated array back to local storage
         localStorage.setItem("data", JSON.stringify(parsedData));
+        this.router.navigate([`card/${this.uid}`]); 
       }
+      window.location.reload();
+      this.router.navigate([`card/${this.uid}`]); 
+      
     }
   
     this.sharedService.updateCreditCard(updatedCard);
+
   }
   
 }

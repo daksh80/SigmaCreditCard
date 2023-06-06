@@ -34,6 +34,7 @@
     "rxjs": "~7.8.0",
     "save": "^2.9.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
@@ -44,6 +45,7 @@
     "@types/jasmine": "~4.3.0",
     "@types/jquery": "^3.5.16",
     "@types/lodash": "^4.14.195",
+    "@types/uuid": "^9.0.1",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
