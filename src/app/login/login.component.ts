@@ -65,8 +65,9 @@ export class LoginComponent implements OnInit {
   }
 /**
  * @description this function encryptData using cryptoJs(CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns.)
- * @param data 
- * @returns encrypted key
+ * Encrypts the data using CryptoJS
+   * @param data - The data to be encrypted
+   * @returns The encrypted key as a string
  */
 
   encryptData(data: string) {
@@ -83,8 +84,9 @@ export class LoginComponent implements OnInit {
 
   /**
    * @description thisn function decrypt data  using CryptoJs
-   * @param data 
-   * @returns decrypted data 
+  * Decrypts the data using CryptoJS
+   * @param data - The data to be decrypted
+   * @returns The decrypted data 
    */
   decryptData(data: string) {
     try {
@@ -99,6 +101,7 @@ export class LoginComponent implements OnInit {
   }
   /**
    * @description this function store data locally(logindata) and genereate token and navigate to card 
+   * Handles the login process
    */
 
   login(): void {

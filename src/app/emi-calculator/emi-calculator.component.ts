@@ -46,6 +46,7 @@ export class EmiCalculatorComponent implements OnInit {
   }
    /**
    * @description Highchart(library) for loanChart in loanchart it's shows details Loan Amount,Rate of Interest,Loan Term,Total Interest,Total Amount,Monthly Installment
+   * Updates the loanChart using Highcharts library
    * @chartType pie
    * @title Loan Details
    */
@@ -104,6 +105,7 @@ export class EmiCalculatorComponent implements OnInit {
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
     and call updatechart() function
+   *Calculates loan details
    */
     calculateLoan() {
        const interest =(this.loanTerm) * (this.loanAmount) * (this.rateOfInterest / 100) ;
@@ -121,7 +123,8 @@ export class EmiCalculatorComponent implements OnInit {
    * const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-   * @returns it's return monthly installment upto 2 digit
+   * Calculates the monthly installment
+   * @returns The calculated monthly installment value
    */
   calculateMonthlyInstallment() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
@@ -133,7 +136,8 @@ export class EmiCalculatorComponent implements OnInit {
 
   /**
    * @description this function calculate Total amount = loanAmount + roi(rate of intreset)
-   * @returns this function return totalAmount upto 2 decimal place
+   * Calculates the total amount
+   * @returns The calculated total amount value
    */
   calculateTotalAmount() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
@@ -143,7 +147,8 @@ export class EmiCalculatorComponent implements OnInit {
   }
  /**
    * @description this function calculate intrest 
-   * @returns this function return intreset upto 2 decimal place
+   * Calculates the interest
+   * @returns The calculated interest value
    */
 
  calculateInterest() {

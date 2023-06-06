@@ -12,7 +12,12 @@ export class AuthgardGuard implements CanActivate {
   constructor(private login: SharedService, private router: Router){
 
   }
-
+/**
+ * @description check if token is there or not if not redirect to login page
+ * @param route 
+ * @param state 
+ * @returns 
+ */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -22,7 +27,6 @@ export class AuthgardGuard implements CanActivate {
     this.router.navigate(['/login']);
     return false;
   }
-
 
   
 }

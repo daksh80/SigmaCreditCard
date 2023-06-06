@@ -26,23 +26,30 @@ export class UpdatecreditdetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /**
+     * Retrieves the UID from the login data in the local storage
+     * @returns The UID as a string
+     */
     const logindata = localStorage.getItem("logindata");
-    const uid = logindata ? JSON.parse(logindata).uid : "";   
+    const uid = logindata ? JSON.parse(logindata).uid : "";   //getting uid from logindata(localstorage)
      this.updatecreditcard = this.fb.group({
-      CCNo: [this.creditArray ? this.creditArray[0].CCNo: "", [Validators.required,Validators.pattern('^[0-9]{16}$')]],
+      CCNo: [this.creditArray ? this.creditArray[0].CCNo: "", [Validators.required,Validators.pattern('^[0-9]{16}$')]], // Autofilling the data from the card component
       CCName: [this.creditArray ? this.creditArray[0].CCName: "", Validators.required],
       CCExp: [this.creditArray ? this.creditArray[0].CCExp:"", Validators.required],
       Bname: [this.creditArray ? this.creditArray[0].Bname:"", Validators.required],
-      Cvvnum: [this.creditArray ? this.creditArray[0].Cvvnum:"", [Validators.required, Validators.pattern('^[0-9]{3,4}$')]],
+      Cvvnum: [this.creditArray ? this.creditArray[0].Cvvnum:"", [Validators.required, Validators.pattern('^[0-9]{3}$')]],
       id: [this.creditArray ? this.creditArray[0].id : "", Validators.required],
       uid: [uid,Validators.required],
       Act: [this.creditArray ? this.creditArray[0].Act:"",Validators.required],
       CCType: [this.creditArray ? this.creditArray[0].CCType:"",Validators.required]
     });
   
-
+     /**
+     * Retrieves the credit card array from the shared service and updates the form values
+     * with the first credit card details if available
+     */
     this.sharedService
-      .getCreditCardArray()
+      .getCreditCardArray()   // getting data from the cardComponent  
       .subscribe((creditArray: creditcard[] | null) => {
         this.creditArray = creditArray;
         if (this.creditArray) {
@@ -63,13 +70,18 @@ export class UpdatecreditdetailsComponent implements OnInit {
       });
   }
   
+  /**
+   * @description on click on submit button data is passed to localstorage using id 
+  * Handles the form submission for updating the credit card details
+   * @param e - The form submission event
+   */
 
   updatecredit(e:Event): void {
     e.preventDefault();
     debugger;
     if (this.updatecreditcard.valid && this.creditArray) {
       const postData = this.updatecreditcard.value;
-      const id = this.creditArray[0].id;
+      const id = this.creditArray[0].id;  
 
       const localStorageData = localStorage.getItem("data");
       if (localStorageData) {

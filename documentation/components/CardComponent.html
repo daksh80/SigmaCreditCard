@@ -1,0 +1,1918 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>sigma-credit-card documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">sigma-credit-card documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/card/card.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-card</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./card.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./card.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bgImage" >bgImage</a>
+                            </li>
+                            <li>
+                                <a href="#cardActiveIn" >cardActiveIn</a>
+                            </li>
+                            <li>
+                                <a href="#cardType" >cardType</a>
+                            </li>
+                            <li>
+                                <a href="#creditLimit" >creditLimit</a>
+                            </li>
+                            <li>
+                                <a href="#creditList" >creditList</a>
+                            </li>
+                            <li>
+                                <a href="#detail" >detail</a>
+                            </li>
+                            <li>
+                                <a href="#getdata" >getdata</a>
+                            </li>
+                            <li>
+                                <a href="#loggedInUser" >loggedInUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#router_" >router_</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentCardBackground" >currentCardBackground</a>
+                            </li>
+                            <li>
+                                <a href="#deleteCard" >deleteCard</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#deleteFromLocalStorage" >deleteFromLocalStorage</a>
+                            </li>
+                            <li>
+                                <a href="#getcardname" >getcardname</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getEmicalculator" >getEmicalculator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getUsers" >getUsers</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCardClick" >onCardClick</a>
+                            </li>
+                            <li>
+                                <a href="#onclicklimitset" >onclicklimitset</a>
+                            </li>
+                            <li>
+                                <a href="#toggleCardStatus" >toggleCardStatus</a>
+                            </li>
+                            <li>
+                                <a href="#update" >update</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#uid" >uid</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: HttpClient, router: Router, sharedService: <a href="../injectables/SharedService.html" target="_self">SharedService</a>, router_: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/card/card.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>HttpClient</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>sharedService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedService.html" target="_self" >SharedService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>SharedService</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router_</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>ActivatedRoute</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="uid"></a>
+                        <b>uid</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | undefined</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;1&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/card/card.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentCardBackground"></a>
+                    <span class="name">
+                        <span ><b>currentCardBackground</b></span>
+                        <a href="#currentCardBackground"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>currentCardBackground()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/app/card/card.component.ts:165</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Generates a random card background image</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Image URL</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteCard"></a>
+                    <span class="name">
+                        <span ><b>deleteCard</b></span>
+                        <a href="#deleteCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteCard(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/app/card/card.component.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><ul>
+<li>Deletes credit card</li>
+</ul>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Credit card ID</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>call function deleteFromLocalStorage(id)</p>
+<ul>
+<li>Deletes credit card</li>
+</ul>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteFromLocalStorage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>deleteFromLocalStorage</b></span>
+                        <a href="#deleteFromLocalStorage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteFromLocalStorage(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/app/card/card.component.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deletes credit card from local storage</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Credit card ID</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getcardname"></a>
+                    <span class="name">
+                        <span ><b>getcardname</b></span>
+                        <a href="#getcardname"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getcardname(cardName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/card/card.component.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Retrieves card name based on card type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cardName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Card type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;emicalculator[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable of emicalculator[]</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEmicalculator"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getEmicalculator</b></span>
+                        <a href="#getEmicalculator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEmicalculator()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/card/card.component.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Retrieves emiCalculator data from the server</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;emicalculator[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable of emicalculator[]</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUsers"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getUsers</b></span>
+                        <a href="#getUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUsers()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/card/card.component.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets users from the server</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;creditcard[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable of creditcard[]</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/app/card/card.component.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>OnInit lifecycle hook</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCardClick"></a>
+                    <span class="name">
+                        <span ><b>onCardClick</b></span>
+                        <a href="#onCardClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCardClick(detail: creditcard)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/card/card.component.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Handles card click event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>detail</td>
+                                    <td>
+                                            <code>creditcard</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Credit card details</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onclicklimitset"></a>
+                    <span class="name">
+                        <span ><b>onclicklimitset</b></span>
+                        <a href="#onclicklimitset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onclicklimitset()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/card/card.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets limit on click</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleCardStatus"></a>
+                    <span class="name">
+                        <span ><b>toggleCardStatus</b></span>
+                        <a href="#toggleCardStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleCardStatus(detail: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/app/card/card.component.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Toggles credit card status between active and inactive</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>detail</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Credit card details</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>update(detail: creditcard)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/app/card/card.component.ts:176</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates credit card details</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>detail</td>
+                                    <td>
+                                            <code>creditcard</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Credit card details</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bgImage"></a>
+                    <span class="name">
+                        <span ><b>bgImage</b></span>
+                        <a href="#bgImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/card/card.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardActiveIn"></a>
+                    <span class="name">
+                        <span ><b>cardActiveIn</b></span>
+                        <a href="#cardActiveIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/card/card.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardType"></a>
+                    <span class="name">
+                        <span ><b>cardType</b></span>
+                        <a href="#cardType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>emicalculator[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/card/card.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creditLimit"></a>
+                    <span class="name">
+                        <span ><b>creditLimit</b></span>
+                        <a href="#creditLimit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/card/card.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creditList"></a>
+                    <span class="name">
+                        <span ><b>creditList</b></span>
+                        <a href="#creditList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>creditcard[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/card/card.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="detail"></a>
+                    <span class="name">
+                        <span ><b>detail</b></span>
+                        <a href="#detail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>creditcard[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/card/card.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getdata"></a>
+                    <span class="name">
+                        <span ><b>getdata</b></span>
+                        <a href="#getdata"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/card/card.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loggedInUser"></a>
+                    <span class="name">
+                        <span ><b>loggedInUser</b></span>
+                        <a href="#loggedInUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>details | null | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/card/card.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router_"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>router_</b></span>
+                        <a href="#router_"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ActivatedRoute</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/card/card.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">ActivatedRoute</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &quot;@angular/common/http&quot;;
+import { Component, Input, OnInit } from &quot;@angular/core&quot;;
+import { ActivatedRoute, Router } from &quot;@angular/router&quot;;
+import { creditcard } from &quot;creditcard.interface&quot;;
+import { details } from &quot;details.interface&quot;;
+import { emicalculator } from &quot;emicalculator.interface&quot;;
+import { Observable, catchError, map, of } from &quot;rxjs&quot;;
+import { SharedService } from &quot;src/shared.service&quot;;
+import { IMaskModule } from &#x27;angular-imask&#x27;;
+
+@Component({
+  selector: &quot;app-card&quot;,
+  templateUrl: &quot;./card.component.html&quot;,
+  styleUrls: [&quot;./card.component.css&quot;],
+})
+export class CardComponent implements OnInit {
+  creditList: creditcard[] &#x3D; [];
+   @Input() uid: string | undefined &#x3D; &quot;1&quot;; // @Input() decorator is used in Angular to mark a property as an input property.
+  cardType: emicalculator[] &#x3D; [];
+  creditLimit: string | undefined;
+  cardActiveIn: string | undefined;
+  detail: creditcard[] &#x3D; [];
+  getdata: string | null | undefined;
+
+
+  // updated code
+  loggedInUser : details | null | undefined;
+  bgImage:any; 
+
+  /**
+   * Constructor
+   * @param http HttpClient
+   * @param router Router
+   * @param sharedService SharedService
+   * @param router_ ActivatedRoute
+   */
+  constructor(
+    private http: HttpClient,
+  private router: Router,
+  private sharedService: SharedService,
+  public router_ : ActivatedRoute
+  ) {}
+
+  /**
+   * OnInit lifecycle hook
+   */
+  ngOnInit(): void {
+   this.loggedInUser &#x3D; null;
+    this.uid &#x3D; this.router_.snapshot.paramMap.get(&quot;uid&quot;) || &quot;&quot;;
+    //The snapshot in Angular provides a static snapshot of the current route state, including parameters, query parameters, and data.
+    if (this.uid !&#x3D;&#x3D; undefined) {
+      this.sharedService.setuid(this.uid);
+    }
+    const logindata &#x3D; localStorage.getItem(&quot;logindata&quot;);
+    if (logindata !&#x3D;&#x3D; null) {
+      this.loggedInUser &#x3D; JSON.parse(logindata);
+      if (this.loggedInUser) {
+        //subscribe() method is used to subscribe to an Observable and receive notifications of new values emitted by the Observable.
+        this.sharedService.getUserCreditCard(this.uid).subscribe((creditCards: creditcard[]) &#x3D;&gt; {
+          this.creditList &#x3D; creditCards;
+          console.log(&quot;Credit Card List:&quot;, this.creditList);
+        });
+      } else {
+        // Handle the case when loggedInUser is null or undefined
+        console.log(&quot;No logged-in user found.&quot;);
+      }
+    } else {
+      this.router.navigate([&#x27;&#x27;]);
+    }
+    if (this.loggedInUser?.uid &#x3D;&#x3D;&#x3D; this.uid &amp;&amp; this.loggedInUser?.uid !&#x3D;&#x3D; undefined &amp;&amp; this.loggedInUser?.uid !&#x3D;&#x3D; null) {
+      this.router.navigate([&#x60;card/${this.uid}&#x60;]);
+    } else {
+      // this.router.navigate([&#x27;&#x27;]);
+      // localStorage.removeItem(&#x27;logindata&#x27;);
+    }
+
+    this.bgImage &#x3D; this.currentCardBackground();
+     
+  }
+  /**
+   * @description this function takes data from json server and return creditcard details from addcreditcard json 
+   * Gets users from the server
+   * @returns Observable of creditcard[]
+   */
+
+  private getUsers(): Observable&lt;creditcard[]&gt; {
+    // Observables are used extensively in Angular for handling asynchronous operations, such as making HTTP requests, handling user input, or listening to events.
+    return this.http.get&lt;creditcard[]&gt;(&quot;http://localhost:3000/addcreditcard&quot;);
+  }
+  
+  /**
+   * @description  this function check if card is active or not if card is inactive it will not move to dashboard component and set creditLimit
+   * Handles card click event
+   * @param detail Credit card details  
+   */
+
+  onCardClick(detail: creditcard) {
+    const logindata &#x3D; localStorage.getItem(&quot;logindata&quot;);
+    const uid &#x3D; logindata ? JSON.parse(logindata).uid : &quot;&quot;; 
+    if(detail.Act &#x3D;&#x3D; &quot;Active&quot;){
+    this.sharedService.setEmicreditcardArray([detail]);
+    this.cardActiveIn &#x3D; detail.Act;
+    console.log(&quot;card Active or inActive&quot;, this.cardActiveIn);
+    this.getcardname(detail.CCType).subscribe(
+      (cardName: emicalculator[]) &#x3D;&gt; {
+        this.cardType &#x3D; cardName;
+        console.log(this.cardType[0].LoanLimit);
+        this.creditLimit &#x3D; this.cardType[0].LoanLimit;
+        this.sharedService.setcreditLimit(this.creditLimit);
+        //this.route.navigate([this.cardType[0].LoanLimit])
+      }
+    );
+    
+    console.log(&quot;clickable detailed array&quot;, detail.CCType);
+    this.router.navigate([&#x60;dashboard/${this.uid}&#x60;]);
+    }
+    this.onclicklimitset();
+  }
+
+  /**
+   * Sets limit on click
+   */
+  onclicklimitset() {
+    this.sharedService.cardComponentSubject.next(1);
+  }
+  /**
+   * Retrieves emiCalculator data from the server
+   * @returns Observable of emicalculator[]
+   */
+  private getEmicalculator(): Observable&lt;emicalculator[]&gt; {
+    return this.http.get&lt;emicalculator[]&gt;(&quot;http://localhost:3000/emiCalculator&quot;);
+  }
+
+  /**
+   * Retrieves card name based on card type
+   * @param cardName Card type
+   * @returns Observable of emicalculator[]
+   */
+  getcardname(cardName: string): Observable&lt;emicalculator[]&gt; {
+     
+    return this.getEmicalculator().pipe(    //data processing pipeline (Observable + pipe)
+      map((emidata: emicalculator[]) &#x3D;&gt; { // It applies a given transformation function to each value emitted by the source Observable and returns a new Observable with the transformed values.
+        console.log(&quot;flag&quot;, emidata);
+         
+        return emidata.filter((card: emicalculator) &#x3D;&gt; card.CCType &#x3D;&#x3D;&#x3D; cardName);
+      }),
+      catchError((err) &#x3D;&gt; {
+        console.log(err);
+        this.getdata &#x3D; localStorage.getItem(&quot;data&quot;);
+        const carddata &#x3D; JSON.parse(this.getdata || &quot;&quot;);   // parser is used to convert it into javascript object
+        const carddataArray &#x3D; carddata?.emiCalculator || [];  // tries to access the emiCalculator property.
+        console.log(&quot;roi Credit Card Details:&quot;, carddataArray);
+        return of(carddataArray.filter((card: emicalculator) &#x3D;&gt; card.CCType &#x3D;&#x3D;&#x3D; cardName));
+      })
+    );
+  }
+
+  // counter &#x3D; (i:number) &#x3D;&gt; { return (new Array(i)); }
+
+  /**
+   * @description card bacckground image
+   * Generates a random card background image
+   * @returns Image URL
+   */
+  currentCardBackground () {
+    let random &#x3D; Math.floor(Math.random() * 25 + 1)
+    return &#x60;assets/images/${random}.jpeg&#x60;; 
+  }
+
+
+  /**
+   * @description this function update data using uid 
+    * Updates credit card details
+   * @param detail Credit card details
+   */
+  update(detail: creditcard): void {
+    this.sharedService.setCreditCardArray([detail]);
+     debugger;
+     console.log(&quot;update&quot;,detail);
+
+    this.router.navigate([&#x60;updatecreditdetails&#x60;]);
+     
+    // window.location.reload();
+  }
+
+
+  /**
+   * @description this function delete data from  both json-server and from local storage 
+   * @returns call function deleteFromLocalStorage(id)
+   *  * Deletes credit card
+   * @param id Credit card ID
+   */
+  deleteCard(id: string): void {
+    debugger
+    this.http.delete(&quot;http://localhost:3000/addcreditcard/&quot; + id).subscribe(
+      (data) &#x3D;&gt; {
+        console.log(data);
+        debugger;
+        this.getUsers();
+        this.deleteFromLocalStorage(id); // Delete from local storage
+        window.location.reload(); // Reload the page after deletion
+      },
+      (error) &#x3D;&gt; {
+        debugger
+        console.error(&quot;Error deleting data from JSON server:&quot;, error);
+        console.log(&quot;delete id&quot;,id);
+        this.deleteFromLocalStorage(id); 
+       // this.router.navigate
+        //window.location.reload();  
+
+      }
+    );
+  }
+  
+  /**
+   * @description this function delete data(local storage ) from card component 
+   * Deletes credit card from local storage
+   * @param id Credit card ID
+   */
+  
+  private deleteFromLocalStorage(id: string): void {
+    debugger;
+    const localStorageData &#x3D; localStorage.getItem(&quot;data&quot;);
+    console.log(&quot;localstorage data max&quot;,localStorageData);    
+    if (localStorageData) {
+      const parsedData &#x3D; JSON.parse(localStorageData);
+      const addCreditCardData &#x3D; parsedData.addcreditcard;
+  
+      const updatedAddCreditCardData &#x3D; addCreditCardData.filter((card: any) &#x3D;&gt; card.id !&#x3D; id);
+      parsedData.addcreditcard &#x3D; updatedAddCreditCardData;
+      console.log(&quot;parsedData&quot;,parsedData)
+      localStorage.setItem(&quot;data&quot;, JSON.stringify(parsedData));
+    }
+  
+     window.location.reload();
+    this.router.navigate([&#x60;card/${this.uid}&#x60;]);
+  }
+  
+  
+  /**
+   * Toggles credit card status between active and inactive
+   * @param detail Credit card details
+   */
+  
+  toggleCardStatus(detail: any): void {
+    console.log(&quot;toggleCardStatus&quot;, detail);
+    let updatedCard &#x3D; { ...detail };
+    console.log(&quot;updated Card&quot;, updatedCard);
+    updatedCard.Act &#x3D; updatedCard.Act &#x3D;&#x3D;&#x3D; &quot;Active&quot; ? &quot;Inactive&quot; : &quot;Active&quot;;
+  
+    const localStorageData &#x3D; localStorage.getItem(&quot;data&quot;);
+    if (localStorageData) {
+      const parsedData &#x3D; JSON.parse(localStorageData);
+      const updateCreditCards &#x3D; parsedData.addcreditcard;
+  
+      // Find the index of the credit card to update
+      const index &#x3D; updateCreditCards.findIndex((card: any) &#x3D;&gt; card.id &#x3D;&#x3D;&#x3D; detail.id);
+  
+      if (index !&#x3D;&#x3D; -1) {
+        // Update the credit card in the array
+        updateCreditCards[index] &#x3D; updatedCard;
+        
+        // Save the updated array back to local storage
+        localStorage.setItem(&quot;data&quot;, JSON.stringify(parsedData));
+        this.router.navigate([&#x60;card/${this.uid}&#x60;]); 
+      }
+      window.location.reload();
+      this.router.navigate([&#x60;card/${this.uid}&#x60;]); 
+      
+    }
+  
+    this.sharedService.updateCreditCard(updatedCard);
+
+  }
+  
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
+&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;ul class&#x3D;&quot;card-list&quot;&gt;
+    &lt;li *ngFor&#x3D;&quot;let detail of creditList&quot; class&#x3D;&quot;card-item&quot; (click)&#x3D;&quot;onCardClick(detail)&quot;&gt;
+      &lt;div class&#x3D;&quot;credit-card&quot;&gt;
+        &lt;div class&#x3D;&quot;card-header&quot;&gt;
+          &lt;strong class&#x3D;&quot;card-nickname&quot;&gt;Nick Name:&lt;/strong&gt; {{ detail.NName }}
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+          &lt;div class&#x3D;&quot;card-info&quot;&gt;
+            &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Id:&lt;/strong&gt; {{ detail.id }}
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card Number:&lt;/strong&gt; {{ detail.CCNo }}
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card Name:&lt;/strong&gt; {{ detail.CCName }}
+            &lt;/div&gt;
+            &lt;!-- &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card Expiry Date:&lt;/strong&gt; {{ detail.CCExp }}
+            &lt;/div&gt; --&gt;
+            &lt;!-- &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card Bank Name:&lt;/strong&gt; {{ detail.Bname }}
+            &lt;/div&gt; --&gt;
+            &lt;!-- &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card CVV:&lt;/strong&gt; {{ detail.Cvvnum }}
+            &lt;/div&gt; --&gt;
+            &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card Status:&lt;/strong&gt; {{ detail.Act }}
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-field&quot;&gt;
+              &lt;strong class&#x3D;&quot;card-label&quot;&gt;Card Type:&lt;/strong&gt; {{ detail.CCType }}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-item__focus -active&quot; #focusElement&gt;
+          &lt;div class&#x3D;&quot;card-item__cover&quot;&gt;
+            &lt;img src&#x3D;&quot;{{ bgImage }}&quot; alt&#x3D;&quot;&quot; srcset&#x3D;&quot;&quot; class&#x3D;&quot;card-item__bg&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-footer&quot;&gt;
+          &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;update(detail)&quot;&gt;
+            Update
+          &lt;/button&gt;
+          &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;deleteCard(detail.id)&quot;&gt;
+            Delete
+          &lt;/button&gt;
+          &lt;button mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;toggleCardStatus(detail)&quot;&gt;
+            {{ detail.Act &#x3D;&#x3D;&#x3D; &#x27;Active&#x27; ? &#x27;Deactivate&#x27; : &#x27;Activate&#x27; }}
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./card.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-item {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Added */
+  align-items: center; /* Added */
+  text-align: center; /* Added */
+}
+
+.card-item:hover {
+  background-color: #e0e0e0;
+}
+
+.credit-card {
+  position: relative;
+  padding: 20px;
+}
+
+.card-item__focus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.card-item__cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card-item__bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.card-body {
+  margin-bottom: 10px;
+}
+
+.card-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.card-label {
+  font-weight: bold;
+  margin-right: 5px;
+  color: white;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  margin-left: 10px;
+}
+
+/* Updated styles for readability */
+
+.card-nickname,
+.card-label {
+  font-weight: bold;
+}
+
+.card-field {
+  line-height: 1.5;
+}
+.card-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+}
+.card-info {
+  position: relative;
+  z-index: 1;
+}
+
+.card-item__cover {
+  position: relative;
+}
+
+.card-item__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><div class="container">  <ul class="card-list">    <li *ngFor="let detail of creditList" class="card-item" (click)="onCardClick(detail)">      <div class="credit-card">        <div class="card-header">          <strong class="card-nickname">Nick Name:</strong> {{ detail.NName }}        </div>        <div class="card-body">          <div class="card-info">            <div class="card-field">              <strong class="card-label">Id:</strong> {{ detail.id }}            </div>            <div class="card-field">              <strong class="card-label">Card Number:</strong> {{ detail.CCNo }}            </div>            <div class="card-field">              <strong class="card-label">Card Name:</strong> {{ detail.CCName }}            </div>            <!-- <div class="card-field">              <strong class="card-label">Card Expiry Date:</strong> {{ detail.CCExp }}            </div> -->            <!-- <div class="card-field">              <strong class="card-label">Card Bank Name:</strong> {{ detail.Bname }}            </div> -->            <!-- <div class="card-field">              <strong class="card-label">Card CVV:</strong> {{ detail.Cvvnum }}            </div> -->            <div class="card-field">              <strong class="card-label">Card Status:</strong> {{ detail.Act }}            </div>            <div class="card-field">              <strong class="card-label">Card Type:</strong> {{ detail.CCType }}            </div>          </div>        </div>        <div class="card-item__focus -active" #focusElement>          <div class="card-item__cover">            <img src="{{ bgImage }}" alt="" srcset="" class="card-item__bg">          </div>        </div>        <div class="card-footer">          <button mat-raised-button color="primary" (click)="update(detail)">            Update          </button>          <button mat-raised-button color="primary" (click)="deleteCard(detail.id)">            Delete          </button>          <button mat-raised-button color="primary" (click)="toggleCardStatus(detail)">            {{ detail.Act === \'Active\' ? \'Deactivate\' : \'Activate\' }}          </button>        </div>      </div>    </li>  </ul></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CreditcardComponent', 'selector': 'app-creditcard'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'EmiCalculatorComponent', 'selector': 'app-emi-calculator'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'OffersComponent', 'selector': 'app-offers'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UpdatecreditdetailsComponent', 'selector': 'app-updatecreditdetails'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -11,6 +11,9 @@ import { emicalculator } from "emicalculator.interface";
 import { FormControl } from "@angular/forms";
 import { toInteger } from "lodash";
 import { details } from "details.interface";
+/**
+ * Dashboard Component
+ */
 
 @Component({
   selector: "app-dashboard",
@@ -51,7 +54,9 @@ export class DashboardComponent implements OnInit {
   bgImage:any; 
 
 
-
+/**
+   * OnInit lifecycle hook
+   */
   ngOnInit(): void {
 
     this.loggedInUser = null;
@@ -110,7 +115,9 @@ export class DashboardComponent implements OnInit {
 
   /**
    * @description this function takes emicalculator array from json-server
-   * @returns Observable 
+   /**
+   * Gets emicalculator data from the server
+   * @returns Observable of emicalculator[]
    */
   private getEmicalculator(): Observable<emicalculator[]> {
     return this._http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
@@ -118,6 +125,7 @@ export class DashboardComponent implements OnInit {
 
   /**
    * @description this function takes emicalculator data and store into emicalculateList
+   * Loads emicalculator data and stores it in emicalculateList
    */
 
   loadUsers(): void {
@@ -129,7 +137,8 @@ export class DashboardComponent implements OnInit {
   
 /**
  * @description this function store roi(Rate of intreset) on the basis of loanType(Personal, car, Home & Gold) and 
- * @param loanT 
+ * Sets the rate of interest based on the loan type
+ * @param loanT The loan type
  */
   loanType(loanT: any): void{
     
@@ -151,8 +160,9 @@ export class DashboardComponent implements OnInit {
 
   /**
    * @description this function filter data from json on  the  basis of loan type and filter 
-   * @param loanT 
-   * @returns card on the basis of loanType 
+  * Filters emicalculator data based on the loan type
+   * @param loanT The loan type
+   * @returns Observable of emicalculator[] 
    */
 
   getroi(loanT: any | undefined): Observable<emicalculator[]>{
@@ -186,7 +196,8 @@ export class DashboardComponent implements OnInit {
   // }
 
   /**
-   * @returns return random image from for card background
+   * Gets a random image for the card background
+   * @returns The URL of the background image
    */
   currentCardBackground () {
     let random = Math.floor(Math.random() * 25 + 1)
@@ -197,6 +208,7 @@ export class DashboardComponent implements OnInit {
   /**
    * @description Highchart(library) for loanChart in loanchart it's shows details Loan Amount,Rate of Interest,Loan Term,Total Interest,Total Amount,Monthly Installment
    * @chartType pie
+   * Updates the loanChart using Highcharts library
    * @title Loan Details
    */
   updateChart() {
@@ -252,6 +264,7 @@ export class DashboardComponent implements OnInit {
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
     and call updatechart() function
+   * Calculates loan details
    */
 
   calculateLoan() {
@@ -270,7 +283,8 @@ export class DashboardComponent implements OnInit {
    * const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
     const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-   * @returns it's return monthly installment upto 2 digit
+   * Calculates monthly installment
+   * @returns The calculated monthly installment value
    */
   calculateMonthlyInstallment() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
@@ -281,7 +295,8 @@ export class DashboardComponent implements OnInit {
 
   /**
    * @description this function calculate Total amount = loanAmount + roi(rate of intreset)
-   * @returns this function return totalAmount upto 2 decimal place
+   * Calculates total amount
+   * @returns The calculated total amount value
    */
   calculateTotalAmount() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
@@ -289,8 +304,8 @@ export class DashboardComponent implements OnInit {
     return totalAmount.toFixed(2);
   }
   /**
-   * @description this function calculate intrest 
-   * @returns this function return intreset upto 2 decimal place
+   * Calculates interest
+   * @returns The calculated interest value
    */
 
   calculateInterest() {

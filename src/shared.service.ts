@@ -25,10 +25,11 @@ export class SharedService {
 
   /***
    *@description- setDetailsArray return  data from http://localhost:3000/signup and localstorage from signup array and 
+   * Sets the details array and emits the new value
    * @argument - detailsArray type  of details instances of classes derived from that interface can be returned.  
    * @extends - this function exported to signup component
    * @type   private detailsArraySubject: BehaviorSubject<details[] | null> = new BehaviorSubject<details[] | null>(null);
-   * @param setCreditCardArray
+   * @param detailsArray The details array to be set
    * @returns - this function return detailsArray
    */
 
@@ -60,6 +61,7 @@ export class SharedService {
    * 
    * @description this function takes data from getUsers()/localstorage(addcreditcard) function and filter it on the based of uid.
    * @component card.component , dashboard.component , navbar.component
+   * @param uid The user's UID
    * @returns this function return creditcardArray after filtering using uid
    */
 
@@ -101,7 +103,7 @@ export class SharedService {
   /**
    * 
    * @component - card.component , updateCreditCard.component 
-   * @param creditCard 
+   * @param creditCard The updated credit card details 
    * @returns this function update credit card details in  json -server
    */
   updateCreditCard(creditCard: creditcard): void {
@@ -112,7 +114,7 @@ export class SharedService {
 
   /**
    * @component - card component 
-   * @param detail 
+   * @param detail The EMI credit card array to be set
    * @returns  it will return select card array which are in card component
    */
 
@@ -130,7 +132,7 @@ export class SharedService {
 
   /**
    * @component card.component
-   * @param limit 
+   * @param limit The selected card's limit
    * @type private limit: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
    * @return this function set selected card limit like (visa, mastercard, rupy)
    */
@@ -154,12 +156,14 @@ export class SharedService {
     return this.limit.asObservable();
   }
 
-  /** using for cross component comms */
+  /** 
+   * Using for cross-component communication 
+   */
   cardComponentSubject = new Subject<any>();
 
   /**
    * @description this function set uid at the time of login  Check if the uidSubject is already set
-   * @param uid 
+   * @param uid The UID to be set
    * @type  private uidSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
    * @return uid observable and return uid
    */

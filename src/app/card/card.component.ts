@@ -27,6 +27,13 @@ export class CardComponent implements OnInit {
   loggedInUser : details | null | undefined;
   bgImage:any; 
 
+  /**
+   * Constructor
+   * @param http HttpClient
+   * @param router Router
+   * @param sharedService SharedService
+   * @param router_ ActivatedRoute
+   */
   constructor(
     private http: HttpClient,
   private router: Router,
@@ -34,6 +41,9 @@ export class CardComponent implements OnInit {
   public router_ : ActivatedRoute
   ) {}
 
+  /**
+   * OnInit lifecycle hook
+   */
   ngOnInit(): void {
    this.loggedInUser = null;
     this.uid = this.router_.snapshot.paramMap.get("uid") || "";
@@ -69,7 +79,8 @@ export class CardComponent implements OnInit {
   }
   /**
    * @description this function takes data from json server and return creditcard details from addcreditcard json 
-   * @returns return getuser as Observable
+   * Gets users from the server
+   * @returns Observable of creditcard[]
    */
 
   private getUsers(): Observable<creditcard[]> {
@@ -79,8 +90,8 @@ export class CardComponent implements OnInit {
   
   /**
    * @description  this function check if card is active or not if card is inactive it will not move to dashboard component and set creditLimit
-   * @param detail 
-   * @returns  
+   * Handles card click event
+   * @param detail Credit card details  
    */
 
   onCardClick(detail: creditcard) {
@@ -106,22 +117,24 @@ export class CardComponent implements OnInit {
     this.onclicklimitset();
   }
 
+  /**
+   * Sets limit on click
+   */
   onclicklimitset() {
     this.sharedService.cardComponentSubject.next(1);
   }
- /**
-  * @description this function take emiCalculator data from json-server
-  * @returns Observable 
-  */
+  /**
+   * Retrieves emiCalculator data from the server
+   * @returns Observable of emicalculator[]
+   */
   private getEmicalculator(): Observable<emicalculator[]> {
     return this.http.get<emicalculator[]>("http://localhost:3000/emiCalculator");
   }
 
   /**
-   * 
-   * @description 
-   * @param cardName 
-   * @returns 
+   * Retrieves card name based on card type
+   * @param cardName Card type
+   * @returns Observable of emicalculator[]
    */
   getcardname(cardName: string): Observable<emicalculator[]> {
      
@@ -146,7 +159,8 @@ export class CardComponent implements OnInit {
 
   /**
    * @description card bacckground image
-   * @returns random image takes from assets folder
+   * Generates a random card background image
+   * @returns Image URL
    */
   currentCardBackground () {
     let random = Math.floor(Math.random() * 25 + 1)
@@ -156,7 +170,8 @@ export class CardComponent implements OnInit {
 
   /**
    * @description this function update data using uid 
-   * @param detail 
+    * Updates credit card details
+   * @param detail Credit card details
    */
   update(detail: creditcard): void {
     this.sharedService.setCreditCardArray([detail]);
@@ -171,8 +186,9 @@ export class CardComponent implements OnInit {
 
   /**
    * @description this function delete data from  both json-server and from local storage 
-   * @param id 
    * @returns call function deleteFromLocalStorage(id)
+   *  * Deletes credit card
+   * @param id Credit card ID
    */
   deleteCard(id: string): void {
     debugger
@@ -198,7 +214,8 @@ export class CardComponent implements OnInit {
   
   /**
    * @description this function delete data(local storage ) from card component 
-   * @param id 
+   * Deletes credit card from local storage
+   * @param id Credit card ID
    */
   
   private deleteFromLocalStorage(id: string): void {
@@ -221,8 +238,8 @@ export class CardComponent implements OnInit {
   
   
   /**
-   * @description this function change the card status 
-   * @param detail 
+   * Toggles credit card status between active and inactive
+   * @param detail Credit card details
    */
   
   toggleCardStatus(detail: any): void {

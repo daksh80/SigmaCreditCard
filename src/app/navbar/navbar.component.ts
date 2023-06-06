@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
   
   /**
    * @description this function get creditcard details
+   * Retrieves the credit card details for the user
    */
 
   getCreditCardDetails(): void {
@@ -50,6 +51,7 @@ export class NavbarComponent implements OnInit {
 
   /**
    * @description this function navigate to card component 
+   * Navigates to the dashboard component
    */
 
   goToDashboard(): void {
@@ -58,14 +60,13 @@ export class NavbarComponent implements OnInit {
        
       this._router.navigate([`card/${this.shareduid}`]);
     } else {
-      // Handle the case when dashUid is undefined
       console.log("dashUid is undefined");
-      // You can choose to display an error message or take any other appropriate action
     }
   }
   
   /**
    * @description this function remove logindata & token from localstorage and navigate to login component
+   * Logs out the user and navigates to the login component
    */
 
   logout(): void {
@@ -77,6 +78,7 @@ export class NavbarComponent implements OnInit {
   }
   /**
    * @description  this function navigate to credicard component
+   * Navigates to the creditcard component
    */
   AddCreditCard() : void{
     console.log('Add credit card')
@@ -84,6 +86,7 @@ export class NavbarComponent implements OnInit {
   }
   /**
    * @description this function navigate to emi-calculator component
+   * Navigates to the emi-calculator component
    */
   emicalculator() : void{
     console.log('emi calculator');
@@ -91,6 +94,7 @@ export class NavbarComponent implements OnInit {
   }
   /**
    * @description this function  navigate to profile component
+   * Navigates to the profile component
    */
   profile() : void{
     console.log('profile');

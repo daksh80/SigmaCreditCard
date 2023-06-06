@@ -117,9 +117,11 @@
     <div class="card">
       <div class="card-image">
         <div class="card-number">CC No: {{ addcreditcard.get('CCNo')?.value }}</div>
-        <div class="card-type">Type: {{ addcreditcard.get('CCType')?.value }}</div>
-      </div>
-      <div class="card-info">
+        <div class="card-type">Card Name: {{ addcreditcard.get('CCName')?.value }}</div>
+        <div class="card-type">Card Expiry: {{ addcreditcard.get('CCExp')?.value }}</div>
+        <div class="card-type">Bank Name: {{ addcreditcard.get('Bname')?.value }}</div>
+        <div class="card-type">Cvv: {{ addcreditcard.get('Cvvnum')?.value }}</div>
+        <div class="card-type">Active/Inactive: {{ addcreditcard.get('Act')?.value }}</div>
         <div class="card-nickname">Nick Name: {{ addcreditcard.get('NName')?.value }}</div>
       </div>
     </div>

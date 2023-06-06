@@ -1,56 +1,83 @@
 .container {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+.container:hover {
+  background-color: #eaeaea;
 }
 
-h2 {
+.login-title {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 0;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
 }
 
 .form-control {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.text-danger {
+.error-message {
   color: red;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 5px;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #28a745;
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.create-account a {
+  color: blue;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
   border: none;
+  padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
 }
 
-button:disabled {
-  background-color: #a3a3a3;
+.submit-button:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-a {
-  color: #007bff;
-  text-decoration: none;
+/* Add animation */
+
+.container {
+  animation: fade-in 0.5s ease-in-out;
 }
 
-a:hover {
-  text-decoration: underline;
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.submit-button:hover {
+  background-color: #45a049;
 }

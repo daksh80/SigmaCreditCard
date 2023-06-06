@@ -8,7 +8,9 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SharedService } from "src/shared.service";
 import { v4 as uuidv4 } from 'uuid';
 
-
+/**
+ * Credit Card Component
+ */
 @Component({
   selector: "app-creditcard",
   templateUrl: "./creditcard.component.html",
@@ -20,7 +22,13 @@ export class CreditcardComponent implements OnInit {
   creditArray: creditcard[] | null = null;
   uid: any;
   kid: string = '';
-
+ /**
+   * Constructor
+   * @param http HttpClient
+   * @param router Router
+   * @param fb FormBuilder
+   * @param sharedService SharedService
+   */
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -34,7 +42,9 @@ export class CreditcardComponent implements OnInit {
     };
     this.kid = uuidv4();
   }
-
+/**
+   * OnInit lifecycle hook
+   */
   ngOnInit(): void {
     const logindata = localStorage.getItem("logindata");
     const uid = logindata ? JSON.parse(logindata).uid : "";   
@@ -64,12 +74,16 @@ export class CreditcardComponent implements OnInit {
         console.log("update details component ",this.addcreditcard);
       });
   }
-
+/**
+   * Gets users from the server
+   * @returns Observable of creditcard[]
+   */
   private getUsers(): Observable<creditcard[]> {
     return this.http.get<creditcard[]>("http://localhost:3000/addcreditcard");
   }
   /**
    * @description addcc() function store data and update data into addcreditcard array locally and json-server
+   * Adds a credit card
    */
 
   addcc(): void {

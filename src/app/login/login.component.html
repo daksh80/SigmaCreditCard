@@ -1,26 +1,24 @@
 <div class="container">
-    <h2>Login</h2>
+    <h2 class="login-title">Login</h2>
     <form [formGroup]="loginForm" class="form-box">
-        <div class="form-group">
-            <label>Login</label>
-            <input type="text" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter User Email id" required />
-            <div *ngIf="loginForm.get('fname')?.invalid && (loginForm.get('fname')?.dirty || loginForm.get('fname')?.touched)"
-                class="text-danger">
-                Email is required.
-            </div>
+      <div class="form-group">
+        <label for="fname">Email</label>
+        <input type="text" formControlName="fname" id="fname" class="form-control" placeholder="Enter User Email" required>
+        <div *ngIf="loginForm.get('fname')?.invalid && (loginForm.get('fname')?.dirty || loginForm.get('fname')?.touched)" class="error-message">
+          Email is required.
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" formControlName="password" class="form-control mb-3 mt-3" placeholder="Enter User Password" required />
-            <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
-                class="text-danger">
-                Password is required.
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter User Password" required>
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error-message">
+          Password is required.
         </div>
-        <div>
-            <span>Create New Account <a routerLink="signup">signup</a></span>
-            <br>
-            <button type="submit" class="btn btn-success" (click)="login()" [disabled]="!loginForm.valid">Submit</button>
-        </div>
+      </div>
+      <div class="form-actions">
+        <span class="create-account">Create New Account <a routerLink="signup">Signup</a></span>
+        <button type="submit" class="btn btn-success submit-button" (click)="login()" [disabled]="!loginForm.valid">Submit</button>
+      </div>
     </form>
-</div>
+  </div>
+  

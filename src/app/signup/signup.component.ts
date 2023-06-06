@@ -17,8 +17,8 @@ import * as CryptoJS from "crypto-js";
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   getdata: string | null | undefined;
-usernameExists: any;
-encryptSecretKey = "5";
+  usernameExists: any;
+  encryptSecretKey = "5";
 
 
   constructor(
@@ -56,16 +56,30 @@ encryptSecretKey = "5";
     console.log(this.getdata);
   }
   
-
+ /**
+  * Checks if the password and confirm password fields match
+   * @param formGroup - The form group containing the password and confirm password fields
+   * @returns Returns an object with the error "passwordNotMatch" if the fields don't match, or null if they match
+  */
   private passwordCheck(formGroup: FormGroup) {
     const password = formGroup.get("password")?.value;
     const ConformPassword = formGroup.get("ConformPassword")?.value;
     return password === ConformPassword ? null : { passwordNotMatch: true };
   }
-
+/**
+   * Retrieves the users from the local database
+   * @returns An observable with the array of user details
+   */
   private getUsers(): Observable<details[]> {
     return this.http.get<details[]>("assets/localdb.json");
   }
+
+  /**
+   * @description this function encrypt data(email and password) using CryptoJs library
+   * Encrypts the given data using CryptoJS library
+   * @param data - The data to be encrypted
+   * @returns The encrypted data as a string
+   */
   encryptData(data: string) {
     try {
       return CryptoJS.AES.encrypt(
@@ -77,6 +91,13 @@ encryptSecretKey = "5";
       return e;
     }
   }
+
+  /**
+   * @description this function decrypt encrypted data 
+   * Decrypts the given encrypted data
+   * @param data - The encrypted data to be decrypted
+   * @returns The decrypted data
+   */
 
   decryptData(data: string) {
     try {
@@ -91,7 +112,10 @@ encryptSecretKey = "5";
   }
 
   // ...
-
+  /**
+   * @description this is a signup function  and it's passes data into local storge 
+   * Signs up the user by saving the data to the local storage and JSON server
+   */
 signup(): void {
   if (this.signupForm.valid) {
     const {
@@ -105,11 +129,11 @@ signup(): void {
       uid
     } = this.signupForm.value;
 
-    this.getUsers().subscribe((data: details[] | any) => {
+    this.getUsers().subscribe((data: details[] | any) => { // it's data from getUser (async function)
       debugger
       if (Array.isArray(data)) {
         debugger
-        const existingUser = data.find((user: details) => user.fname === fname);
+        const existingUser = data.find((user: details) => user.fname === fname);   // check if data is existing in the localstorage 
         if (existingUser) {
           console.log("Username already exists");
         } else {
@@ -125,9 +149,9 @@ signup(): void {
           };
 
           // Update the data in local storage
-          const localStorageData = localStorage.getItem("data");
+          const localStorageData = localStorage.getItem("data");   // it's takes data from localstoage and store into localstorage data
           if (localStorageData) {
-            const parsedData = JSON.parse(localStorageData);
+            const parsedData = JSON.parse(localStorageData);   
             parsedData.signup.push(newUser);
             console.log("new User uid", newUser.uid);
             const loginData = {
@@ -141,9 +165,9 @@ signup(): void {
               uid: newUser.uid
             };
 
-            localStorage.setItem("logindata", JSON.stringify(loginData));
-            localStorage.setItem("data", JSON.stringify(parsedData));
-            localStorage.setItem("token",JSON.stringify(this.encryptData(fname + password)))
+            localStorage.setItem("logindata", JSON.stringify(loginData));  // setting data into localstorage (logindata:- key )
+            localStorage.setItem("data", JSON.stringify(parsedData));   //setting data into localstorage (data:- key)
+            localStorage.setItem("token",JSON.stringify(this.encryptData(fname + password))) //setting data into localstorage (encryptData , token:- key)
             this.router.navigate([`card/${uid}`]); 
           } else {
             const newData = { signup: [newUser] };
