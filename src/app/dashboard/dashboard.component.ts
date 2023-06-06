@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
   loanAmount = 0;
   rateOfInterest = 0;
   loanTerm = 0;
+  monthmax=36;
   roi: string | undefined;
   creditroi: emicalculator[] = [];
   getdata: string | null | undefined;

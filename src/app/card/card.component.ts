@@ -190,7 +190,7 @@ export class CardComponent implements OnInit {
         console.log("delete id",id);
         this.deleteFromLocalStorage(id); 
        // this.router.navigate
-        window.location.reload();  
+        //window.location.reload();  
 
       }
     );
@@ -215,7 +215,7 @@ export class CardComponent implements OnInit {
       localStorage.setItem("data", JSON.stringify(parsedData));
     }
   
-    window.location.reload();
+     window.location.reload();
     this.router.navigate([`card/${this.uid}`]);
   }
   

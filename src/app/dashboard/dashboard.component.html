@@ -60,10 +60,10 @@
               [(ngModel)]="loanTerm"
               type="number"
               class="input-lt"
-            />years
+            />months
           </div>
         </div>
-        <mat-slider [min]="min" [max]="max" [step]="step">
+        <mat-slider [min]="min" [max]="monthmax" [step]="step">
           <input matSliderThumb [(ngModel)]="loanTerm">
         </mat-slider>
       </div>
@@ -77,7 +77,7 @@
         <h3>Loan Calculation</h3>
         <p>Loan Amount: {{ loanAmount }}</p>
         <p>Rate of Interest: {{ rateOfInterest }}%</p>
-        <p>Loan Term: {{ loanTerm }} years</p>
+        <p>Loan Term: {{ loanTerm }} month</p>
         <p>Total Interest: {{ calculateInterest() }}</p>
         <p>Total Amount: {{ calculateTotalAmount() }}</p>
         <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
