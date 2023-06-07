@@ -67,11 +67,12 @@ export class CardComponent implements OnInit {
     } else {
       this.router.navigate(['']);
     }
+    
     if (this.loggedInUser?.uid === this.uid && this.loggedInUser?.uid !== undefined && this.loggedInUser?.uid !== null) {
-      this.router.navigate([`card/${this.uid}`]);
+      this.router.navigate([`card/${this.loggedInUser?.uid}`]);
     } else {
-      // this.router.navigate(['']);
-      // localStorage.removeItem('logindata');
+       this.router.navigate(['']);
+       localStorage.removeItem('logindata');
     }
 
     this.bgImage = this.currentCardBackground();

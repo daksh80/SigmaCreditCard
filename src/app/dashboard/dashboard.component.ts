@@ -72,12 +72,26 @@ export class DashboardComponent implements OnInit {
      
       console.log("this.loggedInUser",this.loggedInUser?.uid);
       console.log("this.uid ngonint", this.uid)
-      if(this.loggedInUser?.uid !== this.uid && this.loggedInUser?.uid!==undefined){
-        this.router.navigate([`dashboard/${this.loggedInUser?.uid}`]);
+      debugger;
+      // updated code 07/06/2023
+      if(this.loggedInUser?.uid !== this.uid || this.loggedInUser?.uid==undefined){
+        //this.router.navigate([`dashboard/${this.loggedInUser?.uid}`]);
+
+
+        //this.router.navigate([`card/${this.loggedInUser?.uid}`]);
+         localStorage.removeItem('logindata');
+         this.router.navigate(['']);
       }else{
-        // this.router.navigate(['']);
-        // localStorage.removeItem('logindata');
+ 
+        this.router.navigate([`dashboard/${this.loggedInUser?.uid}`]);
+
+
+        //this.router.navigate([`card/${this.loggedInUser?.uid}`]);
+       // this.router.navigate([`card/${this.loggedInUser?.uid}`]);
+        //this.router.navigate([`card/${this.uid}`]);
+       
       }
+      
     this.sharedService
       .getUserCreditCard(this.loggedInUser?.uid)
       .subscribe((creditCards: creditcard[]) => {

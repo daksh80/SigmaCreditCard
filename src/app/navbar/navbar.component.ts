@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { creditcard } from 'creditcard.interface';
+import { details } from 'details.interface';
 import { take } from 'rxjs';
 import { SharedService } from 'src/shared.service';
 
@@ -15,9 +16,10 @@ export class NavbarComponent implements OnInit {
   dashUid: string | undefined = '';
   flag = false;
   shareduid: string | null = null;
+  loggedInUser : details | null | undefined;
   // authService: any;
  
-  constructor(private _router: Router, private sharedService: SharedService) {}
+  constructor(private _router: Router, private sharedService: SharedService,public router_ : ActivatedRoute) {}
 
   ngOnInit(): void {
     console.log("ngOnInit", this.dashUid);
@@ -55,10 +57,12 @@ export class NavbarComponent implements OnInit {
    */
 
   goToDashboard(): void {
-    console.log("goToDashboard", this.shareduid);
+    const logindata = localStorage.getItem("logindata");
+    const uid = logindata ? JSON.parse(logindata).uid : ""; 
+    console.log("goToDashboard", uid);
     if (this.shareduid) {
        
-      this._router.navigate([`card/${this.shareduid}`]);
+      this._router.navigate([`card/${uid}`]);
     } else {
       console.log("dashUid is undefined");
     }
