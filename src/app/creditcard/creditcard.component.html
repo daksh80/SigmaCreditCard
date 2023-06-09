@@ -4,15 +4,15 @@
   <form [formGroup]="addcreditcard" class="form-box">
     <div class="form-group">
       <label>Credit Card Number</label>
-      <input type="text" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Please Add Credit Card Number" required />
+      <input type="text" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Please Add Credit Card Number" required  (input)="applyCreditCardMask($event)"/>
       <div *ngIf="addcreditcard.get('CCNo')?.invalid && (addcreditcard.get('CCNo')?.dirty || addcreditcard.get('CCNo')?.touched)" class="text-danger">
         <div *ngIf="addcreditcard.get('CCNo')?.errors?.['required']">Please Add Credit Card Number</div>
         <div *ngIf="addcreditcard.get('CCNo')?.errors?.['pattern']">Invalid Credit Card Number</div>
       </div>
     </div>
     <div class="form-group">
-      <label>User Name</label>
-      <input type="text" formControlName="CCName" class="form-control mb-3 mt-3" placeholder="User Name" required />
+      <label>Full Name</label>
+      <input type="text" formControlName="CCName" class="form-control mb-3 mt-3" placeholder="Full Name" required />
       <div *ngIf="addcreditcard.get('CCName')?.invalid && (addcreditcard.get('CCName')?.dirty || addcreditcard.get('CCName')?.touched)" class="text-danger">
         User Name
       </div>
@@ -20,12 +20,11 @@
     <div class="form-group">
       <label>Card Expiry</label>
       <input
-        type="text"
+        type="month"
         formControlName="CCExp"
         class="form-control mb-3 mt-3"
         placeholder="MM/YYYY"
-        bsDatepicker
-        [bsConfig]="bsConfig"
+        [min]="getCurrentMonthYear()"
         required
       />
       <div *ngIf="addcreditcard.get('CCExp')?.invalid && (addcreditcard.get('CCExp')?.dirty || addcreditcard.get('CCExp')?.touched)" class="text-danger">
@@ -33,17 +32,17 @@
       </div>
     </div>
       
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Bank Name</label>
       <input type="text" formControlName="Bname" class="form-control mb-3 mt-3" placeholder="Bank Name" required />
       <div *ngIf="addcreditcard.get('Bname')?.invalid && (addcreditcard.get('Bname')?.dirty || addcreditcard.get('Bname')?.touched)" class="text-danger">
         Bank Name
       </div>
-    </div>
+    </div> -->
     <div class="form-group">
       <label>CVV Number</label>
       <input
-        type="text"
+        type="password"
         formControlName="Cvvnum"
         class="form-control mb-3 mt-3"
         placeholder="CVV number"
@@ -84,20 +83,20 @@
         Nick Name
       </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Unique id</label>
       <input type="text" formControlName="uid" class="form-control mb-3 mt-3" placeholder="Unique id" required />
       <div *ngIf="addcreditcard.get('uid')?.invalid && (addcreditcard.get('uid')?.dirty || addcreditcard.get('uid')?.touched)" class="text-danger">
         Unique id
       </div>
-    </div>
-    <div class="form-group">
+    </div> -->
+    <!-- <div class="form-group">
       <label>id</label>
       <input type="text" formControlName="id" class="form-control mb-3 mt-3" placeholder="Unique id" required />
       <div *ngIf="addcreditcard.get('id')?.invalid && (addcreditcard.get('id')?.dirty || addcreditcard.get('id')?.touched)" class="text-danger">
         Unique id
       </div>
-    </div>
+    </div> -->
     <div class="form-group">
       <label>Credit Card Type</label>
       <select formControlName="CCType" class="form-control mb-3 mt-3" required>
@@ -110,10 +109,11 @@
         Credit Card Type is required.
       </div>
     </div>  
-    <button (click)="addcc()">Submit</button>
+    
+    <button class="btn btn-success" (click)="addcc()">Submit</button>
   </form>
 
-  <div class="card-container">
+  <!-- <div class="card-container">
     <div class="card">
       <div class="card-image">
         <div class="card-number">CC No: {{ addcreditcard.get('CCNo')?.value }}</div>
@@ -125,5 +125,5 @@
         <div class="card-nickname">Nick Name: {{ addcreditcard.get('NName')?.value }}</div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
   getdata: string | null | undefined;
   loggedInUser : details | null | undefined;
   bgImage:any; 
+  monthlyInstallment =0;
 
 
 /**
@@ -81,6 +82,7 @@ export class DashboardComponent implements OnInit {
         //this.router.navigate([`card/${this.loggedInUser?.uid}`]);
          localStorage.removeItem('logindata');
          this.router.navigate(['']);
+         localStorage.removeItem('token');
       }else{
  
         this.router.navigate([`dashboard/${this.loggedInUser?.uid}`]);
@@ -97,7 +99,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((creditCards: creditcard[]) => {
         this.selectedUserCreditCard = creditCards;
         console.log("hellloooo",this.selectedUserCreditCard);
-        this.updateChart();
+        // this.updateChart();
         this.loadUsers();
       });
 
@@ -225,52 +227,52 @@ export class DashboardComponent implements OnInit {
    * Updates the loanChart using Highcharts library
    * @title Loan Details
    */
-  updateChart() {
-    const chart = Highcharts.chart("loanChart", {
-      chart: {
-        type: "pie",
-      },
-      title: {
-        text: "Loan Details",
-      },
-      tooltip: {
-        valueSuffix: "",
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: "pointer",
-          dataLabels: {
-            enabled: true,
-            format: "{point.name}: {y}",
-          },
-          showInLegend: true,
-        },
-      },
-      series: [
-        {
-          name: "Value",
-          colorByPoint: true,
-          type: "pie",
-          innerSize: "75%",
-          data: [],
-        },
-      ],
-    } as any);
+  // updateChart() {
+  //   const chart = Highcharts.chart("loanChart", {
+  //     chart: {
+  //       type: "pie",
+  //     },
+  //     title: {
+  //       text: "Loan Details",
+  //     },
+  //     tooltip: {
+  //       valueSuffix: "",
+  //     },
+  //     plotOptions: {
+  //       pie: {
+  //         allowPointSelect: true,
+  //         cursor: "pointer",
+  //         dataLabels: {
+  //           enabled: true,
+  //           format: "{point.name}: {y}",
+  //         },
+  //         showInLegend: true,
+  //       },
+  //     },
+  //     series: [
+  //       {
+  //         name: "Value",
+  //         colorByPoint: true,
+  //         type: "pie",
+  //         innerSize: "75%",
+  //         data: [],
+  //       },
+  //     ],
+  //   } as any);
 
-    const interest = this.loanAmount * (this.rateOfInterest / 100);
-    const totalAmount = this.loanAmount + interest;
-    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+  //   const interest = this.loanAmount * (this.rateOfInterest / 100);
+  //   const totalAmount = this.loanAmount + interest;
+  //   const monthlyInstallment = totalAmount / (this.loanTerm * 12);
 
-    chart.series[0].setData([
-      { name: "Loan Amount", y: this.loanAmount },
-      { name: "Rate of Interest", y: this.rateOfInterest },
-      { name: "Loan Term", y: this.loanTerm },
-      { name: "Total Interest", y: interest },
-      { name: "Total Amount", y: totalAmount },
-      { name: "Monthly Installment", y: monthlyInstallment },
-    ]);
-  }
+  //   chart.series[0].setData([
+  //     { name: "Loan Amount", y: this.loanAmount },
+  //     { name: "Rate of Interest", y: this.rateOfInterest },
+  //     { name: "Loan Term", y: this.loanTerm },
+  //     { name: "Total Interest", y: interest },
+  //     { name: "Total Amount", y: totalAmount },
+  //     { name: "Monthly Installment", y: monthlyInstallment },
+  //   ]);
+  // }
 
   /**
    * @description this function calculateLoan using(intrest, totalAmount,monthlyInstallment)
@@ -285,12 +287,12 @@ export class DashboardComponent implements OnInit {
     console.log()
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
-    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+    const monthlyInstallment = totalAmount / (this.loanTerm );
 
     console.log("Interest:", interest);
     console.log("Total Amount:", totalAmount);
     console.log("Monthly Installment:", monthlyInstallment);
-    this.updateChart();
+    // this.updateChart();
   }
   /**
    * @description this function calculate monthly installment 
@@ -303,8 +305,13 @@ export class DashboardComponent implements OnInit {
   calculateMonthlyInstallment() {
     const interest = this.loanAmount * (this.rateOfInterest / 100);
     const totalAmount = this.loanAmount + interest;
-    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-    return monthlyInstallment.toFixed(2);
+    if(this.loanTerm !== 0 || !Number.isNaN(this.loanTerm)){
+       this.monthlyInstallment = totalAmount;
+    }
+    else{
+       this.monthlyInstallment = totalAmount / (this.loanTerm );
+    }
+    return this.monthlyInstallment.toFixed(2);
   }
 
   /**

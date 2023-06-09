@@ -7,6 +7,7 @@ import { Observable } from "rxjs";
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SharedService } from "src/shared.service";
 import { v4 as uuidv4 } from 'uuid';
+import IMask from "imask";
 
 /**
  * Credit Card Component
@@ -42,6 +43,17 @@ export class CreditcardComponent implements OnInit {
     };
     this.kid = uuidv4();
   }
+  getCurrentMonthYear(): string {
+    const today = new Date();
+    const year = today.getFullYear().toString();
+    let month = (today.getMonth() + 1).toString();
+  
+    if (month.length === 1) {
+      month = '0' + month;
+    }
+  
+    return `${year}-${month}`;
+  }
 /**
    * OnInit lifecycle hook
    */
@@ -49,10 +61,10 @@ export class CreditcardComponent implements OnInit {
     const logindata = localStorage.getItem("logindata");
     const uid = logindata ? JSON.parse(logindata).uid : "";   
     this.addcreditcard = this.fb.group({
-      CCNo: ['', [Validators.required, Validators.pattern(/^\d{14}$/)]],
+      CCNo: ['', [Validators.required, Validators.pattern(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{2}$/)]],
       CCName: ["", Validators.required],
       CCExp: ['MM/YYYY', Validators.required],
-      Bname: ["", Validators.required],
+      Bname: [""],
       Cvvnum: ["", [Validators.required, Validators.pattern(/^\d{3}$/)]],
       Act: ["", Validators.required],
       NName: ["", Validators.required],
@@ -125,4 +137,11 @@ export class CreditcardComponent implements OnInit {
         );
     }
   }
+  applyCreditCardMask(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const maskOptions = {
+      mask: '0000 0000 0000 00',
+    };
+    IMask(inputElement, maskOptions);
+}
 }

@@ -1,31 +1,23 @@
 <app-navbar></app-navbar>
 <div class="container">
   <ul class="card-list">
-    <li *ngFor="let detail of creditList" class="card-item" (click)="onCardClick(detail)">
+    <li *ngFor="let detail of creditList" class="card-item" >
       <div class="credit-card">
         <div class="card-header">
           <strong class="card-nickname">Nick Name:</strong> {{ detail.NName }}
         </div>
-        <div class="card-body">
+        <div class="card-body" (click)="onCardClick(detail)">
           <div class="card-info">
-            <div class="card-field">
+            <!-- <div class="card-field">
               <strong class="card-label">Id:</strong> {{ detail.id }}
-            </div>
+            </div> -->
             <div class="card-field">
-              <strong class="card-label">Card Number:</strong> {{ detail.CCNo }}
+              <strong class="card-label">Card Number:</strong> {{ detail.CCNo }} 
+               <!-- Angular interpolation ({{ }}) -->
             </div>
             <div class="card-field">
               <strong class="card-label">Card Name:</strong> {{ detail.CCName }}
             </div>
-            <!-- <div class="card-field">
-              <strong class="card-label">Card Expiry Date:</strong> {{ detail.CCExp }}
-            </div> -->
-            <!-- <div class="card-field">
-              <strong class="card-label">Card Bank Name:</strong> {{ detail.Bname }}
-            </div> -->
-            <!-- <div class="card-field">
-              <strong class="card-label">Card CVV:</strong> {{ detail.Cvvnum }}
-            </div> -->
             <div class="card-field">
               <strong class="card-label">Card Status:</strong> {{ detail.Act }}
             </div>
@@ -40,7 +32,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <button mat-raised-button color="primary" (click)="update(detail)">
+          <button class="update-button" mat-raised-button color="primary" (click)="update(detail)">
             Update
           </button>
           <button mat-raised-button color="primary" (click)="deleteCard(detail.id)">
@@ -53,4 +45,13 @@
       </div>
     </li>
   </ul>
+  <div class="empty-list" *ngIf="creditList.length === 0">
+    <div class="empty-list__message">
+      No credit cards found.
+    </div>
+    <button mat-raised-button color="primary" (click)="addCreditCard()">
+      Add Credit Card
+    </button>
+  </div>
 </div>
+

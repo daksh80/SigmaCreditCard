@@ -7,6 +7,8 @@
   background-color: #f9f9f9;
   position: relative;
   overflow: hidden;
+  margin-top: 200px;
+  
 }
 
 .container:hover {
@@ -76,10 +78,11 @@ label:hover {
   cursor: not-allowed;
 }
 
-/* Add animation */
+
 
 .container {
   animation: fade-in 0.5s ease-in-out;
+  margin-top: 200sp;
 }
 
 @keyframes fade-in {
@@ -97,7 +100,7 @@ label:hover {
   background-color: #45a049;
 }
 
-/* Center the container */
+
 
 html, body {
   height: 100%;
@@ -110,4 +113,22 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.heading_containe {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  height: 0vh;
+  text-align: center;
+}
+
+.heading_containe h1 {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  width: 50%;
+  margin-top: 80px;
+  padding: 10px;
 }

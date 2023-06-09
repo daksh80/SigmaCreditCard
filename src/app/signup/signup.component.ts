@@ -41,10 +41,10 @@ export class SignupComponent implements OnInit {
         Validators.minLength(6),
         Validators.maxLength(30)
       ])),
-      fnumber: ["", Validators.required],
-      ActType: ["", Validators.required],
-      CCnumber: ["", Validators.required],
-      CCType: ["", Validators.required],
+      fnumber: [""],
+      ActType: [""],
+      CCnumber: [""],
+      CCType: [""],
       uid: ["", Validators.required]
     }, {
       validators: this.passwordCheck.bind(this)

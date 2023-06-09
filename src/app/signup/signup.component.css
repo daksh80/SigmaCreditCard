@@ -7,11 +7,30 @@
   padding: 20px;
   background-color: #f0f0f0;
   border-radius: 5px;
+  margin-top: 30px;
+}
+.container:hover {
+  background-color: #eaeaea;
 }
 
 .form-group {
   margin-bottom: 15px;
+  transition: background-color 0.3s ease;
 }
+.form-group:hover {
+  background-color: #f5f5f5;
+}
+label {
+  display: block;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+label:hover {
+  color: #ff0000;
+}
+
 
 .form-control {
   width: 100%;
@@ -23,6 +42,17 @@
 
 .text-danger {
   color: red;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
 .btn-success {
@@ -50,4 +80,41 @@
 
 .card p {
   margin-bottom: 10px;
+}
+.container {
+  animation: fade-in 0.5s ease-in-out;
+  margin-top: 200sp;
+}
+
+.container_heading {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  height: 0vh;
+  text-align: center;
+}
+
+.container_heading h2 {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  width: 50%;
+  margin-top: -27px;
+  padding: 10px;
+  margin-left: -37px;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html, body {
+  height: 100%;
 }

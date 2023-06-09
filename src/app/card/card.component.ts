@@ -6,26 +6,32 @@ import { details } from "details.interface";
 import { emicalculator } from "emicalculator.interface";
 import { Observable, catchError, map, of } from "rxjs";
 import { SharedService } from "src/shared.service";
-import { IMaskModule } from 'angular-imask';
+import { IMaskModule } from 'angular-imask';  // force user to put input into special format
 
 @Component({
   selector: "app-card",
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.css"],
 })
+/**
+ * onInit - lifecycle hooks 
+ */
 export class CardComponent implements OnInit {
   creditList: creditcard[] = [];
-   @Input() uid: string | undefined = "1"; // @Input() decorator is used in Angular to mark a property as an input property.
+  // @Input() uid: string | undefined = "1"; // @Input() decorator is used in Angular to mark a property as an input property.
+  @Input() uid: string | undefined
   cardType: emicalculator[] = [];
-  creditLimit: string | undefined;
+  creditLimit: string | undefined; //object property not set(undefined) / function return value
   cardActiveIn: string | undefined;
   detail: creditcard[] = [];
-  getdata: string | null | undefined;
+  getdata: string | null | undefined;   //used for different sceniario
+  flag=0;
+  receivedRandomValue: number | undefined;
 
 
   // updated code
   loggedInUser : details | null | undefined;
-  bgImage:any; 
+  bgImage:string | "" | undefined; 
 
   /**
    * Constructor
@@ -38,7 +44,7 @@ export class CardComponent implements OnInit {
     private http: HttpClient,
   private router: Router,
   private sharedService: SharedService,
-  public router_ : ActivatedRoute
+  public router_ : ActivatedRoute   // it can check Activated route in module and navigate
   ) {}
 
   /**
@@ -67,16 +73,23 @@ export class CardComponent implements OnInit {
     } else {
       this.router.navigate(['']);
     }
-    
+    /**
+     * if user try to move from hyperlink it will redirect to login page and ask for login details 
+     */
     if (this.loggedInUser?.uid === this.uid && this.loggedInUser?.uid !== undefined && this.loggedInUser?.uid !== null) {
       this.router.navigate([`card/${this.loggedInUser?.uid}`]);
     } else {
        this.router.navigate(['']);
        localStorage.removeItem('logindata');
+       localStorage.removeItem('token');
     }
 
-    this.bgImage = this.currentCardBackground();
-     
+   this.sharedService.randomValue$.subscribe(value => {
+      this.receivedRandomValue = value;
+    });
+    
+      console.log(this.receivedRandomValue);
+      this.bgImage = this.currentCardBackground(2);
   }
   /**
    * @description this function takes data from json server and return creditcard details from addcreditcard json 
@@ -96,13 +109,14 @@ export class CardComponent implements OnInit {
    */
 
   onCardClick(detail: creditcard) {
+    
     const logindata = localStorage.getItem("logindata");
     const uid = logindata ? JSON.parse(logindata).uid : ""; 
     if(detail.Act == "Active"){
     this.sharedService.setEmicreditcardArray([detail]);
     this.cardActiveIn = detail.Act;
     console.log("card Active or inActive", this.cardActiveIn);
-    this.getcardname(detail.CCType).subscribe(
+    this.getcardname(detail.CCType).subscribe(      // on  the basis of creditcard it return Loan Limit
       (cardName: emicalculator[]) => {
         this.cardType = cardName;
         console.log(this.cardType[0].LoanLimit);
@@ -163,8 +177,9 @@ export class CardComponent implements OnInit {
    * Generates a random card background image
    * @returns Image URL
    */
-  currentCardBackground () {
-    let random = Math.floor(Math.random() * 25 + 1)
+  currentCardBackground (random : number) {
+    //let random = Math.floor(Math.random() * 25 + 1)
+   // console.log(`${random}`);
     return `assets/images/${random}.jpeg`; 
   }
 
@@ -192,23 +207,20 @@ export class CardComponent implements OnInit {
    * @param id Credit card ID
    */
   deleteCard(id: string): void {
-    debugger
     this.http.delete("http://localhost:3000/addcreditcard/" + id).subscribe(
       (data) => {
         console.log(data);
-        debugger;
         this.getUsers();
         this.deleteFromLocalStorage(id); // Delete from local storage
         window.location.reload(); // Reload the page after deletion
       },
       (error) => {
-        debugger
         console.error("Error deleting data from JSON server:", error);
         console.log("delete id",id);
         this.deleteFromLocalStorage(id); 
+        this.data()
        // this.router.navigate
         //window.location.reload();  
-
       }
     );
   }
@@ -220,7 +232,6 @@ export class CardComponent implements OnInit {
    */
   
   private deleteFromLocalStorage(id: string): void {
-    debugger;
     const localStorageData = localStorage.getItem("data");
     console.log("localstorage data max",localStorageData);    
     if (localStorageData) {
@@ -233,8 +244,7 @@ export class CardComponent implements OnInit {
       localStorage.setItem("data", JSON.stringify(parsedData));
     }
   
-     window.location.reload();
-    this.router.navigate([`card/${this.uid}`]);
+    this.data()
   }
   
   
@@ -245,7 +255,7 @@ export class CardComponent implements OnInit {
   
   toggleCardStatus(detail: any): void {
     console.log("toggleCardStatus", detail);
-    let updatedCard = { ...detail };
+    let updatedCard = { ...detail };   //spread operator used for object spreading into individual element
     console.log("updated Card", updatedCard);
     updatedCard.Act = updatedCard.Act === "Active" ? "Inactive" : "Active";
   
@@ -265,13 +275,23 @@ export class CardComponent implements OnInit {
         localStorage.setItem("data", JSON.stringify(parsedData));
         this.router.navigate([`card/${this.uid}`]); 
       }
-      window.location.reload();
-      this.router.navigate([`card/${this.uid}`]); 
+       this.data();
       
     }
   
     this.sharedService.updateCreditCard(updatedCard);
 
+  }
+
+  addCreditCard():void{
+    this.router.navigate(['creditcard']);
+  }
+
+  data(){
+    this.sharedService.getUserCreditCard(this.uid).subscribe((creditCards: creditcard[]) => {
+      this.creditList = creditCards;
+      console.log("Credit Card List:", this.creditList);
+    });
   }
   
 }

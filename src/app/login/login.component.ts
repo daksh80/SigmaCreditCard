@@ -50,6 +50,9 @@ export class LoginComponent implements OnInit {
     console.log(signupArray);
 
     this.detailsArray = signupArray;
+
+    const randomValue =  Math.floor(Math.random() * 25 + 1);
+    this.sharedService.sendRandomValue(randomValue);
   }
 
   // private getUsers(): Observable<details[]> {
@@ -123,10 +126,13 @@ export class LoginComponent implements OnInit {
         );
         console.log(existingUser, "existing user id");
         this.router.navigate([`card/${existingUser.uid}`]); 
+       //this.router.navigate(["card"]);
       } else {
         console.log("Invalid username or password");
         alert("Invalid username or password");
       }
     }
   }
+
+
 }

@@ -33,7 +33,8 @@ export class EmiCalculatorComponent implements OnInit {
   loanTerm = 0;
   totalInterest=0;
   interest=0;
-
+  creditAMount= 500000;
+  monthmax= 36;
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap?.get("uid") || "";
     this.sharedService
@@ -41,7 +42,7 @@ export class EmiCalculatorComponent implements OnInit {
       .subscribe((creditCards: creditcard[]) => {
         this.selectedUserCreditCard = creditCards;
         console.log("hellloooo",this.selectedUserCreditCard);
-        this.updateChart();
+        // this.updateChart();
       });
   }
    /**
@@ -50,54 +51,54 @@ export class EmiCalculatorComponent implements OnInit {
    * @chartType pie
    * @title Loan Details
    */
-   updateChart() {
-    const chart = Highcharts.chart("loanChart", {
-      chart: {
-        type: "pie",
-      },
-      title: {
-        text: "Loan Details",
-      },
-      tooltip: {
-        valueSuffix: "",
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: "pointer",
-          dataLabels: {
-            enabled: true,
-            format: "{point.name}: {y}",
-          },
-          showInLegend: true,
-        },
-      },
-      series: [
-        {
-          name: "Value",
-          colorByPoint: true,
-          type: "pie",
-          innerSize: "75%",
-          data: [],
-        },
-      ],
-    } as any);
+  //  updateChart() {
+  //   const chart = Highcharts.chart("loanChart", {
+  //     chart: {
+  //       type: "pie",
+  //     },
+  //     title: {
+  //       text: "Loan Details",
+  //     },
+  //     tooltip: {
+  //       valueSuffix: "",
+  //     },
+  //     plotOptions: {
+  //       pie: {
+  //         allowPointSelect: true,
+  //         cursor: "pointer",
+  //         dataLabels: {
+  //           enabled: true,
+  //           format: "{point.name}: {y}",
+  //         },
+  //         showInLegend: true,
+  //       },
+  //     },
+  //     series: [
+  //       {
+  //         name: "Value",
+  //         colorByPoint: true,
+  //         type: "pie",
+  //         innerSize: "75%",
+  //         data: [],
+  //       },
+  //     ],
+  //   } as any);
   
-    const interest =  ((this.loanTerm) *this.loanAmount) * (this.rateOfInterest / 100) ;
-    const totalAmount = this.loanAmount + interest;
-    const monthlyInstallment = totalAmount / (this.loanTerm * 12);
-    console.log("loan term",this.loanTerm);
-    const totalInterest = interest; // Calculate total interest based on loan term
+  //   const interest =  ((this.loanTerm) *this.loanAmount) * (this.rateOfInterest / 100) ;
+  //   const totalAmount = this.loanAmount + interest;
+  //   const monthlyInstallment = totalAmount / (this.loanTerm * 12);
+  //   console.log("loan term",this.loanTerm);
+  //   const totalInterest = interest; // Calculate total interest based on loan term
   
-    chart.series[0].setData([
-      { name: "Loan Amount", y: this.loanAmount },
-      { name: "Rate of Interest", y: this.rateOfInterest },
-      { name: "Loan Term", y: this.loanTerm },
-      { name: "Total Interest", y: interest}, // Update total interest value
-      { name: "Total Amount", y: totalAmount },
-      { name: "Monthly Installment", y: monthlyInstallment },
-    ]);
-  }
+  //   chart.series[0].setData([
+  //     { name: "Loan Amount", y: this.loanAmount },
+  //     { name: "Rate of Interest", y: this.rateOfInterest },
+  //     { name: "Loan Term", y: this.loanTerm },
+  //     { name: "Total Interest", y: interest}, // Update total interest value
+  //     { name: "Total Amount", y: totalAmount },
+  //     { name: "Monthly Installment", y: monthlyInstallment },
+  //   ]);
+  // }
   
   /**
    * @description this function calculateLoan using(intrest, totalAmount,monthlyInstallment)
@@ -116,7 +117,7 @@ export class EmiCalculatorComponent implements OnInit {
       console.log("Interest:", totalInterest);
       console.log("Total Amount:", totalAmount);
       console.log("Monthly Installment:", monthlyInstallment);
-      this.updateChart();
+      // this.updateChart();
     }
    /**
    * @description this function calculate monthly installment 

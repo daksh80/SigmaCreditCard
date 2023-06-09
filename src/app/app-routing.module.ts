@@ -62,6 +62,7 @@ const routes: Routes = [
    */
   {
     path: "card/:uid",
+   // path: "card",
     component: CardComponent,
     canActivate: [AuthgardGuard],
   },

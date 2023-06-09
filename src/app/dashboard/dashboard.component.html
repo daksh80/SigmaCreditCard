@@ -3,7 +3,6 @@
   <div class="top-container">
     <div class="left-container">
       <div>
-        <mat-label>Loan Type</mat-label>
         <section>
           <mat-form-field appearance="outline">
             <mat-label>Loan Type</mat-label>
@@ -37,7 +36,7 @@
             <mat-label>Rate of Interest</mat-label>
           </div>
           <div class="rate-value">
-            <input type="number" matInput [(ngModel)]="rateOfInterest" class="input-roi" />%
+            %<input type="number" matInput [(ngModel)]="rateOfInterest" class="input-roi" />
           </div>
         </div>
         <div class="slider-container">
@@ -55,12 +54,12 @@
             <mat-label>Loan Term</mat-label>
           </div>
           <div class="loan-amout-value">
-            <input
+            Month<input
               matInput
               [(ngModel)]="loanTerm"
               type="number"
               class="input-lt"
-            />months
+            />
           </div>
         </div>
         <mat-slider [min]="min" [max]="monthmax" [step]="step">
@@ -80,55 +79,55 @@
         <p>Loan Term: {{ loanTerm }} month</p>
         <p>Total Interest: {{ calculateInterest() }}</p>
         <p>Total Amount: {{ calculateTotalAmount() }}</p>
-        <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
+         <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p> 
       </div>
+      <ul class="card-list">
+        <li *ngFor="let detail of creditList" class="card-item">
+          <div class="credit-card">
+            <!-- <div class="card-header">
+              <strong class="card-nickname">Nick Name:</strong> {{ detail.NName }}
+            </div> -->
+            <div class="card-body">
+              <div class="card-info">
+                <!-- <div class="card-field">
+                  <strong class="card-label">Id:</strong> {{ detail.id }}
+                </div> -->
+                <div class="card-field">
+                  <strong class="card-label">Card Number:</strong> {{ detail.CCNo }}
+                </div>
+                <div class="card-field">
+                  <strong class="card-label">Card Name:</strong> {{ detail.CCName }}
+                </div>
+                <!-- <div class="card-field">
+                  <strong class="card-label">Card Expiry Date:</strong> {{ detail.CCExp }}
+                </div> -->
+                <!-- <div class="card-field">
+                  <strong class="card-label">Card Bank Name:</strong> {{ detail.Bname }}
+                </div> -->
+                <!-- <div class="card-field">
+                  <strong class="card-label">Card CVV:</strong> {{ detail.Cvvnum }}
+                </div> -->
+                <div class="card-field">
+                  <strong class="card-label">Card Status:</strong> {{ detail.Act }}
+                </div>
+                <div class="card-field">
+                  <strong class="card-label">Card Type:</strong> {{ detail.CCType }}
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card-item__focus -active" #focusElement>
+              <div class="card-item__cover">
+                <img src="{{ bgImage }}" alt="" srcset="" class="card-item__bg">
+              </div>
+            </div> -->
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="bottom-container">
 
 <div class="container">
-  <ul class="card-list">
-    <li *ngFor="let detail of creditList" class="card-item">
-      <div class="credit-card">
-        <div class="card-header">
-          <strong class="card-nickname">Nick Name:</strong> {{ detail.NName }}
-        </div>
-        <div class="card-body">
-          <div class="card-info">
-            <div class="card-field">
-              <strong class="card-label">Id:</strong> {{ detail.id }}
-            </div>
-            <div class="card-field">
-              <strong class="card-label">Card Number:</strong> {{ detail.CCNo }}
-            </div>
-            <div class="card-field">
-              <strong class="card-label">Card Name:</strong> {{ detail.CCName }}
-            </div>
-            <!-- <div class="card-field">
-              <strong class="card-label">Card Expiry Date:</strong> {{ detail.CCExp }}
-            </div> -->
-            <div class="card-field">
-              <strong class="card-label">Card Bank Name:</strong> {{ detail.Bname }}
-            </div>
-            <div class="card-field">
-              <strong class="card-label">Card CVV:</strong> {{ detail.Cvvnum }}
-            </div>
-            <div class="card-field">
-              <strong class="card-label">Card Status:</strong> {{ detail.Act }}
-            </div>
-            <div class="card-field">
-              <strong class="card-label">Card Type:</strong> {{ detail.CCType }}
-            </div>
-          </div>
-        </div>
-        <div class="card-item__focus -active" #focusElement>
-          <div class="card-item__cover">
-            <img src="{{ bgImage }}" alt="" srcset="" class="card-item__bg">
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
 </div>
   </div>
 </div>

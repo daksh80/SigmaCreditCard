@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { creditcard } from "creditcard.interface";
 import { SharedService } from "src/shared.service";
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import IMask from "imask";
 
 
 @Component({
@@ -24,6 +25,18 @@ export class UpdatecreditdetailsComponent implements OnInit {
       dateInputFormat: 'MM/YYYY'
     };
   }
+  getCurrentMonthYear(): string {
+    const today = new Date();
+    const year = today.getFullYear().toString();
+    let month = (today.getMonth() + 1).toString();
+  
+    if (month.length === 1) {
+      month = '0' + month;
+    }
+  
+    return `${year}-${month}`;
+  }
+  
 
   ngOnInit(): void {
     /**
@@ -33,7 +46,7 @@ export class UpdatecreditdetailsComponent implements OnInit {
     const logindata = localStorage.getItem("logindata");
     const uid = logindata ? JSON.parse(logindata).uid : "";   //getting uid from logindata(localstorage)
      this.updatecreditcard = this.fb.group({
-      CCNo: [this.creditArray ? this.creditArray[0].CCNo: "", [Validators.required,Validators.pattern('^[0-9]{16}$')]], // Autofilling the data from the card component
+      CCNo: [this.creditArray ? this.creditArray[0].CCNo : "", [Validators.required, Validators.pattern(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{2}$/)]],
       CCName: [this.creditArray ? this.creditArray[0].CCName: "", Validators.required],
       CCExp: [this.creditArray ? this.creditArray[0].CCExp:"", Validators.required],
       Bname: [this.creditArray ? this.creditArray[0].Bname:"", Validators.required],
@@ -105,5 +118,13 @@ export class UpdatecreditdetailsComponent implements OnInit {
       this.router.navigate([`card/${uid}`]);
     }
   }
-} 
+  applyCreditCardMask(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const maskOptions = {
+      mask: '0000 0000 0000 00',
+    };
+    IMask(inputElement, maskOptions);
+}
+}
+ 
 

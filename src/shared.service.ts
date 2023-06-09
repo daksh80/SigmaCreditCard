@@ -16,6 +16,8 @@ export class SharedService {
   private limit: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private uidSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   getdata: string | null | undefined;
+  private randomValueSubject: BehaviorSubject<number> = new BehaviorSubject<number>(2);
+
 
   constructor(private http: HttpClient) { }
 
@@ -183,5 +185,11 @@ export class SharedService {
   getuid(): Observable<string | null> {
     return this.uidSubject.asObservable();
   }
+
+  sendRandomValue(val : number){
+    this.randomValueSubject.next(val);
+  }
+  public randomValue$ = this.randomValueSubject.asObservable();
+
   
 }

@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [uid]="uid"></app-navbar>
 <div class="outer-div">
   <div class="top-container">
     <div class="left-container">
@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="slider slider-container">
-          <mat-slider [min]="min" [max]="max" [step]="step">
+          <mat-slider [min]="min" [max]="creditAMount" [step]="step">
             <input matSliderThumb [(ngModel)]="loanAmount">
           </mat-slider>
           
@@ -24,34 +24,33 @@
             <mat-label>Rate of Interest</mat-label>
           </div>
           <div class="rate-value">
-            <input type="number"
-              matInput
-              [(ngModel)]="rateOfInterest"
-              class="input-roi"/>%
+            %<input type="number" matInput [(ngModel)]="rateOfInterest" class="input-roi" />
           </div>
         </div>
-        <div class="slider slider-container">
-          <mat-slider [min]="min" [max]="max" [step]="step">
-            <input matSliderThumb [(ngModel)]="rateOfInterest">
-          </mat-slider>
-          
+        <div class="slider-container">
+          <div class="slider">
+            <mat-slider [min]="min" [max]="max" [step]="step">
+              <input matSliderThumb [(ngModel)]="rateOfInterest">
+            </mat-slider>
+          </div>
         </div>
       </div>
+      
       <div class="box loan-term-container">
         <div class="top top-container">
           <div class="loan-term-txt">
             <mat-label>Loan Term</mat-label>
           </div>
           <div class="loan-amout-value">
-            <input
+            Month<input
               matInput
               [(ngModel)]="loanTerm"
               type="number"
               class="input-lt"
-            />years
+            />
           </div>
         </div>
-        <mat-slider [min]="min" [max]="max" [step]="step">
+        <mat-slider [min]="min" [max]="monthmax" [step]="step">
           <input matSliderThumb [(ngModel)]="loanTerm">
         </mat-slider>
       </div>
@@ -60,19 +59,18 @@
       </button>
     </div>
     <div class="right-container">
-  </div>
-  <div class="bottom-container"></div>
-  <div class="container">
-  <div id="loanChart"></div>
-    <div class="breakdown">
-      <h3>Loan Calculation</h3>
-      <p>Loan Amount: {{ loanAmount }}</p>
-      <p>Rate of Interest: {{ rateOfInterest }}%</p>
-      <p>Loan Term: {{ loanTerm }} years</p>
-      <p>Total Interest: {{ calculateInterest() }}</p>
-      <p>Total Amount: {{ calculateTotalAmount() }}</p>
-      <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
+      <div id="loanChart"></div>
+      <div class="breakdown">
+        <h3>Loan Calculation</h3>
+        <p>Loan Amount: {{ loanAmount }}</p>
+        <p>Rate of Interest: {{ rateOfInterest }}%</p>
+        <p>Loan Term: {{ loanTerm }} month</p>
+        <p>Total Interest: {{ calculateInterest() }}</p>
+        <p>Total Amount: {{ calculateTotalAmount() }}</p>
+        <p>Monthly Installment: {{ calculateMonthlyInstallment() }}</p>
+      </div>
     </div>
   </div>
+  <div class="bottom-container">
   </div>
 </div>

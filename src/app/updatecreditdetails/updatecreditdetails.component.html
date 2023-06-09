@@ -11,7 +11,7 @@
     </div> -->
     <div class="form-group">
       <label>Credit Card Number</label>
-      <input type="tel" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" pattern="[0-9]{16}" required />
+      <input type="tel" formControlName="CCNo" class="form-control mb-3 mt-3" placeholder="Enter User CC Number" pattern="^\d{4}\s?\d{4}\s?\d{4}\s?\d{2}$" required (input)="applyCreditCardMask($event)" />
       <div *ngIf="updatecreditcard.get('CCNo')?.invalid && (updatecreditcard.get('CCNo')?.dirty || updatecreditcard.get('CCNo')?.touched)" class="text-danger">
         <ng-container *ngIf="updatecreditcard.get('CCNo')?.errors?.['required']">
           Credit Card Number is required.
@@ -37,18 +37,18 @@
     <div class="form-group">
       <label>Card Expiry</label>
       <input
-        type="text"
+        type="month"
         formControlName="CCExp"
         class="form-control mb-3 mt-3"
-        placeholder="Card Expiry"
-        bsDatepicker
-        [bsConfig]="bsConfig"
+        placeholder="MM/YYYY"
+        [min]="getCurrentMonthYear()"
         required
       />
       <div *ngIf="updatecreditcard.get('CCExp')?.invalid && (updatecreditcard.get('CCExp')?.dirty || updatecreditcard.get('CCExp')?.touched)" class="text-danger">
         Card Expiry is required.
       </div>
     </div>
+    
     <div class="form-group">
       <label>Bank Name</label>
       <input
@@ -61,13 +61,13 @@
     <div class="form-group">
       <label>CVV Number</label>
       <input
-        type="text"
+        type="password"
         formControlName="Cvvnum"
         class="form-control mb-3 mt-3"
         placeholder="CVV Number"
       />
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>ID</label>
       <input
         type="text"
@@ -75,8 +75,8 @@
         class="form-control mb-3 mt-3"
         placeholder="Card Identity"
       />
-    </div>
-    <div class="form-group">
+    </div> -->
+    <!-- <div class="form-group">
       <label>UID</label>
       <input
         type="text"
@@ -84,7 +84,7 @@
         class="form-control mb-3 mt-3"
         placeholder="Unique Identity"
       />
-    </div>
+    </div> -->
     <!-- <div class="form-group">
       <label>Card Type</label>
       <input
@@ -93,7 +93,7 @@
         class="form-control mb-3 mt-3"
         placeholder="Active/Inactive"
       />
-    </div> -->
+    </div>  -->
     <div class="form-group">
       <label>Active/Inactive</label>
       <select formControlName="Act" class="form-control mb-3 mt-3" required>
